@@ -267,9 +267,9 @@ function App(){
     <section id="focus" className="focus section light">
       <div className="section-heading reveal"><p className="kicker">SIX KEY FOCUS AREAS</p><h2>OUR CORE FOCUS AREAS</h2></div>
       <div className="focus-stage reveal">
-        <div className="focus-list" role="tablist" aria-label="Six key focus areas" onKeyDown={onFocusKey}>{focusAreas.map((item,i)=><button key={item.title} id={`focus-tab-${i}`} ref={el=>dotRefs.current[i]=el} className={`reveal ${focus===i?'active':''}`} style={{transitionDelay:`${i*60}ms`}} tabIndex={focus===i?0:-1} onClick={()=>setFocus(i)} role="tab" aria-selected={focus===i} aria-controls={`focus-panel-${i}`}><span>0{i+1}</span>{item.title}</button>)}</div>
+        <div className="focus-list" role="tablist" aria-label="Six key focus areas" onKeyDown={onFocusKey}>{focusAreas.map((item,i)=><button key={item.title} id={`focus-tab-${i}`} ref={el=>dotRefs.current[i]=el} className={focus===i?'active':''} tabIndex={focus===i?0:-1} onClick={()=>setFocus(i)} role="tab" aria-selected={focus===i} aria-controls={`focus-panel-${i}`}><span>0{i+1}</span>{item.title}</button>)}</div>
         <div className="focus-panel" id={`focus-panel-${focus}`} role="tabpanel" aria-labelledby={`focus-tab-${focus}`} key={`panel-${focus}`}>
-          <div className="focus-detail"><div className="focus-points">{focusAreas[focus].points.map((point,i)=><p key={point} className="reveal" style={{transitionDelay:`${i*60}ms`}}><span className="point-arrow" aria-hidden="true"/>{point}</p>)}</div></div>
+          <div className="focus-detail"><div className="focus-points">{focusAreas[focus].points.map((point,i)=><p key={point}><span className="point-arrow" aria-hidden="true"/>{point}</p>)}</div></div>
         </div>
       </div>
     </section>
