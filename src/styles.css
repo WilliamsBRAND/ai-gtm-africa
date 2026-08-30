@@ -629,3 +629,323 @@ main h1,h1{white-space:normal}
   .event-stat-line:after{animation:none}
   .cities-bg img{animation:none}
 }
+
+
+/* ==========================================================================
+   MOBILE RESPONSIVENESS OVERHAUL (<= 768px)
+   ========================================================================== */
+.footer-social-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 6px;
+}
+.footer-social-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border: 1px solid rgba(255,255,255,0.18);
+  color: rgba(255,255,255,0.85);
+  background: transparent;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+.footer-social-btn:hover {
+  background: #ffffff;
+  color: #050505;
+  border-color: #ffffff;
+}
+
+@media (max-width: 768px) {
+  /* 1. HERO PADDING (HOMEPAGE & PROFILE) */
+  .hero {
+    min-height: 0 !important;
+    height: auto !important;
+    padding: 78px 20px 44px !important;
+  }
+  .hero h1 {
+    font-size: clamp(32px, 8vw, 42px) !important;
+    line-height: 1.05 !important;
+    white-space: normal !important;
+  }
+  .hero .intro {
+    margin: 16px 0 22px !important;
+    font-size: 14px !important;
+    line-height: 1.6 !important;
+  }
+  .bio-hero, .profile-hero {
+    min-height: 0 !important;
+    height: auto !important;
+    padding: 78px 20px 36px !important;
+  }
+  .bio-hero-copy h1, .profile-hero-copy h1 {
+    font-size: clamp(36px, 9vw, 48px) !important;
+    line-height: 1.02 !important;
+  }
+
+  /* 2. EVENT FORMAT STATS (STRICTLY HORIZONTAL) */
+  .event-intro {
+    padding: 56px 20px !important;
+  }
+  .event-heading {
+    margin-bottom: 24px !important;
+  }
+  .event-stats {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    border-top: 1px solid var(--line-light) !important;
+    border-bottom: 1px solid var(--line-light) !important;
+    gap: 0 !important;
+  }
+  .event-stat {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    justify-content: center !important;
+    min-height: 80px !important;
+    padding: 14px 8px !important;
+    border-right: 1px solid var(--line-light) !important;
+    border-bottom: 0 !important;
+    gap: 4px !important;
+  }
+  .event-stat:last-child {
+    border-right: 0 !important;
+  }
+  .event-stat-number {
+    font-size: clamp(20px, 5.5vw, 30px) !important;
+    line-height: 1 !important;
+  }
+  .event-stat-label {
+    font-size: 8.5px !important;
+    margin-left: 0 !important;
+    letter-spacing: 0.8px !important;
+  }
+
+  /* 3. FIVE CITIES TOUR CAROUSEL (NAIROBI FULL & PROMINENT) */
+  .five-cities {
+    padding: 56px 20px !important;
+  }
+  .five-cities-track {
+    display: flex !important;
+    gap: 16px !important;
+    overflow-x: auto !important;
+    scroll-snap-type: x mandatory !important;
+    scroll-behavior: smooth !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+    padding: 0 0 10px !important;
+  }
+  .five-cities-track::-webkit-scrollbar {
+    display: none;
+  }
+  .five-city {
+    flex: 0 0 calc(100vw - 40px) !important;
+    max-width: calc(100vw - 40px) !important;
+    width: calc(100vw - 40px) !important;
+    scroll-snap-align: start !important;
+    scroll-snap-stop: always !important;
+    height: 380px !important;
+  }
+
+  /* 4. WHAT YOU SHOULD EXPECT (PROGRAMME CAROUSEL) */
+  .programme {
+    padding: 56px 20px !important;
+  }
+  .programme-grid {
+    display: flex !important;
+    gap: 16px !important;
+    overflow-x: auto !important;
+    scroll-snap-type: x mandatory !important;
+    scroll-behavior: smooth !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+    padding: 0 0 10px !important;
+  }
+  .programme-grid::-webkit-scrollbar {
+    display: none;
+  }
+  .programme-grid article {
+    flex: 0 0 calc(100vw - 40px) !important;
+    max-width: calc(100vw - 40px) !important;
+    width: calc(100vw - 40px) !important;
+    scroll-snap-align: start !important;
+    scroll-snap-stop: always !important;
+    min-height: 310px !important;
+  }
+
+  /* 5. FOCUS AREAS ON MOBILE */
+  .focus-stage {
+    display: flex !important;
+    flex-direction: column !important;
+    min-height: 0 !important;
+    height: auto !important;
+  }
+  .focus-list {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    border-right: 0 !important;
+    border-bottom: 1px solid var(--line) !important;
+  }
+  .focus-list button {
+    min-height: 52px !important;
+    padding: 12px 14px !important;
+    font-size: 11px !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.5px !important;
+    color: var(--ink) !important;
+    border-bottom: 1px solid var(--line) !important;
+    border-right: 1px solid var(--line) !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+  }
+  .focus-list button:nth-child(2n) {
+    border-right: 0 !important;
+  }
+  .focus-list button.active {
+    background: var(--ink) !important;
+    color: #ffffff !important;
+  }
+  .focus-detail {
+    padding: 24px 16px !important;
+  }
+  .focus-points {
+    display: flex !important;
+    flex-direction: column !important;
+    height: auto !important;
+    gap: 0 !important;
+  }
+  .focus-points p {
+    font-size: 13.5px !important;
+    line-height: 1.5 !important;
+    padding: 13px 0 !important;
+    border-bottom: 1px solid var(--line) !important;
+  }
+
+  /* 6. FINAL CTA BUTTONS (SIDE-BY-SIDE HORIZONTAL ON MOBILE) */
+  .final-cta {
+    padding: 56px 20px !important;
+  }
+  .final-cta-buttons,
+  .final-cta > div > div {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: stretch !important;
+    gap: 10px !important;
+    margin-top: 26px !important;
+    width: 100% !important;
+  }
+  .final-cta-buttons .cta,
+  .final-cta > div > div .cta {
+    flex: 1 1 0 !important;
+    min-width: 0 !important;
+    padding: 0 8px !important;
+    font-size: 11px !important;
+    height: 44px !important;
+    justify-content: center !important;
+    text-align: center !important;
+    white-space: nowrap !important;
+  }
+  .final-cta-buttons .cta:first-child,
+  .final-cta > div > div .cta:first-child {
+    background: #ffffff !important;
+    color: #050505 !important;
+    border: 1px solid #ffffff !important;
+  }
+  .final-cta-buttons .cta:last-child,
+  .final-cta > div > div .cta:last-child {
+    background: #050505 !important;
+    color: #ffffff !important;
+    border: 1px solid #050505 !important;
+  }
+  .final-cta-buttons .cta-arrow,
+  .final-cta > div > div .cta-arrow {
+    display: none !important;
+  }
+
+  /* 7. TOMIDE WILLIAMS PROFILE RESULTS / EXPERIENCE ON MOBILE */
+  .results-section {
+    padding: 56px 20px !important;
+  }
+  .results-list {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 24px !important;
+    margin-top: 24px !important;
+  }
+  .result-record {
+    background: #ffffff !important;
+    border: 1px solid var(--line) !important;
+    padding: 20px 16px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 14px !important;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.03) !important;
+  }
+  .result-identity {
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    border-bottom: 1px solid var(--line) !important;
+    padding-bottom: 10px !important;
+  }
+  .result-identity span {
+    font-family: var(--font-mono) !important;
+    font-size: 11px !important;
+    color: var(--ink-muted) !important;
+  }
+  .result-identity p {
+    font-family: var(--font-mono) !important;
+    font-size: 9px !important;
+    letter-spacing: 0.8px !important;
+    color: #7A0A15 !important;
+    font-weight: 700 !important;
+    margin: 0 !important;
+    text-transform: uppercase !important;
+  }
+  .result-identity h3 {
+    font-family: var(--font-display) !important;
+    font-size: 15px !important;
+    margin: 2px 0 0 !important;
+    letter-spacing: 0.5px !important;
+  }
+  .result-story h3 {
+    font-size: 16px !important;
+    line-height: 1.25 !important;
+    margin: 0 0 8px !important;
+    font-weight: 700 !important;
+  }
+  .result-story p {
+    font-size: 13.5px !important;
+    line-height: 1.6 !important;
+    color: rgba(7,7,7,0.85) !important;
+    margin: 0 !important;
+  }
+  .result-metrics {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 8px !important;
+    margin-top: 6px !important;
+  }
+  .result-metrics div {
+    background: #f8f8f6 !important;
+    border: 1px solid var(--line) !important;
+    padding: 12px 10px !important;
+    min-height: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+  }
+  .result-metrics strong {
+    font-size: 20px !important;
+    line-height: 1.1 !important;
+    color: var(--ink) !important;
+  }
+  .result-metrics span {
+    font-size: 8.5px !important;
+    letter-spacing: 0.5px !important;
+    color: rgba(7,7,7,0.7) !important;
+    margin-top: 4px !important;
+  }
+}
