@@ -93,13 +93,15 @@ function ApplicationForm({form, onClose}){
   },[form,preset,presetName]);
 
   if(form==null)return null;
-  const submit=ev=>{ev.preventDefault();setErr('');
+  const submit=async ev=>{ev.preventDefault();setErr('');
     if(!name.trim()||!email.trim()||!phone.trim()||!role||!btype||!city||!heard||!sponsor){setErr('Please fill in all required fields.');return}
     setSubmitting(true);
-    setTimeout(()=>{
-      setSubmitting(false);
+    try{
+      const response=await fetch('/api/register',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name,email,phone,city,role,industry:btype,heard,sponsor})});
+      const result=await response.json().catch(()=>({}));
+      if(!response.ok||!result.ok)throw new Error(result.error||'Registration could not be submitted.');
       setDone(true);
-    },350);
+    }catch(error){setErr(error.message||'Registration could not be submitted. Please try again.')}finally{setSubmitting(false)}
   };
   const field=(label,req,children)=><label className="form-field"><span className="form-label">{label}{req&&<em> *</em>}</span>{children}</label>;
 

@@ -1,4 +1,4 @@
-const SPREADSHEET_ID = '1YeJGTlFZZ6Zzp6AVUhc19E5mYj_R4xt0Pj6lZ7IwUOE';
+const SPREADSHEET_ID = '1Ydfb1xoTXM45MDNA3OQf5PGgS8kTjnZF7JnNC3HLT_0';
 const SHEET_RANGE = 'Responses!A:J';
 const REQUIRED_FIELDS = ['name', 'email', 'phone', 'city', 'role', 'industry', 'heard', 'sponsor'];
 const WORKLOAD_PROVIDER = 'projects/487026309723/locations/global/workloadIdentityPools/vercel/providers/ai-gtm-africa';
