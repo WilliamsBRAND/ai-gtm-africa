@@ -34,15 +34,15 @@ const takeaways=[
   'A stronger sense of what to prioritise when you return to work.'
 ];
 const cities = [
-  ['NAIROBI','03 OCTOBER 2026','/images/audience.jpg','center 38%'],
   ['KIGALI','10 OCTOBER 2026','/images/hall.jpg','center 22%'],
+  ['NAIROBI','30 OCTOBER 2026','/images/audience.jpg','center 38%'],
   ['LAGOS','21 NOVEMBER 2026','/images/hero-conference.png','center 50%'],
   ['COTONOU','19 DECEMBER 2026','/images/speaker.jpg','center 30%'],
   ['ACCRA','29 DECEMBER 2026','/images/workshop.jpg','center 44%']
 ];
 const fiveCities = [
-  ['NAIROBI','Kenya','/images/cities/nairobi.jpg'],
   ['KIGALI','Rwanda','/images/cities/kigali.jpg'],
+  ['NAIROBI','Kenya','/images/cities/nairobi.jpg'],
   ['LAGOS','Nigeria','/images/cities/lagos.jpg'],
   ['COTONOU','Benin','/images/cities/cotonou.jpg'],
   ['ACCRA','Ghana','/images/cities/accra.jpg']

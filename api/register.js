@@ -6,8 +6,8 @@ const SHEET_RANGE = 'Responses!A:J';
 const REQUIRED_FIELDS = ['name', 'email', 'phone', 'city', 'role', 'industry', 'heard', 'sponsor'];
 
 const CITY_DATES = {
-  'Nairobi': '03 October 2026',
   'Kigali': '10 October 2026',
+  'Nairobi': '30 October 2026',
   'Lagos': '21 November 2026',
   'Cotonou': '19 December 2026',
   'Accra': '29 December 2026',

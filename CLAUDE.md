@@ -18,8 +18,8 @@ Project documentation and engineering memory for **AI GTM Africa** (`aigtmafrica
 ### 2026 Tour Cities & Dates
 | City | Country | Event Date |
 |---|---|---|
-| **Nairobi** | Kenya | 03 October 2026 |
 | **Kigali** | Rwanda | 10 October 2026 |
+| **Nairobi** | Kenya | 30 October 2026 |
 | **Lagos** | Nigeria | 21 November 2026 |
 | **Cotonou** | Benin | 19 December 2026 |
 | **Accra** | Ghana | 29 December 2026 |
@@ -60,7 +60,7 @@ The site follows strict design guidelines, especially for mobile viewports (`max
 - **Hero Section:** Full immersive height (`min-height: 100svh`), background photo covering the full bleed (`object-fit: cover`), dark gradient vignette (`rgba(0,0,0,0.25)` to `rgba(0,0,0,0.92)`), with text layered over the image backdrop.
 - **Event Format Stats:** Strictly horizontal 3-column row (`6 HOURS | 20-30 PEOPLE | 5 CITIES`) without vertical stacking borders.
 - **Focus Areas:** 2-column tab grid (`64px` height, `13.5px` bold text) and matching `15px` bullet points with SVG arrows, preserving consistent typography with the rest of the page.
-- **City & Programme Carousels:** Snapping starts strictly at Index `0` (Nairobi / 01 Practical Sessions) on load without awkward half-cuts.
+- **City & Programme Carousels:** Snapping starts strictly at Index `0` (Kigali / 01 Practical Sessions) on load without awkward half-cuts.
 - **Footer:** No raw text emojis. Uses Lucide SVG arrows (`ArrowRight`, `ArrowUpRight`) and official SVG icons in a single horizontal row for **LinkedIn**, **Instagram**, and **X**.
 - **Final CTA:** Buttons are positioned side-by-side on mobile:
   - *Register Your Interest:* White background, black text.
