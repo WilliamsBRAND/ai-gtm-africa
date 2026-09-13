@@ -1236,47 +1236,84 @@ main h1,h1{white-space:normal}
 
 .overview-layout {
   display: grid;
-  grid-template-columns: 1.2fr 1fr;
-  gap: clamp(40px, 6vw, 80px);
-  align-items: center;
+  grid-template-columns: 1.15fr 1fr;
+  gap: clamp(40px, 5vw, 64px);
+  align-items: stretch;
 }
 
-.overview-text p {
-  font-size: 16px;
-  line-height: 1.75;
-  color: rgba(7,7,7,0.85);
-  margin-bottom: 20px;
+.overview-text {
+  display: flex;
+  flex-direction: column;
 }
 
 .overview-text .lead-paragraph {
-  font-size: 18px;
+  font-size: clamp(17px, 1.6vw, 19px);
   color: var(--ink);
-  font-weight: 500;
+  font-weight: 600;
+  line-height: 1.5;
+  margin-bottom: 22px;
+}
+
+.overview-pillars {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.pillar-item {
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-left: 3px solid #7A0A15;
+  padding: 14px 18px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+}
+
+.pillar-item strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+
+.pillar-item p {
+  font-size: 13.5px !important;
+  line-height: 1.55 !important;
+  color: rgba(7,7,7,0.78) !important;
+  margin: 0 !important;
 }
 
 .overview-quote {
-  margin-top: 32px;
-  padding: 24px;
+  margin-top: auto;
+  padding: 20px 22px;
   background: #ebebe6;
   border-left: 4px solid #7A0A15;
 }
 
 .overview-quote blockquote {
   font-family: var(--font-display);
-  font-size: 17px;
-  line-height: 1.5;
+  font-size: 16px;
+  line-height: 1.45;
   font-weight: 600;
   color: var(--ink);
-  margin: 0 0 10px;
+  margin: 0 0 8px;
 }
 
 .overview-quote cite {
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 10.5px;
   color: rgba(7,7,7,0.7);
   font-style: normal;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+}
+
+.overview-visual {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .image-frame {
@@ -1285,12 +1322,19 @@ main h1,h1{white-space:normal}
   border: 1px solid var(--line);
   overflow: hidden;
   box-shadow: 0 12px 36px rgba(0,0,0,0.12);
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  height: 100%;
+  min-height: 480px;
 }
 
 .image-frame img {
   width: 100%;
-  height: 380px;
+  height: 100%;
+  flex: 1 1 auto;
   object-fit: cover;
+  min-height: 0;
 }
 
 .image-caption {
@@ -1376,7 +1420,7 @@ main h1,h1{white-space:normal}
   display: grid;
   grid-template-columns: 1.3fr 1fr;
   gap: 48px;
-  align-items: center;
+  align-items: stretch;
 }
 
 .audience-list {
@@ -1413,7 +1457,6 @@ main h1,h1{white-space:normal}
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
 }
 
 .audience-notice-box {
@@ -1421,6 +1464,10 @@ main h1,h1{white-space:normal}
   border: 1px solid var(--line);
   padding: 38px 32px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .notice-icon {
@@ -1643,15 +1690,15 @@ main h1,h1{white-space:normal}
 
 .value-layout {
   display: grid;
-  grid-template-columns: 1.3fr 1fr;
-  gap: 56px;
-  align-items: center;
+  grid-template-columns: 1.25fr 1fr;
+  gap: clamp(40px, 5vw, 64px);
+  align-items: stretch;
 }
 
 .value-grid {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 14px;
 }
 
 .value-item {
@@ -1675,18 +1722,31 @@ main h1,h1{white-space:normal}
   color: rgba(255,255,255,0.9);
 }
 
+.value-visual {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
 .image-frame-dark {
   position: relative;
   background: #111;
   border: 1px solid rgba(255,255,255,0.12);
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  height: 100%;
+  min-height: 440px;
 }
 
 .image-frame-dark img {
   width: 100%;
-  height: 380px;
+  height: 100%;
+  flex: 1 1 auto;
   object-fit: cover;
   filter: contrast(1.1);
+  min-height: 0;
 }
 
 /* --- Venue Section --- */
@@ -1696,15 +1756,36 @@ main h1,h1{white-space:normal}
 
 .venue-layout {
   display: grid;
-  grid-template-columns: 1.2fr 1fr;
-  gap: 48px;
-  align-items: start;
+  grid-template-columns: 1.15fr 1fr;
+  gap: clamp(40px, 5vw, 56px);
+  align-items: stretch;
 }
 
 .venue-details-card {
   background: #ffffff;
   border: 1px solid var(--line);
   padding: 36px 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+.venue-photo-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.venue-photo-card .image-frame {
+  flex: 1 1 auto;
+  height: 100%;
+  min-height: 380px;
+}
+
+.venue-photo-card .image-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  min-height: 0;
 }
 
 .venue-title-row {

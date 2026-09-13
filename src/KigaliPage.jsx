@@ -593,14 +593,27 @@ export default function KigaliPage() {
           <div className="overview-layout">
             <div className="overview-text reveal">
               <p className="lead-paragraph">
-                <strong>AI GTM Africa Kigali</strong> is a focused business event bringing together founders, business leaders, marketers and operators to explore how businesses can build stronger go-to-market systems and use artificial intelligence to build, grow and scale.
+                An intimate, high-impact executive room bringing founders, business leaders, marketers, and operators together to turn AI into practical go-to-market leverage.
               </p>
-              <p>
-                The event is designed around practical application. Through three keynote sessions, a founder panel and an open question and answer session, participants will examine how businesses move from product to market, build repeatable systems for reaching and winning customers, and apply AI across research, marketing, sales, operations and decision-making.
-              </p>
+              
+              <div className="overview-pillars">
+                <div className="pillar-item">
+                  <strong>From Product to Market</strong>
+                  <p>Build repeatable customer acquisition systems that connect positioning directly to revenue.</p>
+                </div>
+                <div className="pillar-item">
+                  <strong>Practical AI Leverage</strong>
+                  <p>Deploy AI across customer research, content, sales prospecting, automation, and decision-making.</p>
+                </div>
+                <div className="pillar-item">
+                  <strong>Unfiltered Peer Insights</strong>
+                  <p>3 keynotes, 1 founder panel, live Q&amp;A problem-solving, and high-signal networking.</p>
+                </div>
+              </div>
+
               <div className="overview-quote">
                 <blockquote>
-                  “The goal is not simply to talk about AI, but to understand where it creates actual commercial leverage and how we can apply it to build better businesses across Africa.”
+                  “The goal is not to debate AI hype, but to walk away with working playbooks that actually grow and scale African businesses.”
                 </blockquote>
                 <cite>— Tomide Williams, Convener, AI GTM Africa</cite>
               </div>
