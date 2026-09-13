@@ -1,5 +1,7 @@
 {
   "rewrites": [
-    { "source": "/tomide-williams", "destination": "/" }
+    { "source": "/tomide-williams", "destination": "/" },
+    { "source": "/kigali", "destination": "/" },
+    { "source": "/kigali-event", "destination": "/" }
   ]
 }
