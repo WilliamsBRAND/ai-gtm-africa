@@ -1228,6 +1228,34 @@ main h1,h1{white-space:normal}
   text-transform: uppercase;
 }
 
+/* --- Kigali Section Header & Breathing Room --- */
+.kigali-section-header {
+  max-width: 840px;
+  margin-bottom: clamp(48px, 6vw, 72px);
+  position: relative;
+}
+
+.kigali-section-header .kicker {
+  margin-bottom: 14px;
+}
+
+.kigali-section-header h2 {
+  margin-bottom: 0;
+  line-height: 1.1 !important;
+}
+
+.kigali-section-header .section-subtext {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: rgba(255,255,255,0.65);
+  margin-top: 14px;
+  letter-spacing: 0.5px;
+}
+
+.light .kigali-section-header .section-subtext {
+  color: rgba(7,7,7,0.65);
+}
+
 /* --- Overview Section --- */
 .kigali-overview {
   background: var(--paper);
@@ -1372,8 +1400,8 @@ main h1,h1{white-space:normal}
 
 .objectives-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
 }
 
 .objective-card {
@@ -1911,6 +1939,10 @@ main h1,h1{white-space:normal}
   .stat-box:nth-child(-n+2) {
     border-bottom: 1px solid rgba(255,255,255,0.1);
   }
+  .objectives-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 18px !important;
+  }
   .overview-layout,
   .audience-layout,
   .value-layout,
@@ -1958,6 +1990,10 @@ main h1,h1{white-space:normal}
     border-right: 0 !important;
     border-bottom: 1px solid rgba(255,255,255,0.1);
     padding: 20px 0;
+  }
+  .objectives-grid {
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
   }
   .schedule-row {
     grid-template-columns: 1fr 32px;

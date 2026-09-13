@@ -142,6 +142,11 @@ const objectives = [
     num: '05',
     title: 'High-Calibre Kigali Network',
     desc: 'Facilitate meaningful connections among founders, business leaders, marketers and operators in Kigali.'
+  },
+  {
+    num: '06',
+    title: 'Actionable Execution Playbooks',
+    desc: 'Leave with concrete, tested frameworks and prioritised action plans ready to execute immediately within your team and business.'
   }
 ];
 
