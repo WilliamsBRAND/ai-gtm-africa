@@ -11,11 +11,16 @@
 var TAB_NAME = 'Responses';
 
 var CITY_DATES = {
-  'Kigali': '10 October 2026',
-  'Nairobi': '30 October 2026',
-  'Lagos': '21 November 2026',
+  'Kigali': '8 October 2026',
+  'Nairobi': '7 November 2026',
+  'Lagos': '28 November 2026',
   'Cotonou': '19 December 2026',
-  'Accra': '29 December 2026'
+  'Accra': '29 December 2026',
+  'KIGALI': '8 October 2026',
+  'NAIROBI': '7 November 2026',
+  'LAGOS': '28 November 2026',
+  'COTONOU': '19 December 2026',
+  'ACCRA': '29 December 2026'
 };
 
 /**

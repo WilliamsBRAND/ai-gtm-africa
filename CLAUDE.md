@@ -18,9 +18,9 @@ Project documentation and engineering memory for **AI GTM Africa** (`aigtmafrica
 ### 2026 Tour Cities & Dates
 | City | Country | Event Date |
 |---|---|---|
-| **Kigali** | Rwanda | 10 October 2026 |
-| **Nairobi** | Kenya | 30 October 2026 |
-| **Lagos** | Nigeria | 21 November 2026 |
+| **Kigali** | Rwanda | 8 October 2026 |
+| **Nairobi** | Kenya | 7 November 2026 |
+| **Lagos** | Nigeria | 28 November 2026 |
 | **Cotonou** | Benin | 19 December 2026 |
 | **Accra** | Ghana | 29 December 2026 |
 
