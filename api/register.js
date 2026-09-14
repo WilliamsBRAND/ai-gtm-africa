@@ -173,6 +173,151 @@ function buildEmailHtml(firstName, city, eventDate) {
 </html>`;
 }
 
+const TEAM_ALERT_RECIPIENTS = ['awodiranprecious@gmail.com', 'sodunketomide@gmail.com'];
+
+function buildAdminNotificationHtml(data, eventDate) {
+  const cleanPhone = String(data.phone || '').replace(/[^0-9+]/g, '');
+  const timestampStr = new Date().toLocaleString('en-GB', { timeZone: 'Africa/Lagos' });
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>New Registration Alert - AI GTM Africa</title>
+</head>
+<body style="margin: 0; padding: 0; background-color: #050505; color: #f5f5f2; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; line-height: 1.6;">
+  <table width="100%" border="0" cellpadding="0" cellspacing="0" style="background-color: #050505; width: 100%; margin: 0; padding: 32px 16px;">
+    <tr>
+      <td align="center">
+        <table width="100%" border="0" cellpadding="0" cellspacing="0" style="max-width: 600px; background-color: #0d0d0d; border: 1px solid rgba(255,255,255,0.14);">
+          <tr>
+            <td height="4" style="background-color: #7A0A15; font-size: 0; line-height: 0;">&nbsp;</td>
+          </tr>
+          <tr>
+            <td style="padding: 24px 30px; border-bottom: 1px solid rgba(255,255,255,0.1);">
+              <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td>
+                    <span style="font-size: 17px; font-weight: 700; color: #ffffff; letter-spacing: 1.5px; text-transform: uppercase;">AI GTM AFRICA</span>
+                  </td>
+                  <td align="right">
+                    <span style="display: inline-block; background: #7A0A15; color: #ffffff; font-size: 10px; font-weight: 700; padding: 4px 10px; letter-spacing: 1px; text-transform: uppercase;">NEW REGISTRATION</span>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding: 30px;">
+              <p style="font-size: 15px; color: rgba(255,255,255,0.85); margin: 0 0 20px;">
+                A new attendee has registered for <strong>AI GTM Africa (${data.city})</strong>:
+              </p>
+              
+              <table width="100%" border="0" cellpadding="0" cellspacing="0" style="background-color: #141414; border: 1px solid rgba(255,255,255,0.08); margin-bottom: 24px;">
+                <tr>
+                  <td style="padding: 13px 16px; border-bottom: 1px solid rgba(255,255,255,0.06); width: 34%; color: #888888; font-size: 11px; font-family: monospace; text-transform: uppercase;">Full Name</td>
+                  <td style="padding: 13px 16px; border-bottom: 1px solid rgba(255,255,255,0.06); font-size: 14px; font-weight: 700; color: #ffffff;">${data.name}</td>
+                </tr>
+                <tr>
+                  <td style="padding: 13px 16px; border-bottom: 1px solid rgba(255,255,255,0.06); color: #888888; font-size: 11px; font-family: monospace; text-transform: uppercase;">City & Date</td>
+                  <td style="padding: 13px 16px; border-bottom: 1px solid rgba(255,255,255,0.06); font-size: 14px; font-weight: 700; color: #ffffff;">${data.city} &middot; <span style="color: #c99398;">${eventDate}</span></td>
+                </tr>
+                <tr>
+                  <td style="padding: 13px 16px; border-bottom: 1px solid rgba(255,255,255,0.06); color: #888888; font-size: 11px; font-family: monospace; text-transform: uppercase;">Phone Number</td>
+                  <td style="padding: 13px 16px; border-bottom: 1px solid rgba(255,255,255,0.06); font-size: 14px; color: #ffffff;">
+                    <a href="tel:${data.phone}" style="color: #ffffff; text-decoration: none; font-weight: 600;">${data.phone}</a>
+                    ${cleanPhone ? ` &nbsp;&middot;&nbsp; <a href="https://wa.me/${cleanPhone}" target="_blank" style="color: #25D366; text-decoration: none; font-size: 12px; font-weight: 600;">WhatsApp &rarr;</a>` : ''}
+                  </td>
+                </tr>
+                <tr>
+                  <td style="padding: 13px 16px; border-bottom: 1px solid rgba(255,255,255,0.06); color: #888888; font-size: 11px; font-family: monospace; text-transform: uppercase;">Email Address</td>
+                  <td style="padding: 13px 16px; border-bottom: 1px solid rgba(255,255,255,0.06); font-size: 14px; color: #ffffff;">
+                    <a href="mailto:${data.email}" style="color: #c99398; text-decoration: none;">${data.email}</a>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="padding: 13px 16px; border-bottom: 1px solid rgba(255,255,255,0.06); color: #888888; font-size: 11px; font-family: monospace; text-transform: uppercase;">What They Do</td>
+                  <td style="padding: 13px 16px; border-bottom: 1px solid rgba(255,255,255,0.06); font-size: 14px; color: #ffffff;">${data.role}</td>
+                </tr>
+                <tr>
+                  <td style="padding: 13px 16px; border-bottom: 1px solid rgba(255,255,255,0.06); color: #888888; font-size: 11px; font-family: monospace; text-transform: uppercase;">Business / Industry</td>
+                  <td style="padding: 13px 16px; border-bottom: 1px solid rgba(255,255,255,0.06); font-size: 14px; color: #ffffff;">${data.industry}</td>
+                </tr>
+                <tr>
+                  <td style="padding: 13px 16px; border-bottom: 1px solid rgba(255,255,255,0.06); color: #888888; font-size: 11px; font-family: monospace; text-transform: uppercase;">How They Heard</td>
+                  <td style="padding: 13px 16px; border-bottom: 1px solid rgba(255,255,255,0.06); font-size: 14px; color: #ffffff;">${data.heard}</td>
+                </tr>
+                <tr>
+                  <td style="padding: 13px 16px; border-bottom: 1px solid rgba(255,255,255,0.06); color: #888888; font-size: 11px; font-family: monospace; text-transform: uppercase;">Sponsor Interest</td>
+                  <td style="padding: 13px 16px; border-bottom: 1px solid rgba(255,255,255,0.06); font-size: 14px; font-weight: 700; color: ${data.sponsor === 'Yes' ? '#25D366' : '#ffffff'};">${data.sponsor}</td>
+                </tr>
+                <tr>
+                  <td style="padding: 13px 16px; color: #888888; font-size: 11px; font-family: monospace; text-transform: uppercase;">Timestamp (WAT)</td>
+                  <td style="padding: 13px 16px; font-size: 13px; color: #a0a0a0;">${timestampStr}</td>
+                </tr>
+              </table>
+
+              <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td align="center">
+                    <a href="https://docs.google.com/spreadsheets/d/1Ydfb1xoTXM45MDNA3OQf5PGgS8kTjnZF7JnNC3HLT_0/edit" target="_blank" style="display: inline-block; background-color: #ffffff; color: #070707; font-size: 12px; font-weight: 700; padding: 12px 24px; text-decoration: none; letter-spacing: 0.5px; border-radius: 2px;">View in Google Sheet Tracker &rarr;</a>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding: 18px 30px; background-color: #080808; border-top: 1px solid rgba(255,255,255,0.08); font-size: 11px; color: #666666; font-family: monospace;">
+              AI GTM Africa &middot; Automated Team Alert
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>`;
+}
+
+async function sendAdminAlertEmail(accessToken, data) {
+  const eventDate = CITY_DATES[data.city] || '2026 Tour';
+  const subject = `[New Registration] ${data.name} - ${data.city} (${data.phone})`;
+  const html = buildAdminNotificationHtml(data, eventDate);
+
+  const rfc = [
+    'From: "AI GTM Africa Team Alert" <sodunketomide@gmail.com>',
+    `To: ${TEAM_ALERT_RECIPIENTS.join(', ')}`,
+    `Subject: ${subject}`,
+    'MIME-Version: 1.0',
+    'Content-Type: text/html; charset=utf-8',
+    'Content-Transfer-Encoding: 8bit',
+    '',
+    html,
+  ].join('\r\n');
+
+  const b64 = Buffer.from(rfc, 'utf8')
+    .toString('base64')
+    .replace(/\+/g, '-')
+    .replace(/\//g, '_')
+    .replace(/=+$/, '');
+
+  const response = await fetch('https://gmail.googleapis.com/gmail/v1/users/me/messages/send', {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ raw: b64 }),
+  });
+
+  if (!response.ok) {
+    const errText = await response.text();
+    console.error('Admin alert Gmail API send failed:', errText);
+    throw new Error('Admin alert send failed: ' + errText);
+  }
+  return await response.json();
+}
+
 async function sendConfirmationEmail(accessToken, toEmail, fullName, city) {
   const firstName = fullName.split(' ')[0] || fullName;
   const eventDate = CITY_DATES[city] || '2026 Tour';
@@ -282,14 +427,21 @@ module.exports = async function handler(req, res) {
       throw new Error('Could not save registration.');
     }
 
-    // 2. Send Automated Confirmation Email
+    // 2. Send Automated Confirmation Email to Attendee
     if (gmailAccessToken) {
       try {
         await sendConfirmationEmail(gmailAccessToken, String(data.email).trim(), String(data.name).trim(), String(data.city).trim());
         console.log(`Automated confirmation email successfully sent to ${data.email}`);
       } catch (emailErr) {
         console.error('Automated confirmation email failed:', emailErr.message);
-        // Do not fail the registration response if email sending encountered an issue
+      }
+
+      // 3. Send Automated Instant Team Alert Email to Precious & Tomide
+      try {
+        await sendAdminAlertEmail(gmailAccessToken, data);
+        console.log(`Automated admin alert successfully sent to ${TEAM_ALERT_RECIPIENTS.join(', ')}`);
+      } catch (alertErr) {
+        console.error('Automated admin alert failed:', alertErr.message);
       }
     } else {
       console.warn('Gmail access token was unavailable; email confirmation skipped.');
