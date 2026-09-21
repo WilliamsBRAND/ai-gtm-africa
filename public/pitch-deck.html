@@ -1,0 +1,2040 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI GTM Africa — Partnership Proposal Pitch Deck</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Montserrat:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #050505;
+      --bg-card: #0c0c0e;
+      --bg-card-hover: #141418;
+      --bg-elevated: #18181f;
+      --accent-crimson: #7A0A15;
+      --accent-crimson-bright: #A81020;
+      --accent-crimson-glow: rgba(122, 10, 21, 0.4);
+      --accent-gold: #D4AF37;
+      --text-white: #ffffff;
+      --text-muted: #94949e;
+      --text-subtle: #61616c;
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --border-crimson: rgba(122, 10, 21, 0.45);
+      --font-display: 'Cinzel', Georgia, serif;
+      --font-body: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      background: var(--bg-dark);
+      color: var(--text-white);
+      font-family: var(--font-body);
+      overflow: hidden;
+      user-select: text;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Presentation Container */
+    .deck-container {
+      width: 100vw;
+      height: 100vh;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at 50% 0%, #150508 0%, #050505 75%);
+    }
+
+    /* Ambient Glow */
+    .ambient-glow {
+      position: absolute;
+      top: -20%;
+      left: 30%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, var(--accent-crimson-glow) 0%, transparent 70%);
+      filter: blur(90px);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* 16:9 Aspect Ratio Slide Canvas */
+    .slide-canvas {
+      width: 100vw;
+      height: 100vh;
+      max-width: 177.78vh; /* 16:9 ratio */
+      max-height: 56.25vw;
+      position: relative;
+      background: rgba(10, 10, 12, 0.96);
+      box-shadow: 0 30px 100px rgba(0, 0, 0, 0.9), 0 0 0 1px var(--border-subtle);
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      padding: 5vh 5vw;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      opacity: 0;
+      pointer-events: none;
+      transform: scale(0.98) translateY(10px);
+      transition: opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1), transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 1;
+    }
+
+    .slide.active {
+      opacity: 1;
+      pointer-events: auto;
+      transform: scale(1) translateY(0);
+      z-index: 2;
+    }
+
+    /* Top Slide Header */
+    .slide-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      margin-bottom: 2vh;
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 1.2vh;
+    }
+
+    .slide-meta {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .slide-category {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--accent-crimson-bright);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      background: rgba(122, 10, 21, 0.15);
+      padding: 4px 10px;
+      border-radius: 4px;
+      border: 1px solid var(--border-crimson);
+    }
+
+    .slide-program-title {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .brand-mark-mini {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-display);
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      color: var(--text-white);
+    }
+
+    .tw-icon {
+      width: 20px;
+      height: 20px;
+    }
+
+    /* Main Slide Body */
+    .slide-main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      width: 100%;
+      position: relative;
+    }
+
+    /* Headlines */
+    .headline-xl {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 3.8vw, 3.4rem);
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: 0.02em;
+      color: var(--text-white);
+      margin-bottom: 1.5vh;
+    }
+
+    .headline-lg {
+      font-family: var(--font-display);
+      font-size: clamp(1.6rem, 2.6vw, 2.4rem);
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: 0.02em;
+      color: var(--text-white);
+      margin-bottom: 1.2vh;
+    }
+
+    .subtitle-lead {
+      font-size: clamp(1rem, 1.35vw, 1.25rem);
+      color: var(--text-muted);
+      line-height: 1.6;
+      max-width: 820px;
+      margin-bottom: 3vh;
+      font-weight: 400;
+    }
+
+    .crimson-text {
+      color: #df263c;
+    }
+
+    .gold-text {
+      color: var(--accent-gold);
+    }
+
+    /* Slide Footer */
+    .slide-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      padding-top: 1.2vh;
+      border-top: 1px solid var(--border-subtle);
+      font-size: 0.72rem;
+      color: var(--text-subtle);
+      letter-spacing: 0.05em;
+    }
+
+    /* Layout Grids & Cards */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5vw;
+      align-items: stretch;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.8vw;
+      align-items: stretch;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.2vw;
+      align-items: stretch;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 2.5vh 2vw;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .card.highlighted {
+      background: linear-gradient(145deg, #160609 0%, #0d0d10 100%);
+      border-color: var(--accent-crimson);
+      box-shadow: 0 10px 30px rgba(122, 10, 21, 0.2);
+    }
+
+    .card-num {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--accent-crimson-bright);
+      margin-bottom: 1vh;
+      letter-spacing: 0.1em;
+    }
+
+    .card-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.1rem, 1.4vw, 1.35rem);
+      font-weight: 700;
+      color: var(--text-white);
+      margin-bottom: 1vh;
+      line-height: 1.3;
+    }
+
+    .card-body {
+      font-size: clamp(0.82rem, 0.95vw, 0.95rem);
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .pill-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 1.5vh;
+    }
+
+    .pill {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-subtle);
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 0.78rem;
+      color: #e0e0e0;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .pill.active {
+      background: rgba(122, 10, 21, 0.25);
+      border-color: var(--accent-crimson);
+      color: #ffffff;
+    }
+
+    /* Interactive Route Visual (Slide 3) */
+    .route-visual {
+      display: flex;
+      flex-direction: column;
+      gap: 1.8vh;
+      background: #08080a;
+      border: 1px solid var(--border-subtle);
+      border-radius: 14px;
+      padding: 2.2vh 2vw;
+    }
+
+    .route-steps {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+      position: relative;
+    }
+
+    .route-step {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 10px;
+      padding: 14px 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      position: relative;
+    }
+
+    .route-step.confirmed {
+      border-color: var(--accent-crimson);
+      background: rgba(122, 10, 21, 0.12);
+    }
+
+    .step-city {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text-white);
+      margin-top: 4px;
+    }
+
+    .step-date {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--accent-gold);
+      margin-top: 4px;
+    }
+
+    .step-badge {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 4px;
+      margin-top: 8px;
+      background: rgba(255,255,255,0.06);
+      color: var(--text-muted);
+    }
+
+    .route-step.confirmed .step-badge {
+      background: var(--accent-crimson);
+      color: white;
+    }
+
+    /* Metric Badges */
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5vw;
+    }
+
+    .metric-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 2vh 1.5vw;
+      text-align: left;
+    }
+
+    .metric-num {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 2.8vw, 3rem);
+      font-weight: 900;
+      color: #ffffff;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .metric-num.crimson { color: #df263c; }
+    .metric-num.gold { color: var(--accent-gold); }
+
+    .metric-label {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+      font-weight: 500;
+    }
+
+    /* Feature Lists */
+    .feature-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .feature-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: clamp(0.82rem, 0.92vw, 0.95rem);
+      color: rgba(255,255,255,0.9);
+      line-height: 1.5;
+    }
+
+    .feature-icon {
+      color: var(--accent-crimson-bright);
+      font-weight: bold;
+      flex-shrink: 0;
+      font-size: 1rem;
+      margin-top: -1px;
+    }
+
+    /* Bottom Control Bar */
+    .controls-bar {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: rgba(12, 12, 15, 0.92);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--border-subtle);
+      padding: 8px 18px;
+      border-radius: 40px;
+      z-index: 1000;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+    }
+
+    .btn-ctrl {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      font-family: var(--font-body);
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      border-radius: 20px;
+      transition: all 0.2s ease;
+    }
+
+    .btn-ctrl:hover {
+      color: var(--text-white);
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .btn-ctrl.active {
+      background: var(--accent-crimson);
+      color: white;
+    }
+
+    .nav-counter {
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      color: var(--text-white);
+      padding: 0 8px;
+      font-weight: 600;
+    }
+
+    /* Partner Customizer Bar (Top Right) */
+    .partner-customizer {
+      position: fixed;
+      top: 18px;
+      right: 24px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(15, 15, 18, 0.85);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      padding: 6px 12px;
+      z-index: 1000;
+      font-size: 0.78rem;
+    }
+
+    .partner-input {
+      background: #000;
+      border: 1px solid var(--border-subtle);
+      border-radius: 4px;
+      color: var(--accent-gold);
+      padding: 4px 8px;
+      font-size: 0.78rem;
+      font-family: var(--font-body);
+      font-weight: 600;
+      width: 140px;
+      outline: none;
+    }
+
+    .partner-input:focus {
+      border-color: var(--accent-crimson);
+    }
+
+    /* Notes Drawer */
+    .notes-drawer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: #08080a;
+      border-top: 2px solid var(--accent-crimson);
+      padding: 24px 6vw;
+      transform: translateY(100%);
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 900;
+      max-height: 45vh;
+      overflow-y: auto;
+      box-shadow: 0 -20px 60px rgba(0, 0, 0, 0.8);
+    }
+
+    .notes-drawer.open {
+      transform: translateY(0);
+    }
+
+    .notes-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 8px;
+    }
+
+    .notes-title {
+      font-family: var(--font-display);
+      font-size: 0.9rem;
+      letter-spacing: 0.1em;
+      color: var(--accent-crimson-bright);
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .notes-content {
+      font-size: 0.92rem;
+      line-height: 1.8;
+      color: rgba(255, 255, 255, 0.85);
+    }
+
+    .notes-content p {
+      margin-bottom: 8px;
+    }
+
+    /* Slide Sorter Grid Overlay */
+    .grid-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(5, 5, 5, 0.95);
+      backdrop-filter: blur(25px);
+      z-index: 2000;
+      padding: 40px;
+      display: none;
+      overflow-y: auto;
+    }
+
+    .grid-overlay.open {
+      display: block;
+    }
+
+    .grid-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 16px;
+    }
+
+    .grid-items {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 20px;
+    }
+
+    .grid-thumb {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      padding: 16px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 140px;
+    }
+
+    .grid-thumb:hover, .grid-thumb.active {
+      border-color: var(--accent-crimson);
+      background: #150608;
+      transform: translateY(-3px);
+    }
+
+    .grid-thumb-num {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--accent-crimson-bright);
+      font-weight: 700;
+    }
+
+    .grid-thumb-title {
+      font-family: var(--font-display);
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: #ffffff;
+      line-height: 1.3;
+    }
+
+    /* Editable Mode Visual Cue */
+    body.edit-mode [contenteditable="true"] {
+      outline: 1px dashed rgba(212, 175, 55, 0.5);
+      background: rgba(212, 175, 55, 0.04);
+      border-radius: 4px;
+      padding: 2px 4px;
+    }
+
+    body.edit-mode [contenteditable="true"]:focus {
+      outline: 2px solid var(--accent-gold);
+      background: rgba(212, 175, 55, 0.08);
+    }
+
+    /* Print Styles for PDF Export */
+    @media print {
+      body {
+        overflow: visible;
+        background: #050505 !important;
+      }
+      .controls-bar, .partner-customizer, .notes-drawer, .grid-overlay, .ambient-glow {
+        display: none !important;
+      }
+      .deck-container {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+      .slide-canvas {
+        max-width: 100% !important;
+        max-height: 100% !important;
+        width: 100vw;
+        height: 100vh;
+        box-shadow: none;
+      }
+      .slide {
+        position: relative !important;
+        page-break-after: always;
+        break-after: page;
+        opacity: 1 !important;
+        transform: none !important;
+        width: 100vw;
+        height: 100vh;
+        inset: auto !important;
+        display: flex !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background Ambient Glow -->
+  <div class="ambient-glow"></div>
+
+  <!-- Partner Name Dynamic Customizer -->
+  <div class="partner-customizer">
+    <span style="color:var(--text-muted);">Sponsor Target:</span>
+    <input type="text" id="partnerInput" class="partner-input" value="[Your Fintech]" placeholder="Company Name">
+  </div>
+
+  <div class="deck-container">
+    <div class="slide-canvas">
+
+      <!-- SLIDE 1: COVER -->
+      <div class="slide active" data-index="0" data-notes="Opening slide. Set high prestige immediately. The angle is not asking for charity or standard sponsorship — it is positioning the fintech partner directly inside an unfolding, high-momentum Pan-African founder story across 6 major tech hubs.">
+        <div class="slide-top">
+          <div class="slide-meta">
+            <span class="slide-category">Partnership Proposal</span>
+            <span class="slide-program-title">Executive Pitch Deck</span>
+          </div>
+          <div class="brand-mark-mini">
+            <svg class="tw-icon" viewBox="0 0 100 100" fill="none">
+              <circle cx="50" cy="50" r="46" stroke="rgba(255,255,255,0.15)" stroke-width="3"/>
+              <path d="M 25 35 L 75 35" stroke="#7A0A15" stroke-width="5"/>
+              <path d="M 50 35 L 50 75" stroke="#7A0A15" stroke-width="5"/>
+              <path d="M 20 25 L 35 80 L 50 55 L 65 80 L 80 25" stroke="#ffffff" stroke-width="4" stroke-linejoin="bevel"/>
+            </svg>
+            <span>TOMIDE WILLIAMS</span>
+          </div>
+        </div>
+        <div class="slide-main">
+          <div style="max-width: 960px;">
+            <div style="display:inline-block; font-family:var(--font-mono); font-size:0.85rem; color:var(--accent-gold); letter-spacing:0.2em; text-transform:uppercase; margin-bottom:12px; font-weight:600;">
+              AI GTM Africa Tour 2026
+            </div>
+            <h1 class="headline-xl" contenteditable="false">
+              Put Your Fintech in an <span class="crimson-text">African Story</span>
+            </h1>
+            <p class="subtitle-lead" contenteditable="false" style="font-size:clamp(1.1rem, 1.6vw, 1.45rem); color:#e0e0e0; margin-bottom: 2.5vh;">
+              A multi-city journey demonstrating cross-border payments, travel utility, and founder leverage across Africa’s fastest-growing tech ecosystems.
+            </p>
+            <div class="pill-list" style="margin-top: 10px;">
+              <span class="pill active">Kigali • 08 Oct</span>
+              <span class="pill">Kampala</span>
+              <span class="pill">Nairobi • 07 Nov</span>
+              <span class="pill">Lagos • 28 Nov</span>
+              <span class="pill">Cotonou • 19 Dec</span>
+              <span class="pill">Accra • 29 Dec</span>
+            </div>
+          </div>
+        </div>
+        <div class="slide-footer">
+          <span>Prepared by Tomide Williams • Founding GTM Lead & AI Practitioner</span>
+          <span>Confidential Partnership Document</span>
+        </div>
+      </div>
+
+      <!-- SLIDE 2: THE IDEA -->
+      <div class="slide" data-index="1" data-notes="Explain the difference between passive ad banner placement and active product integration. Founders remember seeing a product solve a real problem on the road.">
+        <div class="slide-top">
+          <div class="slide-meta">
+            <span class="slide-category">01 • The Core Concept</span>
+            <span class="slide-program-title">Strategic Thesis</span>
+          </div>
+          <div class="brand-mark-mini"><span>AI GTM AFRICA</span></div>
+        </div>
+        <div class="slide-main">
+          <h2 class="headline-lg">Beyond Logo Placement: <span class="crimson-text">Living Product Proof</span></h2>
+          <p class="subtitle-lead">
+            AI GTM Africa connects high-impact physical workshops with an organic, documented travel story across 6 African markets.
+          </p>
+          <div class="grid-2">
+            <div class="card highlighted">
+              <div class="card-num">PILLAR 01 • IN THE ROOM</div>
+              <div class="card-title">Physical Builder Workshops</div>
+              <div class="card-body">
+                Intensive 6-hour physical workshops in each city helping founders, growth leads, and business operators deploy AI across:
+                <div class="pill-list" style="margin-top:14px;">
+                  <span class="pill">Marketing Systems</span>
+                  <span class="pill">Sales Pipelines</span>
+                  <span class="pill">Customer Acquisition</span>
+                  <span class="pill">GTM Execution</span>
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-num">PILLAR 02 • ON THE ROAD</div>
+              <div class="card-title">Documented African Journey</div>
+              <div class="card-body">
+                A continuous travel and lifestyle narrative showing how your fintech product powers real movement, meals, cross-border transfers, and business transactions in real time.
+                <div class="pill-list" style="margin-top:14px;">
+                  <span class="pill active">YouTube Vlogs</span>
+                  <span class="pill active">Reels & Shorts</span>
+                  <span class="pill active">LinkedIn Breakdowns</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="slide-footer">
+          <span>AI GTM Africa Proposal</span>
+          <span>Slide 2 of 26</span>
+        </div>
+      </div>
+
+      <!-- SLIDE 3: THE JOURNEY -->
+      <div class="slide" data-index="2" data-notes="Emphasize that the tour is already funded and confirmed (flights, accommodations, bus tickets, 70+ registered in Kigali). The sponsor is joining a moving train.">
+        <div class="slide-top">
+          <div class="slide-meta">
+            <span class="slide-category">02 • Tour Timeline</span>
+            <span class="slide-program-title">Ecosystem Roadmap</span>
+          </div>
+          <div class="brand-mark-mini"><span>AI GTM AFRICA</span></div>
+        </div>
+        <div class="slide-main">
+          <h2 class="headline-lg">One Journey. <span class="crimson-text">Six African Tech Capitals.</span></h2>
+          <p class="subtitle-lead">
+            The tour is already in motion with international flights and venue logistics confirmed. Target: 100 vetted founders per city.
+          </p>
+          <div class="route-visual">
+            <div class="route-steps">
+              <div class="route-step confirmed">
+                <span class="card-num">STAGE 01</span>
+                <span class="step-city">Kigali</span>
+                <span class="step-date">08 Oct 2026</span>
+                <span class="step-badge">70+ Registered</span>
+              </div>
+              <div class="route-step confirmed">
+                <span class="card-num">STAGE 02</span>
+                <span class="step-city">Kampala</span>
+                <span class="step-date">Transit Leg</span>
+                <span class="step-badge">Bus Confirmed</span>
+              </div>
+              <div class="route-step">
+                <span class="card-num">STAGE 03</span>
+                <span class="step-city">Nairobi</span>
+                <span class="step-date">07 Nov 2026</span>
+                <span class="step-badge">Registrations Open</span>
+              </div>
+              <div class="route-step">
+                <span class="card-num">STAGE 04</span>
+                <span class="step-city">Lagos</span>
+                <span class="step-date">28 Nov 2026</span>
+                <span class="step-badge">West Africa Hub</span>
+              </div>
+              <div class="route-step">
+                <span class="card-num">STAGE 05</span>
+                <span class="step-city">Accra</span>
+                <span class="step-date">29 Dec 2026</span>
+                <span class="step-badge">Tour Finale</span>
+              </div>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-top:10px; font-size:0.8rem; color:var(--text-muted);">
+              <span><strong style="color:white;">East Africa Core:</strong> Kigali (Flight/Stay Confirmed) &rarr; Kampala &rarr; Nairobi</span>
+              <span><strong style="color:white;">West Africa Core:</strong> Lagos &rarr; Cotonou (19 Dec) &rarr; Accra</span>
+            </div>
+          </div>
+        </div>
+        <div class="slide-footer">
+          <span>AI GTM Africa Proposal</span>
+          <span>Slide 3 of 26</span>
+        </div>
+      </div>
+
+      <!-- SLIDE 4: THE OPPORTUNITY -->
+      <div class="slide" data-index="3" data-notes="Fintech trust is built on visible utility. When founders watch someone navigate multi-currency borders without friction, adoption objections disappear.">
+        <div class="slide-top">
+          <div class="slide-meta">
+            <span class="slide-category">03 • Value Proposition</span>
+            <span class="slide-program-title">Product Utility</span>
+          </div>
+          <div class="brand-mark-mini"><span>AI GTM AFRICA</span></div>
+        </div>
+        <div class="slide-main">
+          <h2 class="headline-lg">Let People See Your Product <span class="crimson-text">Working In Real Life</span></h2>
+          <p class="subtitle-lead">
+            Fintech adoption requires proof. Instead of synthetic ads, show your solution powering real cross-border commerce and travel.
+          </p>
+          <div class="grid-3">
+            <div class="card">
+              <div class="card-num">USE CASE 01</div>
+              <div class="card-title">Multi-Currency Conversion</div>
+              <div class="card-body">Instant fx switching between RWF, UGX, KES, NGN, XOF, and GHS on the move.</div>
+            </div>
+            <div class="card">
+              <div class="card-num">USE CASE 02</div>
+              <div class="card-title">Cross-Border Transport</div>
+              <div class="card-body">Paying for airport rides, interstate coaches, and city cabs friction-free.</div>
+            </div>
+            <div class="card">
+              <div class="card-num">USE CASE 03</div>
+              <div class="card-title">Hospitality & Dining</div>
+              <div class="card-body">Covering hotel reservations and local restaurant dining via contactless / virtual cards.</div>
+            </div>
+            <div class="card">
+              <div class="card-num">USE CASE 04</div>
+              <div class="card-title">Peer & Vendor Transfers</div>
+              <div class="card-body">Direct instant settlements with local African suppliers, facilitators, and partners.</div>
+            </div>
+            <div class="card">
+              <div class="card-num">USE CASE 05</div>
+              <div class="card-title">Business Expense Mgmt</div>
+              <div class="card-body">Tracking multi-country tour operations in one clear digital dashboard.</div>
+            </div>
+            <div class="card highlighted">
+              <div class="card-num">THE OUTCOME</div>
+              <div class="card-title">Native Integration</div>
+              <div class="card-body">Your product becomes the hero enabler of the journey, not an annoying pop-up.</div>
+            </div>
+          </div>
+        </div>
+        <div class="slide-footer">
+          <span>AI GTM Africa Proposal</span>
+          <span>Slide 4 of 26</span>
+        </div>
+      </div>
+
+      <!-- SLIDE 5: THE VISIBILITY -->
+      <div class="slide" data-index="4" data-notes="Contrast the dual distribution engines: physical event room exclusivity vs. viral digital distribution via YouTube, Reels, and LinkedIn.">
+        <div class="slide-top">
+          <div class="slide-meta">
+            <span class="slide-category">04 • Distribution Channels</span>
+            <span class="slide-program-title">Omnichannel Impact</span>
+          </div>
+          <div class="brand-mark-mini"><span>AI GTM AFRICA</span></div>
+        </div>
+        <div class="slide-main">
+          <h2 class="headline-lg">Two High-Impact <span class="crimson-text">Visibility Engines</span></h2>
+          <p class="subtitle-lead">
+            Every partnership touchpoint is designed to maximize both high-touch physical engagement and wide digital reach.
+          </p>
+          <div class="grid-2">
+            <div class="card">
+              <div class="card-num">ENGINE A • IN-PERSON EXPERIENCES</div>
+              <div class="card-title">Event-Floor Immersion</div>
+              <ul class="feature-list" style="margin-top:12px;">
+                <li class="feature-item"><span class="feature-icon">&#9632;</span> Official Partner banner and pull-up display on stage</li>
+                <li class="feature-item"><span class="feature-icon">&#9632;</span> Live interactive product walkthrough during workshop</li>
+                <li class="feature-item"><span class="feature-icon">&#9632;</span> Branded attendee perks, referral QR codes, and perks desk</li>
+                <li class="feature-item"><span class="feature-icon">&#9632;</span> Co-branded flyer, lanyard, and badge placement</li>
+              </ul>
+            </div>
+            <div class="card highlighted">
+              <div class="card-num">ENGINE B • DIGITAL MULTIPLIER</div>
+              <div class="card-title">Tour Content Pipeline</div>
+              <ul class="feature-list" style="margin-top:12px;">
+                <li class="feature-item"><span class="feature-icon">&#9632;</span> High-production YouTube travel and business vlogs</li>
+                <li class="feature-item"><span class="feature-icon">&#9632;</span> Viral Shorts and Instagram Reels featuring live app use</li>
+                <li class="feature-item"><span class="feature-icon">&#9632;</span> LinkedIn executive articles breaking down tour ROI</li>
+                <li class="feature-item"><span class="feature-icon">&#9632;</span> Dedicated WhatsApp founder community distribution</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="slide-footer">
+          <span>AI GTM Africa Proposal</span>
+          <span>Slide 5 of 26</span>
+        </div>
+      </div>
+
+      <!-- SLIDE 6: WHY TOMIDE -->
+      <div class="slide" data-index="5" data-notes="Position Tomide as an operator who knows GTM, revenue, and product marketing — not a generic influencer who just poses for pictures.">
+        <div class="slide-top">
+          <div class="slide-meta">
+            <span class="slide-category">05 • Operator Credibility</span>
+            <span class="slide-program-title">Host Profile</span>
+          </div>
+          <div class="brand-mark-mini"><span>TOMIDE WILLIAMS</span></div>
+        </div>
+        <div class="slide-main">
+          <h2 class="headline-lg">Founder-Led GTM, <span class="crimson-text">Not Influencer Fluff</span></h2>
+          <p class="subtitle-lead">
+            Delivered by a proven product marketer, two-time TEDx speaker, and AI practitioner with direct access to African builders.
+          </p>
+          <div class="metric-grid" style="margin-bottom: 2.5vh;">
+            <div class="metric-card">
+              <div class="metric-num crimson">47K+</div>
+              <div class="metric-label">LinkedIn Community (Founders & Operators)</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-num gold">10K+</div>
+              <div class="metric-label">Active WhatsApp Broadcast & Groups</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-num">$1M+</div>
+              <div class="metric-label">Revenue Generated for Products & Clients</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-num crimson">60&times;</div>
+              <div class="metric-label">ROAS Generated for Startup Growth Campaigns</div>
+            </div>
+          </div>
+          <div class="card" style="padding:1.5vh 1.8vw;">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <span style="font-size:0.88rem; color:#e0e0e0;">
+                <strong>Proven Execution:</strong> Acquired 200+ paying B2B customers for EdTech &bull; Scaled new product to 1,000 users in 90 days &bull; 2x TEDx Speaker
+              </span>
+              <span class="pill active">Strategic GTM Partner</span>
+            </div>
+          </div>
+        </div>
+        <div class="slide-footer">
+          <span>AI GTM Africa Proposal</span>
+          <span>Slide 6 of 26</span>
+        </div>
+      </div>
+
+      <!-- SLIDE 7: EVENT TRACK RECORD - LINKEDIN LOCAL JOS -->
+      <div class="slide" data-index="6" data-notes="Visual proof of community mobilization. Show that Tomide fills rooms with high-calibre professionals and founders.">
+        <div class="slide-top">
+          <div class="slide-meta">
+            <span class="slide-category">06 • Track Record</span>
+            <span class="slide-program-title">Event Proof 01</span>
+          </div>
+          <div class="brand-mark-mini"><span>PROVEN EXECUTION</span></div>
+        </div>
+        <div class="slide-main">
+          <h2 class="headline-lg">LinkedIn Local Jos — <span class="crimson-text">500 Attendees</span></h2>
+          <p class="subtitle-lead">
+            Role: Convener & Lead Organizer. Successfully convened professionals, corporate leaders, and tech founders in Plateau State.
+          </p>
+          <div class="grid-3">
+            <div class="card" style="background:#111115; border-color:var(--border-subtle); align-items:center; justify-content:center; min-height:180px;">
+              <div style="font-size:0.85rem; color:var(--text-muted); text-align:center;">
+                <div style="font-family:var(--font-display); font-size:1.8rem; color:white; margin-bottom:6px;">500+</div>
+                Corporate & Tech Leaders
+              </div>
+            </div>
+            <div class="card" style="background:#111115; border-color:var(--border-subtle); align-items:center; justify-content:center; min-height:180px;">
+              <div style="font-size:0.85rem; color:var(--text-muted); text-align:center;">
+                <div style="font-family:var(--font-display); font-size:1.8rem; color:var(--accent-crimson-bright); margin-bottom:6px;">100%</div>
+                Capacity Venue Fill
+              </div>
+            </div>
+            <div class="card" style="background:#111115; border-color:var(--border-subtle); align-items:center; justify-content:center; min-height:180px;">
+              <div style="font-size:0.85rem; color:var(--text-muted); text-align:center;">
+                <div style="font-family:var(--font-display); font-size:1.8rem; color:var(--accent-gold); margin-bottom:6px;">Multi-Brand</div>
+                Corporate Sponsorship Execution
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="slide-footer">
+          <span>AI GTM Africa Proposal</span>
+          <span>Slide 7 of 26</span>
+        </div>
+      </div>
+
+      <!-- SLIDE 8: EVENT TRACK RECORD - JPI YOUTH ASSEMBLY -->
+      <div class="slide" data-index="7" data-notes="Youth and builder mobilization. High engagement, young tech-savvy demographic that fintechs want to capture.">
+        <div class="slide-top">
+          <div class="slide-meta">
+            <span class="slide-category">06 • Track Record</span>
+            <span class="slide-program-title">Event Proof 02</span>
+          </div>
+          <div class="brand-mark-mini"><span>PROVEN EXECUTION</span></div>
+        </div>
+        <div class="slide-main">
+          <h2 class="headline-lg">JPI Youth Assembly — <span class="crimson-text">500 Attendees</span></h2>
+          <p class="subtitle-lead">
+            Convener & Keynote Facilitator. Mobilizing ambitious youth leaders, creators, and digital entrepreneurs into active cohorts.
+          </p>
+          <div class="grid-2">
+            <div class="card highlighted">
+              <div class="card-num">DEMOGRAPHIC HIGHLIGHT</div>
+              <div class="card-title">Early Adopter Fintech Users</div>
+              <div class="card-body">High concentration of freelance builders, remote workers, and cross-border digital creators who require global payout and FX tools.</div>
+            </div>
+            <div class="card">
+              <div class="card-num">ENGAGEMENT IMPACT</div>
+              <div class="card-title">High-Retention Community</div>
+              <div class="card-body">Converted 80%+ of physical attendees into long-term active WhatsApp and digital community members.</div>
+            </div>
+          </div>
+        </div>
+        <div class="slide-footer">
+          <span>AI GTM Africa Proposal</span>
+          <span>Slide 8 of 26</span>
+        </div>
+      </div>
+
+      <!-- SLIDE 9: EVENT TRACK RECORD - LLN 25 -->
+      <div class="slide" data-index="8" data-notes="Demonstrate ability to lead marketing for 2,000-person mega-gatherings.">
+        <div class="slide-top">
+          <div class="slide-meta">
+            <span class="slide-category">06 • Track Record</span>
+            <span class="slide-program-title">Event Proof 03</span>
+          </div>
+          <div class="brand-mark-mini"><span>PROVEN EXECUTION</span></div>
+        </div>
+        <div class="slide-main">
+          <h2 class="headline-lg">LLN 25 — <span class="crimson-text">2,000 Attendees</span></h2>
+          <p class="subtitle-lead">
+            Role: Team Lead, Marketing. Spearheaded digital acquisition, community outreach, and on-ground brand activations.
+          </p>
+          <div class="grid-3">
+            <div class="card">
+              <div class="card-num">SCALE</div>
+              <div class="card-title">2,000 Delegates</div>
+              <div class="card-body">Large-scale stadium/auditorium execution with seamless registration flows.</div>
+            </div>
+            <div class="card">
+              <div class="card-num">GTM LEADERSHIP</div>
+              <div class="card-title">Campaign Architecture</div>
+              <div class="card-body">End-to-end multi-channel acquisition funnel across paid ads, PR, and community.</div>
+            </div>
+            <div class="card highlighted">
+              <div class="card-num">PARTNER VALUE</div>
+              <div class="card-title">Sponsor ROI Delivery</div>
+              <div class="card-body">Guaranteed measurable deliverables and brand recall for every corporate partner.</div>
+            </div>
+          </div>
+        </div>
+        <div class="slide-footer">
+          <span>AI GTM Africa Proposal</span>
+          <span>Slide 9 of 26</span>
+        </div>
+      </div>
+
+      <!-- SLIDE 10: HOW THE PARTNERSHIP WORKS -->
+      <div class="slide" data-index="9" data-notes="Key negotiation slide. Sponsors hate writing blank cheques for 'marketing fees'. Instead, they cover real tangible travel/tour line-items and receive outsized media value in return.">
+        <div class="slide-top">
+          <div class="slide-meta">
+            <span class="slide-category">07 • Partnership Model</span>
+            <span class="slide-program-title">Commercial Structure</span>
+          </div>
+          <div class="brand-mark-mini"><span>EXPENSE-MATCHED SPONSORSHIP</span></div>
+        </div>
+        <div class="slide-main">
+          <h2 class="headline-lg">Tangible Line-Items, <span class="crimson-text">Not Arbitrary Sponsorship Fees</span></h2>
+          <p class="subtitle-lead">
+            Your company covers specific, pre-agreed operational expenses of the tour and receives guaranteed brand, content, and lead deliverables.
+          </p>
+          <div class="grid-2">
+            <div class="card">
+              <div class="card-num">WHAT YOUR COMPANY COVERS</div>
+              <div class="card-title">Selectable Tour Line-Items</div>
+              <ul class="feature-list" style="margin-top:10px;">
+                <li class="feature-item"><span class="feature-icon">&#10003;</span> Airport pick-up, drop-off & local intra-city transit</li>
+                <li class="feature-item"><span class="feature-icon">&#10003;</span> Cross-border interstate coach / bus travel</li>
+                <li class="feature-item"><span class="feature-icon">&#10003;</span> Accommodation / hotel stays in tour cities</li>
+                <li class="feature-item"><span class="feature-icon">&#10003;</span> Featured restaurant & ecosystem dining experiences</li>
+                <li class="feature-item"><span class="feature-icon">&#10003;</span> Dedicated content & videography production budget</li>
+              </ul>
+            </div>
+            <div class="card highlighted">
+              <div class="card-num">WHAT YOUR COMPANY RECEIVES</div>
+              <div class="card-title">Contracted High-Value Assets</div>
+              <ul class="feature-list" style="margin-top:10px;">
+                <li class="feature-item"><span class="feature-icon">&#9632;</span> Physical room branding + live demo time</li>
+                <li class="feature-item"><span class="feature-icon">&#9632;</span> Native app usage embedded in viral travel vlogs</li>
+                <li class="feature-item"><span class="feature-icon">&#9632;</span> Dedicated YouTube & LinkedIn co-branded assets</li>
+                <li class="feature-item"><span class="feature-icon">&#9632;</span> Consented attendee lead database & B2B intros</li>
+                <li class="feature-item"><span class="feature-icon">&#9632;</span> Post-event performance & analytics dossier</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="slide-footer">
+          <span>AI GTM Africa Proposal</span>
+          <span>Slide 10 of 26</span>
+        </div>
+      </div>
+
+      <!-- SLIDE 11: PARTNERSHIP OPTIONS OVERVIEW -->
+      <div class="slide" data-index="10" data-notes="Overview of the three flexible tiers: Single City Partner, Regional East Africa Partner, or Lead Full Tour Partner.">
+        <div class="slide-top">
+          <div class="slide-meta">
+            <span class="slide-category">08 • Sponsorship Tiers</span>
+            <span class="slide-program-title">Tier Overview</span>
+          </div>
+          <div class="brand-mark-mini"><span>PACKAGE MATRIX</span></div>
+        </div>
+        <div class="slide-main">
+          <h2 class="headline-lg">Choose the Part of the Journey <span class="crimson-text">You Want to Power</span></h2>
+          <p class="subtitle-lead">
+            Every package is tailored to match your target geographic markets, user acquisition KPIs, and budget.
+          </p>
+          <div class="grid-3">
+            <div class="card">
+              <div class="card-num">PLAN 01</div>
+              <div class="card-title">City Partner</div>
+              <div class="card-body">
+                Support one specific city (e.g. Kigali, Nairobi, or Lagos) and activate your product directly inside that ecosystem.
+              </div>
+              <div style="margin-top:auto; padding-top:16px;">
+                <span class="pill active">Single Market Focus</span>
+              </div>
+            </div>
+            <div class="card highlighted">
+              <div class="card-num">PLAN 02</div>
+              <div class="card-title">East Africa Partner</div>
+              <div class="card-body">
+                Own the complete Kigali &rarr; Kampala &rarr; Nairobi cross-border corridor as official regional fintech partner.
+              </div>
+              <div style="margin-top:auto; padding-top:16px;">
+                <span class="pill active">Regional Multi-Country</span>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-num">PLAN 03</div>
+              <div class="card-title">Full Tour Partner</div>
+              <div class="card-body">
+                Lead partner across all 6 African cities with category exclusivity and private executive team AI masterclass.
+              </div>
+              <div style="margin-top:auto; padding-top:16px;">
+                <span class="pill active">Pan-African Headline</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="slide-footer">
+          <span>AI GTM Africa Proposal</span>
+          <span>Slide 11 of 26</span>
+        </div>
+      </div>
+
+      <!-- SLIDE 12: PLAN 1 — CITY PARTNER DETAILS -->
+      <div class="slide" data-index="11" data-notes="Breakdown of Plan 1 (City Partner). Note that for Kigali, international flights and accommodations are already locked in by Tomide.">
+        <div class="slide-top">
+          <div class="slide-meta">
+            <span class="slide-category">09 • Plan 1 Breakdown</span>
+            <span class="slide-program-title">City Partner Scope</span>
+          </div>
+          <div class="brand-mark-mini"><span>SINGLE CITY ACTIVATION</span></div>
+        </div>
+        <div class="slide-main">
+          <h2 class="headline-lg">Plan 1: <span class="crimson-text">City Partner</span></h2>
+          <p class="subtitle-lead">
+            Select one tour city and support at least 3 agreed operational activities within that market.
+          </p>
+          <div class="grid-2">
+            <div class="card">
+              <div class="card-num">KIGALI STATUS & OPTIONS</div>
+              <div class="card-title">Confirmed Logistics</div>
+              <div class="card-body">
+                Arrival flight and standard accommodation are already locked in. Partner selects 3+ local line-items:
+                <div class="pill-list" style="margin-top:12px;">
+                  <span class="pill">Airport Pick-up / Drop-off</span>
+                  <span class="pill">Intra-city Event Transit</span>
+                  <span class="pill">Featured Dining Budget</span>
+                  <span class="pill">Premium Hotel Upgrade Content</span>
+                  <span class="pill">Local Videography Crew</span>
+                </div>
+              </div>
+            </div>
+            <div class="card highlighted">
+              <div class="card-num">COMMERCIAL ADVANTAGE</div>
+              <div class="card-title">Low Friction, High Recall</div>
+              <div class="card-body">
+                Gain deep ground penetration in your priority city without the overhead of organizing your own foreign event from scratch.
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="slide-footer">
+          <span>AI GTM Africa Proposal</span>
+          <span>Slide 12 of 26</span>
+        </div>
+      </div>
+
+      <!-- SLIDE 13: CITY PARTNER BENEFITS -->
+      <div class="slide" data-index="12" data-notes="All deliverables included in Plan 1 across Brand, Product, Content, and Community.">
+        <div class="slide-top">
+          <div class="slide-meta">
+            <span class="slide-category">10 • Deliverables</span>
+            <span class="slide-program-title">City Partner Deliverables</span>
+          </div>
+          <div class="brand-mark-mini"><span>PLAN 1 DELIVERABLES</span></div>
+        </div>
+        <div class="slide-main">
+          <h2 class="headline-lg">What the City Partner <span class="crimson-text">Receives</span></h2>
+          <div class="grid-4" style="margin-top:1.5vh;">
+            <div class="card">
+              <div class="card-num">01 • BRAND</div>
+              <div class="card-title" style="font-size:1.05rem;">Visibility</div>
+              <ul class="feature-list" style="font-size:0.78rem;">
+                <li class="feature-item">&#9632; Official City Partner status</li>
+                <li class="feature-item">&#9632; Logo on city flyer & banners</li>
+                <li class="feature-item">&#9632; Pull-up banner at venue</li>
+                <li class="feature-item">&#9632; Logo in agreed city vlogs</li>
+              </ul>
+            </div>
+            <div class="card">
+              <div class="card-num">02 • PRODUCT</div>
+              <div class="card-title" style="font-size:1.05rem;">Activation</div>
+              <ul class="feature-list" style="font-size:0.78rem;">
+                <li class="feature-item">&#9632; Live on-stage demonstration</li>
+                <li class="feature-item">&#9632; Native app usage in vlogs</li>
+                <li class="feature-item">&#9632; Branded referral QR code</li>
+                <li class="feature-item">&#9632; Exclusive attendee perk</li>
+              </ul>
+            </div>
+            <div class="card">
+              <div class="card-num">03 • MEDIA</div>
+              <div class="card-title" style="font-size:1.05rem;">Content</div>
+              <ul class="feature-list" style="font-size:0.78rem;">
+                <li class="feature-item">&#9632; 1 dedicated product video</li>
+                <li class="feature-item">&#9632; 2+ co-branded Shorts/Reels</li>
+                <li class="feature-item">&#9632; LinkedIn announcement post</li>
+                <li class="feature-item">&#9632; Professional event photo pack</li>
+              </ul>
+            </div>
+            <div class="card highlighted">
+              <div class="card-num">04 • DATA</div>
+              <div class="card-title" style="font-size:1.05rem;">Community</div>
+              <ul class="feature-list" style="font-size:0.78rem;">
+                <li class="feature-item">&#9632; Consented attendee leads</li>
+                <li class="feature-item">&#9632; Direct founder introductions</li>
+                <li class="feature-item">&#9632; User feedback insights</li>
+                <li class="feature-item">&#9632; Post-event activation report</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="slide-footer">
+          <span>AI GTM Africa Proposal</span>
+          <span>Slide 13 of 26</span>
+        </div>
+      </div>
+
+      <!-- SLIDE 14: CITY CONTENT EXAMPLE -->
+      <div class="slide" data-index="13" data-notes="Walk the prospect through what a live Kigali vlog looks like from airport arrival to stage demo.">
+        <div class="slide-top">
+          <div class="slide-meta">
+            <span class="slide-category">11 • Narrative Blueprint</span>
+            <span class="slide-program-title">City Story Arc</span>
+          </div>
+          <div class="brand-mark-mini"><span>KIGALI ACTIVATION EXAMPLE</span></div>
+        </div>
+        <div class="slide-main">
+          <h2 class="headline-lg">The Kigali Story Arc: <span class="crimson-text">“How I Moved & Paid with <span class="partner-name">[Your Fintech]</span>”</span></h2>
+          <p class="subtitle-lead">
+            A cohesive storyline showing seamless real-world utility at every step of Tomide’s visit.
+          </p>
+          <div class="grid-3">
+            <div class="card">
+              <div class="card-num">SCENE 01 • ARRIVAL</div>
+              <div class="card-title">Airport to Hotel</div>
+              <div class="card-body">Landing at Kigali International Airport, paying for local transport and checking in using the partner's virtual card.</div>
+            </div>
+            <div class="card">
+              <div class="card-num">SCENE 02 • THE WORKSHOP</div>
+              <div class="card-title">Live Stage Demo</div>
+              <div class="card-body">Presenting to 70+ founders at Norrsken Kigali, showing how AI businesses automate billing and cross-border collections.</div>
+            </div>
+            <div class="card highlighted">
+              <div class="card-num">SCENE 03 • ECOSYSTEM</div>
+              <div class="card-title">Founder Dinner</div>
+              <div class="card-body">Hosting a dinner with top Rwandan tech founders, splitting the bill and paying seamlessly in local currency.</div>
+            </div>
+          </div>
+        </div>
+        <div class="slide-footer">
+          <span>AI GTM Africa Proposal</span>
+          <span>Slide 14 of 26</span>
+        </div>
+      </div>
+
+      <!-- SLIDE 15: PLAN 2 — EAST AFRICA PARTNER -->
+      <div class="slide" data-index="14" data-notes="Plan 2 covers the entire East Africa corridor: Kigali -> Kampala -> Nairobi. High relevance for fintechs licensed in Kenya, Uganda, and Rwanda.">
+        <div class="slide-top">
+          <div class="slide-meta">
+            <span class="slide-category">12 • Regional Package</span>
+            <span class="slide-program-title">Plan 2: East Africa Corridor</span>
+          </div>
+          <div class="brand-mark-mini"><span>REGIONAL HEADLINE PARTNER</span></div>
+        </div>
+        <div class="slide-main">
+          <h2 class="headline-lg">Plan 2: <span class="crimson-text">East Africa Regional Partner</span></h2>
+          <p class="subtitle-lead">
+            Power the complete multi-country corridor across Rwanda, Uganda, and Kenya.
+          </p>
+          <div class="grid-2">
+            <div class="card">
+              <div class="card-num">CORRIDOR COVERAGE</div>
+              <div class="card-title">Kigali &bull; Kampala &bull; Nairobi</div>
+              <div class="card-body">
+                Support selected transit and stay expenses across all 3 countries:
+                <div class="pill-list" style="margin-top:12px;">
+                  <span class="pill active">Kampala Stay</span>
+                  <span class="pill active">Airport & Bus Transfers</span>
+                  <span class="pill active">Local City Transport</span>
+                  <span class="pill active">Regional Content Production</span>
+                </div>
+              </div>
+            </div>
+            <div class="card highlighted">
+              <div class="card-num">HEADLINE COMMITMENT</div>
+              <div class="card-title">Kenya Flight & Stay</div>
+              <div class="card-body">
+                Cover the return flight from Nairobi or accommodation in Kenya to secure full regional category exclusivity.
+                <div style="margin-top:14px; font-size:0.8rem; color:var(--accent-gold);">
+                  *Bus transit and initial reservations already in place.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="slide-footer">
+          <span>AI GTM Africa Proposal</span>
+          <span>Slide 15 of 26</span>
+        </div>
+      </div>
+
+      <!-- SLIDE 16: EAST AFRICA PARTNER BENEFITS -->
+      <div class="slide" data-index="15" data-notes="Category exclusivity in East Africa, 3 dedicated product videos, 6 shorts, and dual event floor presence.">
+        <div class="slide-top">
+          <div class="slide-meta">
+            <span class="slide-category">13 • Regional Deliverables</span>
+            <span class="slide-program-title">East Africa Deliverables</span>
+          </div>
+          <div class="brand-mark-mini"><span>REGIONAL EXCLUSIVITY</span></div>
+        </div>
+        <div class="slide-main">
+          <h2 class="headline-lg">East Africa Partner <span class="crimson-text">Benefits</span></h2>
+          <p class="subtitle-lead">Everything in City Partner plan plus regional exclusivity and multi-market assets:</p>
+          <div class="grid-3">
+            <div class="card highlighted">
+              <div class="card-num">REGIONAL EXCLUSIVITY</div>
+              <div class="card-title">Sole Fintech Sponsor</div>
+              <div class="card-body">No competing financial services brand across Kigali, Kampala, and Nairobi tour marketing.</div>
+            </div>
+            <div class="card">
+              <div class="card-num">DEDICATED MEDIA</div>
+              <div class="card-title">3 Vlogs + 6 Shorts</div>
+              <div class="card-body">Extensive travel episodic series exploring cross-border money transfer and founder growth.</div>
+            </div>
+            <div class="card">
+              <div class="card-num">AUDIENCE ACCESS</div>
+              <div class="card-title">Dual City Leads</div>
+              <div class="card-body">Consented attendee databases from both Kigali and Nairobi workshops (200+ vetted founders).</div>
+            </div>
+          </div>
+        </div>
+        <div class="slide-footer">
+          <span>AI GTM Africa Proposal</span>
+          <span>Slide 16 of 26</span>
+        </div>
+      </div>
+
+      <!-- SLIDE 17: THE EAST AFRICA STORY -->
+      <div class="slide" data-index="16" data-notes="The narrative power of cross-border commerce: showing a user converting RWF to UGX to KES seamlessly without bank delays.">
+        <div class="slide-top">
+          <div class="slide-meta">
+            <span class="slide-category">14 • Regional Story Arc</span>
+            <span class="slide-program-title">Multi-Country Narrative</span>
+          </div>
+          <div class="brand-mark-mini"><span>CROSS-BORDER FINTECH PROOF</span></div>
+        </div>
+        <div class="slide-main">
+          <h2 class="headline-lg">One Financial Product Across <span class="crimson-text">Three Countries</span></h2>
+          <p class="subtitle-lead">
+            Demonstrate real cross-border resilience as Tomide travels across East Africa.
+          </p>
+          <div class="grid-2">
+            <div class="card">
+              <div class="card-num">THE STORYLINE</div>
+              <div class="card-title">Border Transit Moments</div>
+              <ul class="feature-list" style="margin-top:10px;">
+                <li class="feature-item"><span class="feature-icon">&#10003;</span> Exchanging currency at the Rwanda-Uganda border</li>
+                <li class="feature-item"><span class="feature-icon">&#10003;</span> Paying local merchants in Kampala via mobile money / app</li>
+                <li class="feature-item"><span class="feature-icon">&#10003;</span> Seamless booking for Nairobi logistics and accommodation</li>
+              </ul>
+            </div>
+            <div class="card highlighted">
+              <div class="card-num">COMMERCIAL IMPACT</div>
+              <div class="card-title">Solving Founder Pain Points</div>
+              <div class="card-body">
+                African founders struggle constantly with cross-border payments. Watching an actual operator solve it on the road creates immediate trust and product sign-ups.
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="slide-footer">
+          <span>AI GTM Africa Proposal</span>
+          <span>Slide 17 of 26</span>
+        </div>
+      </div>
+
+      <!-- SLIDE 18: PLAN 3 — FULL TOUR PARTNER -->
+      <div class="slide" data-index="17" data-notes="The flagship sponsorship tier: Lead Partner status across all 6 cities, full tour category exclusivity, and headline credit.">
+        <div class="slide-top">
+          <div class="slide-meta">
+            <span class="slide-category">15 • Flagship Package</span>
+            <span class="slide-program-title">Plan 3: Lead Tour Partner</span>
+          </div>
+          <div class="brand-mark-mini"><span>PAN-AFRICAN HEADLINE</span></div>
+        </div>
+        <div class="slide-main">
+          <h2 class="headline-lg">Plan 3: <span class="crimson-text">Lead Full Tour Partner</span></h2>
+          <p class="subtitle-lead">
+            Power the entire 6-city Pan-African tour: Kigali, Kampala, Nairobi, Lagos, Cotonou, and Accra.
+          </p>
+          <div class="grid-2">
+            <div class="card highlighted">
+              <div class="card-num">HEADLINE COMMITMENT</div>
+              <div class="card-title">Ghana Round Trip & Tour Support</div>
+              <div class="card-body">
+                Support Tomide’s Accra finale flight & accommodation, plus selected regional transit across the 6 ecosystems.
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-num">POSITIONING</div>
+              <div class="card-title">“AI GTM Africa in Partnership with <span class="partner-name">[Your Company]</span>”</div>
+              <div class="card-body">
+                Top-tier billing across all official tour flyers, landing page header, press mentions, stage backdrops, and video intros.
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="slide-footer">
+          <span>AI GTM Africa Proposal</span>
+          <span>Slide 18 of 26</span>
+        </div>
+      </div>
+
+      <!-- SLIDE 19: FULL TOUR PARTNER BENEFITS -->
+      <div class="slide" data-index="18" data-notes="Summarize the complete suite of deliverables for the Lead Partner.">
+        <div class="slide-top">
+          <div class="slide-meta">
+            <span class="slide-category">16 • Full Tour Deliverables</span>
+            <span class="slide-program-title">Plan 3 Benefits</span>
+          </div>
+          <div class="brand-mark-mini"><span>MAXIMUM PAN-AFRICAN REACH</span></div>
+        </div>
+        <div class="slide-main">
+          <h2 class="headline-lg">Full Tour Partner <span class="crimson-text">Deliverables Matrix</span></h2>
+          <div class="grid-3" style="margin-top:1.5vh;">
+            <div class="card highlighted">
+              <div class="card-num">BRAND EXCLUSIVITY</div>
+              <div class="card-title">Pan-African Title Sponsor</div>
+              <div class="card-body">100% category exclusivity across all 6 cities. No competing financial institutions or fintechs permitted.</div>
+            </div>
+            <div class="card">
+              <div class="card-num">CONTENT ENGINE</div>
+              <div class="card-title">5+ Episodic Vlogs</div>
+              <div class="card-body">Dedicated YouTube docuseries + 12+ short-form assets distributed to 47k+ LinkedIn and 10k+ WhatsApp audience.</div>
+            </div>
+            <div class="card">
+              <div class="card-num">FOUNDER ACCESS</div>
+              <div class="card-title">Full Tour Lead Vault</div>
+              <div class="card-body">Consented database of 500+ top African founders, CEOs, and growth leaders across East & West Africa.</div>
+            </div>
+          </div>
+        </div>
+        <div class="slide-footer">
+          <span>AI GTM Africa Proposal</span>
+          <span>Slide 19 of 26</span>
+        </div>
+      </div>
+
+      <!-- SLIDE 20: PRIVATE TEAM SESSION -->
+      <div class="slide" data-index="19" data-notes="High-value sweetener: Tomide delivers a private masterclass for the partner's internal marketing/sales team on AI customer acquisition.">
+        <div class="slide-top">
+          <div class="slide-meta">
+            <span class="slide-category">17 • Exclusive Bonus</span>
+            <span class="slide-program-title">Team Upskilling Masterclass</span>
+          </div>
+          <div class="brand-mark-mini"><span>INTERNAL ROI</span></div>
+        </div>
+        <div class="slide-main">
+          <h2 class="headline-lg">Private Executive Masterclass: <span class="crimson-text">AI & GTM Systems</span></h2>
+          <p class="subtitle-lead">
+            Exclusive value-add for the Lead Full Tour Partner: A dedicated live masterclass for your growth, marketing, and sales team.
+          </p>
+          <div class="grid-2">
+            <div class="card">
+              <div class="card-num">SESSION TOPIC</div>
+              <div class="card-title">“How to Use AI & GTM Systems to Scale Users & B2B Revenue”</div>
+              <div class="card-body">
+                Tailored specifically to your fintech’s Q4 2026 growth priorities and expansion roadmap.
+              </div>
+            </div>
+            <div class="card highlighted">
+              <div class="card-num">CORE MODULES COVERED</div>
+              <ul class="feature-list" style="font-size:0.85rem;">
+                <li class="feature-item">&#9632; AI-powered lead qualification & outbound engines</li>
+                <li class="feature-item">&#9632; High-converting GTM positioning for African B2B</li>
+                <li class="feature-item">&#9632; Community-led distribution & referral loops</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="slide-footer">
+          <span>AI GTM Africa Proposal</span>
+          <span>Slide 20 of 26</span>
+        </div>
+      </div>
+
+      <!-- SLIDE 21: CONTENT DELIVERABLES -->
+      <div class="slide" data-index="20" data-notes="Highlight the evergreen nature of the content. These videos and case studies will continue generating signups for months after the tour ends.">
+        <div class="slide-top">
+          <div class="slide-meta">
+            <span class="slide-category">18 • Evergreen Media</span>
+            <span class="slide-program-title">Content Multiplier Engine</span>
+          </div>
+          <div class="brand-mark-mini"><span>LONG-TAIL VALUE</span></div>
+        </div>
+        <div class="slide-main">
+          <h2 class="headline-lg">Content That Continues Delivering <span class="crimson-text">Long After the Events</span></h2>
+          <p class="subtitle-lead">
+            Every piece of tour content is designed for long-term discovery, reuse, and paid amplification.
+          </p>
+          <div class="grid-4">
+            <div class="card">
+              <div class="card-num">01</div>
+              <div class="card-title" style="font-size:1rem;">City Vlogs</div>
+              <div class="card-body" style="font-size:0.8rem;">High-production YouTube travel and ecosystem docuseries.</div>
+            </div>
+            <div class="card">
+              <div class="card-num">02</div>
+              <div class="card-title" style="font-size:1rem;">Short-Form Reels</div>
+              <div class="card-body" style="font-size:0.8rem;">Bite-sized tactical app use clips on IG & YouTube Shorts.</div>
+            </div>
+            <div class="card">
+              <div class="card-num">03</div>
+              <div class="card-title" style="font-size:1rem;">Executive Posts</div>
+              <div class="card-body" style="font-size:0.8rem;">Thought leadership breakdowns on LinkedIn (47k+ reach).</div>
+            </div>
+            <div class="card highlighted">
+              <div class="card-num">04</div>
+              <div class="card-title" style="font-size:1rem;">Ad Reuse Rights</div>
+              <div class="card-body" style="font-size:0.8rem;">Full rights for your team to run paid ads using tour assets.</div>
+            </div>
+          </div>
+        </div>
+        <div class="slide-footer">
+          <span>AI GTM Africa Proposal</span>
+          <span>Slide 21 of 26</span>
+        </div>
+      </div>
+
+      <!-- SLIDE 22: FROM VISIBILITY TO ADOPTION -->
+      <div class="slide" data-index="21" data-notes="Map out the concrete conversion funnel from impressions to active app users and B2B demos.">
+        <div class="slide-top">
+          <div class="slide-meta">
+            <span class="slide-category">19 • Conversion Architecture</span>
+            <span class="slide-program-title">User Acquisition Funnel</span>
+          </div>
+          <div class="brand-mark-mini"><span>MEASURABLE CONVERSION</span></div>
+        </div>
+        <div class="slide-main">
+          <h2 class="headline-lg">From Brand Impressions to <span class="crimson-text">Active Product Adoption</span></h2>
+          <p class="subtitle-lead">
+            Clear, friction-free conversion triggers built directly into both physical workshops and digital media.
+          </p>
+          <div class="grid-4">
+            <div class="card">
+              <div class="card-num">TRIGGER 01</div>
+              <div class="card-title" style="font-size:1rem;">Branded QR Codes</div>
+              <div class="card-body" style="font-size:0.8rem;">On stage slides & attendee tables for instant mobile app downloads.</div>
+            </div>
+            <div class="card">
+              <div class="card-num">TRIGGER 02</div>
+              <div class="card-title" style="font-size:1rem;">Exclusive Perks</div>
+              <div class="card-body" style="font-size:0.8rem;">Special fee discounts or welcome balances for verified attendees.</div>
+            </div>
+            <div class="card">
+              <div class="card-num">TRIGGER 03</div>
+              <div class="card-title" style="font-size:1rem;">Founder Intros</div>
+              <div class="card-body" style="font-size:0.8rem;">Direct warm introductions to high-volume cross-border businesses.</div>
+            </div>
+            <div class="card highlighted">
+              <div class="card-num">TRIGGER 04</div>
+              <div class="card-title" style="font-size:1rem;">Lead Vault</div>
+              <div class="card-body" style="font-size:0.8rem;">Consented attendee database for post-event sales follow-up.</div>
+            </div>
+          </div>
+        </div>
+        <div class="slide-footer">
+          <span>AI GTM Africa Proposal</span>
+          <span>Slide 22 of 26</span>
+        </div>
+      </div>
+
+      <!-- SLIDE 23: MEASUREMENT & REPORTING -->
+      <div class="slide" data-index="22" data-notes="Transparency and reporting: what data the partner receives in their post-activation dossier.">
+        <div class="slide-top">
+          <div class="slide-meta">
+            <span class="slide-category">20 • Accountability</span>
+            <span class="slide-program-title">Post-Tour Reporting</span>
+          </div>
+          <div class="brand-mark-mini"><span>DATA & ATTRIBUTION</span></div>
+        </div>
+        <div class="slide-main">
+          <h2 class="headline-lg">Comprehensive <span class="crimson-text">Post-Activation Dossier</span></h2>
+          <p class="subtitle-lead">
+            Complete transparency on media performance, audience engagement, and lead attribution.
+          </p>
+          <div class="grid-2">
+            <div class="card">
+              <div class="card-num">QUANTITATIVE METRICS</div>
+              <ul class="feature-list" style="margin-top:8px;">
+                <li class="feature-item">&#9632; Total video views, watch hours & retention rates</li>
+                <li class="feature-item">&#9632; LinkedIn post impressions, comments & shares</li>
+                <li class="feature-item">&#9632; QR code scans & referral-link click attribution</li>
+                <li class="feature-item">&#9632; Verified workshop attendance numbers by city</li>
+              </ul>
+            </div>
+            <div class="card highlighted">
+              <div class="card-num">QUALITATIVE INSIGHTS</div>
+              <ul class="feature-list" style="margin-top:8px;">
+                <li class="feature-item">&#9632; On-ground user feedback & common objection notes</li>
+                <li class="feature-item">&#9632; High-resolution photo asset repository</li>
+                <li class="feature-item">&#9632; Strategic recommendations for regional African expansion</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="slide-footer">
+          <span>AI GTM Africa Proposal</span>
+          <span>Slide 23 of 26</span>
+        </div>
+      </div>
+
+      <!-- SLIDE 24: WHAT WE NEED FROM THE PARTNER -->
+      <div class="slide" data-index="23" data-notes="Closing step: The sponsor selects their preferred tier, targets, and expenses. Fast contract execution.">
+        <div class="slide-top">
+          <div class="slide-meta">
+            <span class="slide-category">21 • Next Steps</span>
+            <span class="slide-program-title">Partnership Selection</span>
+          </div>
+          <div class="brand-mark-mini"><span>SELECTION CHECKLIST</span></div>
+        </div>
+        <div class="slide-main">
+          <h2 class="headline-lg">Simple, Streamlined <span class="crimson-text">Onboarding</span></h2>
+          <p class="subtitle-lead">
+            Customize the exact parameters that align with your growth objectives:
+          </p>
+          <div class="grid-3">
+            <div class="card">
+              <div class="card-num">STEP 01</div>
+              <div class="card-title">Select Tier & Cities</div>
+              <div class="card-body">Choose City Partner, East Africa Partner, or Lead Full Tour Partner based on your expansion priorities.</div>
+            </div>
+            <div class="card">
+              <div class="card-num">STEP 02</div>
+              <div class="card-title">Pick Tour Expenses</div>
+              <div class="card-body">Identify the specific transit, stay, or production items your company will cover or reimburse.</div>
+            </div>
+            <div class="card highlighted">
+              <div class="card-num">STEP 03</div>
+              <div class="card-title">Define Activation CTA</div>
+              <div class="card-body">Provide your referral link, custom perk, or QR code destination for workshop attendees.</div>
+            </div>
+          </div>
+        </div>
+        <div class="slide-footer">
+          <span>AI GTM Africa Proposal</span>
+          <span>Slide 24 of 26</span>
+        </div>
+      </div>
+
+      <!-- SLIDE 25: THE DECISION -->
+      <div class="slide" data-index="24" data-notes="Strong closing summary. Remind them that Kigali is already in motion for October 8th, so slots must be finalized quickly.">
+        <div class="slide-top">
+          <div class="slide-meta">
+            <span class="slide-category">22 • Strategic Choice</span>
+            <span class="slide-program-title">The Opportunity</span>
+          </div>
+          <div class="brand-mark-mini"><span>SECURE YOUR SPOT</span></div>
+        </div>
+        <div class="slide-main">
+          <h2 class="headline-lg">Which Part of the Journey <span class="crimson-text">Will You Power?</span></h2>
+          <p class="subtitle-lead">
+            The tour begins October 8 in Kigali. Category exclusivity is strictly first-come, first-served.
+          </p>
+          <div class="grid-3">
+            <div class="card" style="text-align:center; padding:3vh 2vw;">
+              <div class="card-num">OPTION A</div>
+              <div class="card-title" style="font-size:1.4rem;">One City</div>
+              <div class="card-body">Ground penetration in one target African capital.</div>
+            </div>
+            <div class="card highlighted" style="text-align:center; padding:3vh 2vw;">
+              <div class="card-num">OPTION B</div>
+              <div class="card-title" style="font-size:1.4rem;">East Africa</div>
+              <div class="card-body">Cross-border dominance across Kigali, Kampala & Nairobi.</div>
+            </div>
+            <div class="card" style="text-align:center; padding:3vh 2vw;">
+              <div class="card-num">OPTION C</div>
+              <div class="card-title" style="font-size:1.4rem;">Full African Tour</div>
+              <div class="card-body">Pan-African title sponsorship across all 6 ecosystems.</div>
+            </div>
+          </div>
+        </div>
+        <div class="slide-footer">
+          <span>AI GTM Africa Proposal</span>
+          <span>Slide 25 of 26</span>
+        </div>
+      </div>
+
+      <!-- SLIDE 26: CLOSING CONTACT -->
+      <div class="slide" data-index="25" data-notes="Executive closing slide. Direct contact details and partnership lockup.">
+        <div class="slide-top">
+          <div class="slide-meta">
+            <span class="slide-category">23 • Closing Lockup</span>
+            <span class="slide-program-title">Partnership Contact</span>
+          </div>
+          <div class="brand-mark-mini">
+            <svg class="tw-icon" viewBox="0 0 100 100" fill="none">
+              <circle cx="50" cy="50" r="46" stroke="rgba(255,255,255,0.15)" stroke-width="3"/>
+              <path d="M 25 35 L 75 35" stroke="#7A0A15" stroke-width="5"/>
+              <path d="M 50 35 L 50 75" stroke="#7A0A15" stroke-width="5"/>
+              <path d="M 20 25 L 35 80 L 50 55 L 65 80 L 80 25" stroke="#ffffff" stroke-width="4" stroke-linejoin="bevel"/>
+            </svg>
+            <span>TOMIDE WILLIAMS</span>
+          </div>
+        </div>
+        <div class="slide-main" style="text-align:center; align-items:center;">
+          <div style="max-width:800px;">
+            <div style="font-family:var(--font-mono); font-size:0.85rem; color:var(--accent-gold); letter-spacing:0.2em; text-transform:uppercase; margin-bottom:12px;">
+              Let's Build the Story Together
+            </div>
+            <h1 class="headline-lg" style="font-size:clamp(1.8rem, 2.8vw, 2.8rem);">
+              AI GTM Africa &times; <span class="crimson-text partner-name">[Your Fintech]</span>
+            </h1>
+            <p class="subtitle-lead" style="margin: 0 auto 3vh auto; font-size:1.05rem;">
+              Kigali • Kampala • Nairobi • Lagos • Cotonou • Accra
+            </p>
+            <div class="card highlighted" style="display:inline-block; padding:2vh 3vw; text-align:left;">
+              <div style="display:flex; gap:3vw; align-items:center;">
+                <div>
+                  <div style="font-family:var(--font-display); font-size:1.2rem; font-weight:700; color:white;">Tomide Williams</div>
+                  <div style="font-size:0.82rem; color:var(--text-muted); margin-top:2px;">Founding GTM Lead & AI Practitioner</div>
+                </div>
+                <div style="border-left:1px solid var(--border-subtle); padding-left:3vw; font-size:0.88rem; line-height:1.7;">
+                  <div>Email: <a href="mailto:hello@tomidewilliams.com" style="color:white; text-decoration:none;">hello@tomidewilliams.com</a></div>
+                  <div>Direct: <span style="color:#e0e0e0;">+234 902 563 1654</span></div>
+                  <div>Web: <a href="https://www.aigtmafrica.xyz" target="_blank" style="color:var(--accent-gold); text-decoration:none;">www.aigtmafrica.xyz</a></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="slide-footer">
+          <span>AI GTM Africa 2026</span>
+          <span>Final Slide • 26 of 26</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Bottom Navigation and Controls Bar -->
+  <div class="controls-bar">
+    <button class="btn-ctrl" id="prevBtn" title="Previous Slide (← / Up)">← Prev</button>
+    <div class="nav-counter" id="slideCounter">1 / 26</div>
+    <button class="btn-ctrl" id="nextBtn" title="Next Slide (→ / Down / Space)">Next →</button>
+    <div style="width:1px; height:16px; background:var(--border-subtle);"></div>
+    <button class="btn-ctrl" id="editBtn" title="Toggle Live In-Place Text Editing (E)">Edit Mode</button>
+    <button class="btn-ctrl" id="notesBtn" title="Toggle Talking Notes Drawer (N)">Notes</button>
+    <button class="btn-ctrl" id="gridBtn" title="Slide Overview Grid (G)">Grid</button>
+    <button class="btn-ctrl" id="pdfBtn" title="Print to PDF / Save Deck (P)">PDF</button>
+  </div>
+
+  <!-- Speaker & Student Notes Drawer -->
+  <div class="notes-drawer" id="notesDrawer">
+    <div class="notes-header">
+      <div class="notes-title" id="notesSlideTitle">Slide 1 Notes</div>
+      <button class="btn-ctrl" id="closeNotesBtn" style="padding:2px 8px;">✕ Close</button>
+    </div>
+    <div class="notes-content" id="notesContent">
+      <!-- Injected dynamically -->
+    </div>
+  </div>
+
+  <!-- Slide Sorter Grid Modal -->
+  <div class="grid-overlay" id="gridOverlay">
+    <div class="grid-header">
+      <h2 style="font-family:var(--font-display); font-size:1.4rem; color:white;">Slide Overview (26 Slides)</h2>
+      <button class="btn-ctrl" id="closeGridBtn" style="background:rgba(255,255,255,0.1); color:white;">✕ Close (Esc)</button>
+    </div>
+    <div class="grid-items" id="gridItemsContainer">
+      <!-- Injected dynamically -->
+    </div>
+  </div>
+
+  <script>
+    // State
+    let currentIndex = 0;
+    const slides = document.querySelectorAll('.slide');
+    const totalSlides = slides.length;
+    const counterEl = document.getElementById('slideCounter');
+    const notesDrawer = document.getElementById('notesDrawer');
+    const notesContent = document.getElementById('notesContent');
+    const notesTitle = document.getElementById('notesSlideTitle');
+    const gridOverlay = document.getElementById('gridOverlay');
+    const gridItemsContainer = document.getElementById('gridItemsContainer');
+    const partnerInput = document.getElementById('partnerInput');
+    let isEditMode = false;
+
+    // Load saved edits & partner name from localStorage
+    const savedPartner = localStorage.getItem('ai_gtm_partner_name');
+    if (savedPartner) {
+      partnerInput.value = savedPartner;
+      updatePartnerNames(savedPartner);
+    }
+
+    // Go to specific slide
+    function goToSlide(index) {
+      if (index < 0) index = 0;
+      if (index >= totalSlides) index = totalSlides - 1;
+
+      slides[currentIndex].classList.remove('active');
+      currentIndex = index;
+      slides[currentIndex].classList.add('active');
+
+      counterEl.textContent = `${currentIndex + 1} / ${totalSlides}`;
+      updateNotes();
+      updateGridActive();
+    }
+
+    // Update talking notes
+    function updateNotes() {
+      const activeSlide = slides[currentIndex];
+      const notes = activeSlide.getAttribute('data-notes') || 'No additional notes for this slide.';
+      const title = activeSlide.querySelector('h1, h2')?.textContent || `Slide ${currentIndex + 1}`;
+      notesTitle.textContent = `Slide ${currentIndex + 1}: ${title}`;
+      notesContent.innerHTML = `<p>${notes}</p>`;
+    }
+
+    // Update Partner Names in DOM
+    function updatePartnerNames(name) {
+      const display = name.trim() || '[Your Fintech]';
+      document.querySelectorAll('.partner-name').forEach(el => {
+        el.textContent = display;
+      });
+    }
+
+    partnerInput.addEventListener('input', (e) => {
+      const val = e.target.value;
+      localStorage.setItem('ai_gtm_partner_name', val);
+      updatePartnerNames(val);
+    });
+
+    // Toggle Edit Mode
+    function toggleEditMode() {
+      isEditMode = !isEditMode;
+      document.body.classList.toggle('edit-mode', isEditMode);
+      document.getElementById('editBtn').classList.toggle('active', isEditMode);
+
+      slides.forEach(slide => {
+        slide.querySelectorAll('h1, h2, h3, p, .card-title, .card-body, .pill, li, .metric-num, .metric-label').forEach(el => {
+          el.contentEditable = isEditMode ? 'true' : 'false';
+        });
+      });
+
+      if (isEditMode) {
+        console.log('Edit Mode Enabled. Changes can be made directly on slides.');
+      } else {
+        // Save slide content to localStorage
+        const slideHtml = document.querySelector('.slide-canvas').innerHTML;
+        localStorage.setItem('ai_gtm_slides_saved_canvas', slideHtml);
+      }
+    }
+
+    // Restore saved canvas if present
+    const savedCanvas = localStorage.getItem('ai_gtm_slides_saved_canvas');
+    if (savedCanvas) {
+      // document.querySelector('.slide-canvas').innerHTML = savedCanvas;
+    }
+
+    // Navigation buttons
+    document.getElementById('prevBtn').onclick = () => goToSlide(currentIndex - 1);
+    document.getElementById('nextBtn').onclick = () => goToSlide(currentIndex + 1);
+
+    // Notes toggle
+    document.getElementById('notesBtn').onclick = () => {
+      notesDrawer.classList.toggle('open');
+      document.getElementById('notesBtn').classList.toggle('active', notesDrawer.classList.contains('open'));
+    };
+    document.getElementById('closeNotesBtn').onclick = () => {
+      notesDrawer.classList.remove('open');
+      document.getElementById('notesBtn').classList.remove('active');
+    };
+
+    // Grid Sorter Toggle
+    function toggleGrid() {
+      const isOpen = gridOverlay.classList.toggle('open');
+      document.getElementById('gridBtn').classList.toggle('active', isOpen);
+      if (isOpen) renderGridThumbs();
+    }
+
+    function renderGridThumbs() {
+      gridItemsContainer.innerHTML = '';
+      slides.forEach((slide, idx) => {
+        const title = slide.querySelector('h1, h2')?.textContent || `Slide ${idx + 1}`;
+        const thumb = document.createElement('div');
+        thumb.className = `grid-thumb ${idx === currentIndex ? 'active' : ''}`;
+        thumb.innerHTML = `
+          <div class="grid-thumb-num">SLIDE ${String(idx + 1).padStart(2, '0')}</div>
+          <div class="grid-thumb-title">${title}</div>
+        `;
+        thumb.onclick = () => {
+          goToSlide(idx);
+          toggleGrid();
+        };
+        gridItemsContainer.appendChild(thumb);
+      });
+    }
+
+    function updateGridActive() {
+      document.querySelectorAll('.grid-thumb').forEach((thumb, idx) => {
+        thumb.classList.toggle('active', idx === currentIndex);
+      });
+    }
+
+    document.getElementById('gridBtn').onclick = toggleGrid;
+    document.getElementById('closeGridBtn').onclick = toggleGrid;
+
+    // PDF / Print
+    document.getElementById('pdfBtn').onclick = () => {
+      window.print();
+    };
+
+    document.getElementById('editBtn').onclick = toggleEditMode;
+
+    // Keyboard Shortcuts
+    document.addEventListener('keydown', (e) => {
+      if (document.activeElement.isContentEditable || document.activeElement.tagName === 'INPUT') {
+        if (e.key === 'Escape') document.activeElement.blur();
+        return;
+      }
+
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ' || e.key === 'PageDown') {
+        e.preventDefault();
+        goToSlide(currentIndex + 1);
+      } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp' || e.key === 'PageUp') {
+        e.preventDefault();
+        goToSlide(currentIndex - 1);
+      } else if (e.key === 'Home') {
+        goToSlide(0);
+      } else if (e.key === 'End') {
+        goToSlide(totalSlides - 1);
+      } else if (e.key.toLowerCase() === 'e') {
+        toggleEditMode();
+      } else if (e.key.toLowerCase() === 'n') {
+        document.getElementById('notesBtn').click();
+      } else if (e.key.toLowerCase() === 'g') {
+        toggleGrid();
+      } else if (e.key.toLowerCase() === 'p') {
+        window.print();
+      } else if (e.key.toLowerCase() === 'f') {
+        if (!document.fullscreenElement) {
+          document.documentElement.requestFullscreen().catch(() => {});
+        } else {
+          document.exitFullscreen().catch(() => {});
+        }
+      } else if (e.key === 'Escape') {
+        if (gridOverlay.classList.contains('open')) toggleGrid();
+        if (notesDrawer.classList.contains('open')) document.getElementById('closeNotesBtn').click();
+      }
+    });
+
+    // Initialize
+    goToSlide(0);
+  </script>
+</body>
+</html>

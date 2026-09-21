@@ -1,5 +1,8 @@
 {
   "rewrites": [
+    { "source": "/deck", "destination": "/pitch-deck.html" },
+    { "source": "/pitch-deck", "destination": "/pitch-deck.html" },
+    { "source": "/proposal", "destination": "/pitch-deck.html" },
     { "source": "/tomide-williams", "destination": "/" },
     { "source": "/kigali", "destination": "/" },
     { "source": "/kigali-event", "destination": "/" }

@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+﻿import React, { useEffect, useState, useRef } from 'react';
 import {
   Clock,
   MapPin,
@@ -114,6 +114,19 @@ const schedule = [
       'High-level peer connection and collaboration exchange',
       'Next steps and community continuity'
     ]
+  },
+  {
+    time: '12:00 PM',
+    duration: '60 min',
+    type: 'SPECIAL SESSION',
+    title: 'Founder Roundtable and Networking Session',
+    description: 'An exclusive, offsite founder roundtable and executive networking session hosted outside the embassy. Exact venue and timing details will be communicated directly to selected participants. (Free access, strictly limited seats).',
+    points: [
+      'Intimate, closed-room founder discussion on scaling, real operating challenges and AI adoption',
+      'Unfiltered peer-to-peer problem solving and strategic GTM teardowns',
+      'High-signal executive networking and collaborative deal-making',
+      'Free for selected attendees — private venue location communicated directly'
+    ]
   }
 ];
 
@@ -169,13 +182,13 @@ const takeaways = [
 ];
 
 const eventPlanItems = [
-  { area: 'Programme', detail: 'Three keynote speakers, one moderated founder panel, an open Q&A session, closing remarks, group photograph and networking.' },
+  { area: 'Programme', detail: 'Three keynote speakers, one moderated founder panel, open Q&A, embassy networking, plus an exclusive 12:00 PM Founder Roundtable session.' },
   { area: 'Speakers', detail: 'Three speakers with complementary expertise in go-to-market, practical AI adoption and AI-powered product development.' },
   { area: 'Panel', detail: 'Curated founders sharing direct examples, real experiments, lessons learned, and implementation hurdles.' },
   { area: 'Audience', detail: 'Curated room of 20 to 30 founders, business leaders, marketers, commercial teams and operators in Kigali.' },
-  { area: 'Venue', detail: 'U.S. Embassy Kigali — with seating, stage area, projection, microphones and dedicated networking space.' },
+  { area: 'Venue', detail: 'U.S. Embassy Kigali (Morning Sessions) & Offsite Curated Venue (12:00 PM Founder Roundtable — communicated to confirmed attendees).' },
   { area: 'Registration', detail: 'Attendance confirmed in advance; guest check-in completed prior to the prompt 9:00 AM start.' },
-  { area: 'Event Delivery', detail: 'Strict timekeeping ensuring all sessions, questions, and networking conclude seamlessly by 11:00 AM.' }
+  { area: 'Event Delivery', detail: 'Strict timekeeping ensuring morning embassy sessions conclude by 11:00 AM, followed by the offsite 12:00 PM Founder Roundtable.' }
 ];
 
 const WHAT_YOU_DO = [
@@ -700,7 +713,7 @@ export default function KigaliPage() {
           <div className="kigali-section-header reveal">
             <p className="kicker">TIMETABLE &amp; STRUCTURE</p>
             <h2>PROGRAMME SCHEDULE</h2>
-            <p className="section-subtext">9:00 AM to 11:00 AM · Fast-paced, high-density agenda</p>
+            <p className="section-subtext">9:00 AM Embassy Sessions · 12:00 PM Exclusive Offsite Founder Roundtable</p>
           </div>
 
           <div className="schedule-timeline">
@@ -814,6 +827,20 @@ export default function KigaliPage() {
                 <li>Challenges involved in introducing AI into existing teams and workflows</li>
                 <li>How founders judge whether an AI use case creates real business value</li>
                 <li>Opportunities for African businesses to leverage AI more effectively</li>
+              </ul>
+            </article>
+
+            <article className="keynote-card panel-card reveal" style={{ transitionDelay: '250ms' }}>
+              <div className="card-kicker">ROUNDTABLE · 12:00 PM</div>
+              <h3>Founder Roundtable and Networking Session</h3>
+              <p className="card-lead">
+                An exclusive offsite founder roundtable and strategic networking session outside the embassy for selected founders and operators.
+              </p>
+              <ul className="keynote-point-list">
+                <li>Closed-room founder discussion on growth, GTM challenges and AI implementation</li>
+                <li>Strategic peer exchange and collaborative problem solving</li>
+                <li>Intimate executive networking with selected builders</li>
+                <li>Free attendance — private venue location communicated directly to confirmed attendees</li>
               </ul>
             </article>
           </div>
