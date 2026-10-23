@@ -93,7 +93,7 @@ async function buildDeck() {
     });
 
     // Cities Pill Row
-    const cities = ['Kigali • 08 Oct', 'Kampala', 'Nairobi • 07 Nov', 'Lagos • 28 Nov', 'Cotonou • 19 Dec', 'Accra • 29 Dec'];
+    const cities = ['Kigali • 08 Oct', 'Kampala', 'Nairobi • 05 Nov', 'Lagos • 28 Nov', 'Cotonou • 19 Dec', 'Accra • 29 Dec'];
     cities.forEach((c, idx) => {
       const xPos = 0.8 + idx * 1.95;
       slide.addShape(pres.ShapeType.roundRect, {
@@ -201,7 +201,7 @@ async function buildDeck() {
     const steps = [
       { num: 'STAGE 01', city: 'Kigali', date: '08 Oct 2026', badge: '70+ Registered', confirmed: true },
       { num: 'STAGE 02', city: 'Kampala', date: 'Transit Leg', badge: 'Bus Confirmed', confirmed: true },
-      { num: 'STAGE 03', city: 'Nairobi', date: '07 Nov 2026', badge: 'Registrations Open', confirmed: false },
+      { num: 'STAGE 03', city: 'Nairobi', date: '05 Nov 2026', badge: 'Registrations Open', confirmed: false },
       { num: 'STAGE 04', city: 'Lagos', date: '28 Nov 2026', badge: 'West Africa Hub', confirmed: false },
       { num: 'STAGE 05', city: 'Accra', date: '29 Dec 2026', badge: 'Tour Finale', confirmed: false }
     ];
@@ -240,7 +240,7 @@ async function buildDeck() {
       });
     });
 
-    slide.addText('• East Africa Core: Kigali (Flight/Stay Confirmed) → Kampala (Bus Confirmed) → Nairobi (07 Nov)\n• West Africa Core: Lagos (28 Nov) → Cotonou (19 Dec) → Accra (29 Dec)', {
+    slide.addText('• East Africa Core: Kigali (Flight/Stay Confirmed) → Kampala (Bus Confirmed) → Nairobi (05 Nov)\n• West Africa Core: Lagos (28 Nov) → Cotonou (19 Dec) → Accra (29 Dec)', {
       x: 0.8, y: 5.9, w: 11.5, h: 0.7,
       fontFace: FONT_BODY, fontSize: 11, color: TEXT_WHITE, lineSpacing: 18
     });

@@ -19,7 +19,7 @@ Project documentation and engineering memory for **AI GTM Africa** (`aigtmafrica
 | City | Country | Event Date |
 |---|---|---|
 | **Kigali** | Rwanda | 8 October 2026 |
-| **Nairobi** | Kenya | 7 November 2026 |
+| **Nairobi** | Kenya | 5 November 2026 (iHub, CcHub, Jahazi Building, 154 James Gichuru Road) |
 | **Lagos** | Nigeria | 28 November 2026 |
 | **Cotonou** | Benin | 19 December 2026 |
 | **Accra** | Ghana | 29 December 2026 |

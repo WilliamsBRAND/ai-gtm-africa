@@ -248,6 +248,7 @@ main h1,h1{white-space:normal}
 .city-switcher button:disabled:hover{background:transparent;color:#fff}
 .city-switcher h3{font-size:clamp(42px,4.2vw,56px)!important;line-height:1!important}
 .city-switcher span,.city-switcher p{font:11px var(--font-mono)}
+.city-switcher p.city-venue{margin:10px auto 0;max-width:520px;line-height:1.6;text-transform:none;letter-spacing:.02em;color:rgba(255,255,255,.88)}
 .cities-content>.cta{margin-top:20px}
 
 /* --- Five Cities (white editorial slider) --- */

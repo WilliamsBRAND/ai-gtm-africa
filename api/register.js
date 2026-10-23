@@ -7,15 +7,21 @@ const REQUIRED_FIELDS = ['name', 'email', 'phone', 'city', 'role', 'industry', '
 
 const CITY_DATES = {
   'Kigali': '8 October 2026',
-  'Nairobi': '7 November 2026',
+  'Nairobi': '5 November 2026',
   'Lagos': '28 November 2026',
   'Cotonou': '19 December 2026',
   'Accra': '29 December 2026',
   'KIGALI': '8 October 2026',
-  'NAIROBI': '7 November 2026',
+  'NAIROBI': '5 November 2026',
   'LAGOS': '28 November 2026',
   'COTONOU': '19 December 2026',
   'ACCRA': '29 December 2026',
+};
+
+const NAIROBI_VENUE = 'iHub (CcHub), Jahazi Building, 154 James Gichuru Road, Nairobi, Kenya';
+const CITY_VENUES = {
+  'Nairobi': NAIROBI_VENUE,
+  'NAIROBI': NAIROBI_VENUE,
 };
 
 function getGwsCredentials() {
@@ -84,7 +90,7 @@ async function getAccessTokenFromOidc(oidcToken) {
   return (await impersonation.json()).accessToken;
 }
 
-function buildEmailHtml(firstName, city, eventDate) {
+function buildEmailHtml(firstName, city, eventDate, venue) {
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -130,6 +136,7 @@ function buildEmailHtml(firstName, city, eventDate) {
                   <td style="padding: 16px 20px;">
                     <div style="font-family: 'Courier New', monospace; font-size: 10px; color: #a0a0a0; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px;">YOUR SELECTED SESSION</div>
                     <div style="font-size: 16px; font-weight: 700; color: #ffffff;">${city} &middot; ${eventDate}</div>
+                    ${venue ? `<div style="font-size: 13px; color: rgba(255, 255, 255, 0.85); margin-top: 6px;">${venue}</div>` : ''}
                     <div style="font-size: 12px; color: rgba(255, 255, 255, 0.6); margin-top: 4px;">Small room of about 20 to 30 people</div>
                   </td>
                 </tr>
@@ -322,7 +329,7 @@ async function sendConfirmationEmail(accessToken, toEmail, fullName, city) {
   const firstName = fullName.split(' ')[0] || fullName;
   const eventDate = CITY_DATES[city] || '2026 Tour';
   const subject = `Your registration for AI GTM Africa (${city}) has been received`;
-  const html = buildEmailHtml(firstName, city, eventDate);
+  const html = buildEmailHtml(firstName, city, eventDate, CITY_VENUES[city] || '');
 
   const rfc = [
     'From: "Tomide Williams | AI GTM Africa" <sodunketomide@gmail.com>',

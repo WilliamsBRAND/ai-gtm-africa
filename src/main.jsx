@@ -36,7 +36,7 @@ const takeaways=[
 ];
 const cities = [
   ['KIGALI','08 OCTOBER 2026','/images/hall.jpg','center 22%'],
-  ['NAIROBI','07 NOVEMBER 2026','/images/audience.jpg','center 38%'],
+  ['NAIROBI','05 NOVEMBER 2026','/images/audience.jpg','center 38%','iHub (CcHub), Jahazi Building, 154 James Gichuru Road, Nairobi, Kenya'],
   ['LAGOS','28 NOVEMBER 2026','/images/hero-conference.png','center 50%'],
   ['COTONOU','19 DECEMBER 2026','/images/speaker.jpg','center 30%'],
   ['ACCRA','29 DECEMBER 2026','/images/workshop.jpg','center 44%']
@@ -81,6 +81,7 @@ function ApplicationForm({form, onClose}){
   const presetName=preset!=null?CITY_NAMES[preset]:'';
   const cityIndex=city!==''?CITY_NAMES.indexOf(city):-1;
   const cityDate=cityIndex>=0?(cities[cityIndex]?.[1]||''):'';
+  const cityVenue=cityIndex>=0?(cities[cityIndex]?.[4]||''):'';
 
   useEffect(()=>{
     if(form==null)return;
@@ -116,6 +117,7 @@ function ApplicationForm({form, onClose}){
           <h3>REGISTRATION RECEIVED</h3>
           <p className="form-done-text">Thank you for registering your interest in AI GTM Africa.</p>
           {cityDate&&<p className="form-done-date">{city} · {cityDate}</p>}
+          {cityVenue&&<p className="form-done-note">Venue: {cityVenue}</p>}
           <p className="form-done-note">Due to the fact that we are taking only 20 to 30 people per city, we will definitely reach out to you to let you know if you make the cut.</p>
           <p className="form-done-note">Your registration has been received and our team will review the details. <strong>If your registration is selected, we’ll contact you directly with your confirmation and the event details.</strong></p>
           <p className="form-done-note">We look forward to connecting with you.</p>
@@ -127,7 +129,9 @@ function ApplicationForm({form, onClose}){
           <p className="kicker">AI GTM AFRICA</p>
           <h3>REGISTRATION</h3>
           {presetName&&<div className="form-preset">You are applying for the <b>{presetName}</b> session{cityDate?` · ${cityDate}`:''}.</div>}
-          {cityDate&&<div className="form-note">The venue and full details for {city} will be communicated via email to those who make it onto the attendee list.</div>}
+          {cityDate&&(cityVenue
+            ?<div className="form-note">Venue: {cityVenue}. Full details for {city} will be sent by email to those who make it onto the attendee list.</div>
+            :<div className="form-note">The venue and full details for {city} will be communicated via email to those who make it onto the attendee list.</div>)}
           {field('Full Name',true,<input ref={firstRef} type="text" value={name} onChange={e=>setName(e.target.value)} autoComplete="name" placeholder="Your name" required/>)}
           {field('Email Address',true,<input type="email" value={email} onChange={e=>setEmail(e.target.value)} autoComplete="email" inputMode="email" placeholder="Your email" required/>)}
           {field('Phone Number',true,<input type="tel" value={phone} onChange={e=>setPhone(e.target.value)} autoComplete="tel" inputMode="tel" placeholder="Your phone number" required/>)}
@@ -303,7 +307,7 @@ function App(){
 
     <section id="about" className="about light"><div className="section-heading reveal"><p className="kicker">MEET TOMIDE</p><h2>CONVENER, AI GTM AFRICA</h2></div><div className="about-frame reveal"><div className="about-photo reveal" style={{transitionDelay:'100ms'}}><img src="/images/tomide-williams.jpg" alt="Tomide Williams, convener of AI GTM Africa"/><span>CONVENER, AI GTM AFRICA</span></div><div className="about-copy"><h3 className="reveal" style={{transitionDelay:'120ms'}}>TOMIDE WILLIAMS</h3><p className="about-lead reveal" style={{transitionDelay:'160ms'}}>Product marketing leader, AI and go-to-market practitioner, product builder and two-time TEDx speaker.</p><div className="about-bio reveal" style={{transitionDelay:'200ms'}}><p>Tomide has led launches that generated 3,000 qualified leads, 100 enrolments and 60x ROAS, and helped take an AI product to its first 1,000 users in three months.</p><p>His work brings together customer insight, positioning, acquisition and AI-powered systems to help businesses reach more customers and grow.</p></div><div className="reveal" style={{transitionDelay:'240ms'}}><a className="cta cta-dark" href="/tomide-williams">Explore Tomide's Work <span aria-hidden="true" className="cta-arrow"/></a></div></div></div></section>
 
-    <section id="cities" className="cities dark"><div className="cities-bg" key={`bg-${city}`}><img src={cities[city][2]} style={{objectPosition:cities[city][3]}} alt={`${cities[city][0]} conference`}/></div><div className="cities-content reveal"><p className="kicker reveal">2026 CITIES &amp; DATES</p><h2 className="reveal" style={{transitionDelay:'60ms'}}>FIVE CITIES.<br/>ONE GROWING COMMUNITY.</h2><div className="city-switcher reveal" style={{transitionDelay:'120ms'}}><button aria-label="Previous city" disabled={city===0} onClick={()=>setCity((city+4)%5)}><ChevronLeft/></button><div><span>0{city+1} / 05</span><h3>{cities[city][0]}</h3><p>{cities[city][1]}</p></div><button aria-label="Next city" disabled={city===4} onClick={()=>setCity((city+1)%5)}><ChevronRight/></button></div><div className="reveal" style={{transitionDelay:'180ms',display:'flex',gap:'12px',flexWrap:'wrap',alignItems:'center'}}><CTA onClick={()=>openRegistration(city)}>Register Interest in {cities[city][0]}</CTA>{cities[city][0]==='KIGALI'&&<a className="cta cta-dark" href="/kigali">View Kigali Concept Note <span aria-hidden="true" className="cta-arrow"/></a>}</div></div></section>
+    <section id="cities" className="cities dark"><div className="cities-bg" key={`bg-${city}`}><img src={cities[city][2]} style={{objectPosition:cities[city][3]}} alt={`${cities[city][0]} conference`}/></div><div className="cities-content reveal"><p className="kicker reveal">2026 CITIES &amp; DATES</p><h2 className="reveal" style={{transitionDelay:'60ms'}}>FIVE CITIES.<br/>ONE GROWING COMMUNITY.</h2><div className="city-switcher reveal" style={{transitionDelay:'120ms'}}><button aria-label="Previous city" disabled={city===0} onClick={()=>setCity((city+4)%5)}><ChevronLeft/></button><div><span>0{city+1} / 05</span><h3>{cities[city][0]}</h3><p>{cities[city][1]}</p>{cities[city][4]&&<p className="city-venue">{cities[city][4]}</p>}</div><button aria-label="Next city" disabled={city===4} onClick={()=>setCity((city+1)%5)}><ChevronRight/></button></div><div className="reveal" style={{transitionDelay:'180ms',display:'flex',gap:'12px',flexWrap:'wrap',alignItems:'center'}}><CTA onClick={()=>openRegistration(city)}>Register Interest in {cities[city][0]}</CTA>{cities[city][0]==='KIGALI'&&<a className="cta cta-dark" href="/kigali">View Kigali Concept Note <span aria-hidden="true" className="cta-arrow"/></a>}</div></div></section>
 
     <section className="final-cta light"><div className="reveal"><p className="kicker reveal">JOIN US</p><h2 className="reveal" style={{transitionDelay:'60ms'}}>BUILD. GROW. SCALE.</h2><p className="reveal" style={{transitionDelay:'120ms'}}>If you are building, marketing, launching, growing or scaling a business, come be part of the conversation.</p><div className="final-cta-buttons reveal" style={{transitionDelay:'180ms'}}><CTA onClick={()=>openRegistration()}>Register Your Interest</CTA><CTA dark href={WHATSAPP_URL}>Become a Partner</CTA></div></div></section>
 
