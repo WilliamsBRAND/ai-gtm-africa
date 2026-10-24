@@ -1,5 +1,6 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { ArrowRight, ArrowUpRight, Calendar, Clock, MapPin, Menu, X } from 'lucide-react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { ArrowLeft, ArrowRight, ArrowUpRight, Calendar, Clock, Images, MapPin, Menu, X } from 'lucide-react';
+import fullGallery from './kigaliGallery.json';
 import './nairobi.css';
 
 // Absolute so links still reach the main site from nairobi.aigtm.africa
@@ -11,17 +12,18 @@ const MAPS_URL = `https://www.google.com/maps/search/?api=1&query=${encodeURICom
 const WHATSAPP_URL = `https://wa.me/2349025631654?text=${encodeURIComponent("Hi Williams, I'd like to partner with you for AI GTM Africa Nairobi.")}`;
 const FONTS_URL = 'https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=Instrument+Serif:ital@1&family=JetBrains+Mono:wght@400;500&display=swap';
 
+// Add a headshot path (for example '/images/speakers/esther-ndungu.jpg') to show a photo instead of initials
 const speakers = [
-  { slot: 'Keynote 01 · 9:30 AM', topic: 'Building Market-Relevant AI-Powered Products', name: 'Esther Ndungu', role: 'Microsoft', tint: '#1f4f8f' },
-  { slot: 'Keynote 02 · 10:00 AM', topic: 'Building Go-to-Market Strategies for African Markets with AI', name: 'Vikas Mehta', role: 'Founder and Regional CEO', tint: '#7a4a12' },
-  { slot: 'Keynote 03 · 11:00 AM', topic: 'Beyond AI Adoption: Managing Risk, Trust, and Control in Africa’s Business Landscape', name: 'Dr Liz Ankrah', role: 'Microsoft Research', tint: '#1d6b4a' },
-  { slot: 'Keynote 04 · 11:30 AM', topic: 'Using AI to Win Customers and Grow Revenue', name: 'Håvar Bauck', role: 'Co-founder, HotelOnline', tint: '#5b2a86' },
+  { n: '01', time: '9:30 AM', topic: 'Building Market-Relevant AI-Powered Products', name: 'Esther Ndungu', role: 'Microsoft', photo: null },
+  { n: '02', time: '10:00 AM', topic: 'Building Go-to-Market Strategies for African Markets with AI', name: 'Vikas Mehta', role: 'Founder and Regional CEO', photo: null },
+  { n: '03', time: '11:00 AM', topic: 'Beyond AI Adoption: Managing Risk, Trust, and Control in Africa’s Business Landscape', name: 'Dr Liz Ankrah', role: 'Microsoft Research', photo: null },
+  { n: '04', time: '11:30 AM', topic: 'Using AI to Win Customers and Grow Revenue', name: 'Håvar Bauck', role: 'Co-founder, HotelOnline', photo: null },
 ];
 
 const panelists = [
-  { name: 'Jasmine Gathoga', role: 'Brand Strategist and Designer, That Canva Girl' },
-  { name: 'Peter Maina Njoroge', role: 'Product and Growth Strategist, WildMango' },
-  { name: 'Tomide Williams', role: 'Founder, AI GTM Africa' },
+  { name: 'Jasmine Gathoga', role: 'Brand Strategist and Designer, That Canva Girl', photo: null },
+  { name: 'Peter Maina Njoroge', role: 'Product and Growth Strategist, WildMango', photo: null },
+  { name: 'Tomide Williams', role: 'Founder, AI GTM Africa', photo: '/images/tomide-williams.jpg' },
 ];
 
 const programme = [
@@ -44,23 +46,29 @@ const reasons = [
   'New connections with founders and operators in Nairobi.',
 ];
 
+const EDITION = '/images/kigali-event/';
+const FULL = '/images/kigali-gallery/';
+
 // Three columns hand-balanced by photo shape so no column runs short
 const galleryColumns = [
   [
-    { src: 'group-photo.jpg', w: 1400, h: 1050, alt: 'Guests and speakers together at AI GTM Africa Kigali' },
-    { src: 'keynote-speaker.jpg', w: 1050, h: 1400, alt: 'A keynote speaker addressing the room in Kigali' },
-    { src: 'check-in.jpg', w: 1050, h: 1400, alt: 'Guests checking in at the American Center Kigali' },
+    { src: `${EDITION}flag-group-wide.jpg`, w: 1024, h: 768, alt: 'The full group at the American Center Kigali, with the U.S. and Rwandan flags' },
+    { src: `${EDITION}keynote-speaker.jpg`, w: 1050, h: 1400, alt: 'A keynote speaker addressing the room in Kigali' },
+    { src: `${EDITION}check-in.jpg`, w: 1050, h: 1400, alt: 'Guests checking in at the American Center Kigali' },
+    { src: `${FULL}108.jpg`, w: 1024, h: 768, alt: 'A guest at the founder roundtable in Kigali' },
   ],
   [
-    { src: 'panel.jpg', w: 1400, h: 1050, alt: 'Panellists at AI GTM Africa Kigali' },
-    { src: 'audience-flags.jpg', w: 1050, h: 1400, alt: 'Guests listening during a session in Kigali' },
-    { src: 'convener.jpg', w: 1400, h: 1050, alt: 'Tomide Williams speaking at AI GTM Africa Kigali' },
-    { src: 'roundtable-table.jpg', w: 1400, h: 1050, alt: 'Guests at the founder roundtable after the sessions' },
+    { src: `${EDITION}panel.jpg`, w: 1400, h: 1050, alt: 'Panellists at AI GTM Africa Kigali' },
+    { src: `${EDITION}audience-flags.jpg`, w: 1050, h: 1400, alt: 'Guests listening during a session in Kigali' },
+    { src: `${EDITION}convener.jpg`, w: 1400, h: 1050, alt: 'Tomide Williams speaking at AI GTM Africa Kigali' },
+    { src: `${FULL}130.jpg`, w: 1024, h: 768, alt: 'Guests and speakers at the American Center Kigali' },
+    { src: `${EDITION}roundtable-table.jpg`, w: 1400, h: 1050, alt: 'Guests at the founder roundtable after the sessions' },
   ],
   [
-    { src: 'room-wide.jpg', w: 1050, h: 1400, alt: 'A full room for a keynote in Kigali' },
-    { src: 'keynote-stage.jpg', w: 1050, h: 1400, alt: 'A speaker on stage in Kigali' },
-    { src: 'roundtable-guest.jpg', w: 1400, h: 1050, alt: 'A guest at the founder roundtable in Kigali' },
+    { src: `${EDITION}room-wide.jpg`, w: 1050, h: 1400, alt: 'A full room for a keynote in Kigali' },
+    { src: `${EDITION}keynote-stage.jpg`, w: 1050, h: 1400, alt: 'A speaker on stage in Kigali' },
+    { src: `${FULL}110.jpg`, w: 1024, h: 768, alt: 'Guests together at the founder roundtable in Kigali' },
+    { src: `${EDITION}roundtable-guest.jpg`, w: 1400, h: 1050, alt: 'A guest at the founder roundtable in Kigali' },
   ],
 ];
 
@@ -83,28 +91,115 @@ function Arrow() {
   return <ArrowRight size={18} aria-hidden="true" />;
 }
 
+// Locks page scroll and closes on Escape while an overlay is open
+function useOverlay(open, onClose) {
+  useEffect(() => {
+    if (!open) return undefined;
+    const previous = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    const onKey = (e) => e.key === 'Escape' && onClose();
+    document.addEventListener('keydown', onKey);
+    return () => {
+      document.body.style.overflow = previous;
+      document.removeEventListener('keydown', onKey);
+    };
+  }, [open, onClose]);
+}
+
+function Portrait({ name, photo, className = '' }) {
+  return (
+    <span className={`nb-portrait ${className}`} aria-hidden="true">
+      {photo ? <img src={photo} alt="" loading="lazy" /> : <span>{initials(name)}</span>}
+    </span>
+  );
+}
+
+function FullGallery({ open, onClose }) {
+  const [active, setActive] = useState(null);
+  const closeRef = useRef(null);
+  const touchX = useRef(null);
+  const total = fullGallery.length;
+
+  const closeAll = useCallback(() => {
+    if (active !== null) setActive(null);
+    else onClose();
+  }, [active, onClose]);
+  useOverlay(open, closeAll);
+
+  useEffect(() => {
+    if (open) setTimeout(() => closeRef.current?.focus(), 50);
+    else setActive(null);
+  }, [open]);
+
+  useEffect(() => {
+    if (active === null) return undefined;
+    const onKey = (e) => {
+      if (e.key === 'ArrowRight') setActive((i) => (i + 1) % total);
+      if (e.key === 'ArrowLeft') setActive((i) => (i - 1 + total) % total);
+    };
+    document.addEventListener('keydown', onKey);
+    return () => document.removeEventListener('keydown', onKey);
+  }, [active, total]);
+
+  if (!open) return null;
+  const photo = active !== null ? fullGallery[active] : null;
+
+  return (
+    <div className="nb-viewer" role="dialog" aria-modal="true" aria-label={`AI GTM Africa Kigali gallery, ${total} photos`}>
+      <div className="nb-viewer-bar">
+        <p><strong>Kigali edition</strong> <span>{total} photos by Emma</span></p>
+        <button ref={closeRef} type="button" className="nb-icon-btn" onClick={onClose} aria-label="Close gallery">
+          <X size={20} aria-hidden="true" />
+        </button>
+      </div>
+      <div className="nb-viewer-grid">
+        {fullGallery.map((p, i) => (
+          <button key={p.n} type="button" className="nb-viewer-thumb" style={{ aspectRatio: `${p.w} / ${p.h}` }} onClick={() => setActive(i)} aria-label={`Open photo ${i + 1} of ${total}`}>
+            <img src={`${FULL}thumb/${p.n}.jpg`} alt="" loading="lazy" decoding="async" />
+          </button>
+        ))}
+      </div>
+
+      {photo ? (
+        <div
+          className="nb-lightbox"
+          role="dialog"
+          aria-label={`Photo ${active + 1} of ${total}`}
+          onClick={(e) => e.target === e.currentTarget && setActive(null)}
+          onTouchStart={(e) => { touchX.current = e.touches[0].clientX; }}
+          onTouchEnd={(e) => {
+            if (touchX.current === null) return;
+            const dx = e.changedTouches[0].clientX - touchX.current;
+            if (Math.abs(dx) > 50) setActive((i) => (dx < 0 ? (i + 1) % total : (i - 1 + total) % total));
+            touchX.current = null;
+          }}
+        >
+          <img key={photo.n} src={`${FULL}${photo.n}.jpg`} alt={`AI GTM Africa Kigali, photo ${active + 1} of ${total}`} width={photo.w} height={photo.h} />
+          <button type="button" className="nb-icon-btn nb-lb-close" onClick={() => setActive(null)} aria-label="Back to all photos"><X size={20} aria-hidden="true" /></button>
+          <button type="button" className="nb-icon-btn nb-lb-prev" onClick={() => setActive((i) => (i - 1 + total) % total)} aria-label="Previous photo"><ArrowLeft size={20} aria-hidden="true" /></button>
+          <button type="button" className="nb-icon-btn nb-lb-next" onClick={() => setActive((i) => (i + 1) % total)} aria-label="Next photo"><ArrowRight size={20} aria-hidden="true" /></button>
+          <p className="nb-lb-count">{active + 1} / {total}</p>
+        </div>
+      ) : null}
+    </div>
+  );
+}
+
 function RegisterDialog({ open, onClose }) {
   const [form, setForm] = useState({ name: '', email: '', phone: '', role: '', industry: '', heard: '', sponsor: '' });
   const [state, setState] = useState('idle');
   const [error, setError] = useState('');
   const firstRef = useRef(null);
+  useOverlay(open, onClose);
 
   useEffect(() => {
     if (!open) return undefined;
     setForm({ name: '', email: '', phone: '', role: '', industry: '', heard: '', sponsor: '' });
     setState('idle');
     setError('');
-    const previous = document.body.style.overflow;
-    document.body.style.overflow = 'hidden';
     const focusTimer = setTimeout(() => firstRef.current?.focus(), 60);
-    const onKey = (e) => e.key === 'Escape' && onClose();
-    document.addEventListener('keydown', onKey);
-    return () => {
-      document.body.style.overflow = previous;
-      document.removeEventListener('keydown', onKey);
-      clearTimeout(focusTimer);
-    };
-  }, [open, onClose]);
+    return () => clearTimeout(focusTimer);
+  }, [open]);
 
   if (!open) return null;
 
@@ -207,6 +302,7 @@ function RegisterDialog({ open, onClose }) {
 
 export default function NairobiPage() {
   const [registerOpen, setRegisterOpen] = useState(false);
+  const [galleryOpen, setGalleryOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -235,11 +331,13 @@ export default function NairobiPage() {
     setMenuOpen(false);
     setRegisterOpen(true);
   };
+  const closeRegister = useCallback(() => setRegisterOpen(false), []);
+  const closeGallery = useCallback(() => setGalleryOpen(false), []);
 
   const navLinks = [
     ['#speakers', 'Speakers'],
     ['#programme', 'Programme'],
-    ['#kigali', 'Kigali'],
+    ['#kigali', 'Gallery'],
     ['#venue', 'Venue'],
   ];
 
@@ -303,12 +401,11 @@ export default function NairobiPage() {
             </dl>
 
             <div className="nb-hero-photos" data-reveal style={{ '--d': '340ms' }}>
-              <figure className="is-side"><img src="/images/kigali-event/keynote-speaker.jpg" alt="A keynote speaker at AI GTM Africa Kigali" width="1050" height="1400" /></figure>
+              <figure className="is-side"><img src={`${EDITION}keynote-speaker.jpg`} alt="A keynote speaker at AI GTM Africa Kigali" width="1050" height="1400" /></figure>
               <figure className="is-main">
-                <img src="/images/kigali-event/group-photo.jpg" alt="Guests and speakers together at AI GTM Africa Kigali" width="1400" height="1050" />
-                <span className="nb-photo-tag">Kigali edition · 8 October 2026</span>
+                <img src={`${EDITION}flag-group.jpg`} alt="Guests and speakers at AI GTM Africa Kigali, between the U.S. and Rwandan flags" width="1024" height="768" />
               </figure>
-              <figure className="is-side"><img src="/images/kigali-event/audience-flags.jpg" alt="Guests listening during a session in Kigali" width="1050" height="1400" /></figure>
+              <figure className="is-side"><img src={`${EDITION}audience-flags.jpg`} alt="Guests listening during a session in Kigali" width="1050" height="1400" /></figure>
             </div>
           </div>
         </section>
@@ -332,7 +429,7 @@ export default function NairobiPage() {
             <p className="nb-eyebrow" data-reveal>The format</p>
             <h2 id="nb-format" className="nb-h2" data-reveal>Short talks. <em>Real questions.</em></h2>
             <div className="nb-bento">
-              <div className="nb-stat is-dark" data-reveal><span className="nb-stat-num">4</span><span className="nb-stat-label">Keynotes, each a 25-minute talk with 5 minutes of Q&amp;A</span></div>
+              <div className="nb-stat is-dark" data-reveal><span className="nb-stat-num">4</span><span className="nb-stat-label">Keynotes of 30 minutes each, including Q&amp;A</span></div>
               <div className="nb-stat" data-reveal style={{ '--d': '80ms' }}><span className="nb-stat-num">1</span><span className="nb-stat-label">Panel on standing out when everyone has AI</span></div>
               <div className="nb-stat is-accent" data-reveal style={{ '--d': '160ms' }}><span className="nb-stat-num">~50</span><span className="nb-stat-label">Founders, operators and technology professionals</span></div>
               <div className="nb-stat" data-reveal style={{ '--d': '240ms' }}><span className="nb-stat-num">3h</span><span className="nb-stat-label">One focused morning, 9:00 AM to 12:00 PM</span></div>
@@ -340,45 +437,53 @@ export default function NairobiPage() {
           </div>
         </section>
 
-        <section id="speakers" className="nb-section" style={{ paddingTop: 0 }} aria-labelledby="nb-speakers-title">
+        <section id="speakers" className="nb-section nb-grey" aria-labelledby="nb-speakers-title">
           <div className="nb-wrap">
             <div className="nb-section-head">
               <div>
                 <p className="nb-eyebrow" data-reveal>Speakers</p>
                 <h2 id="nb-speakers-title" className="nb-h2" data-reveal>Who you’ll <em>hear from.</em></h2>
               </div>
-              <p className="nb-lead" data-reveal>Practical sessions on building with AI, taking products to market, managing risk and growing revenue.</p>
+              <p className="nb-lead" data-reveal>Four keynotes of 30 minutes each, including Q&amp;A, and one panel.</p>
             </div>
-            <div className="nb-speakers">
-              {speakers.map((s, i) => (
-                <article key={s.name} className="nb-speaker" data-reveal style={{ '--d': `${(i % 2) * 90}ms` }}>
-                  <div className="nb-speaker-top">
-                    <span className="nb-slot">{s.slot}</span>
-                    <span className="nb-chip">25 + 5 min</span>
+
+            {/* Revealed as one row: on phones the later cards sit off-screen to the side and would never trigger */}
+            <div className="nb-speakers" role="list" data-reveal>
+              {speakers.map((s) => (
+                <article key={s.name} className="nb-sp" role="listitem">
+                  <div className="nb-sp-photo">
+                    <Portrait name={s.name} photo={s.photo} />
+                    <span className="nb-sp-time">{s.time}</span>
                   </div>
-                  <h3 className="nb-topic">{s.topic}</h3>
-                  <div className="nb-person">
-                    <span className="nb-avatar" style={{ background: s.tint }} aria-hidden="true">{initials(s.name)}</span>
-                    <div><strong>{s.name}</strong><span>{s.role}</span></div>
+                  <div className="nb-sp-body">
+                    <p className="nb-sp-kind">Keynote {s.n} · 30 mins</p>
+                    <h3 className="nb-sp-topic">{s.topic}</h3>
+                    <div className="nb-sp-who">
+                      <p className="nb-sp-name">{s.name}</p>
+                      <p className="nb-sp-role">{s.role}</p>
+                    </div>
                   </div>
                 </article>
               ))}
-              <article className="nb-speaker is-panel" data-reveal>
-                <div className="nb-speaker-top">
-                  <span className="nb-slot">Panel · 10:30 AM</span>
-                  <span className="nb-chip">30 min</span>
-                </div>
-                <h3 className="nb-topic">When AI Can Do Almost Everything, What Makes You <em>Stand Out?</em></h3>
-                <div className="nb-panelists">
-                  {panelists.map((p) => (
-                    <div key={p.name} className="nb-person">
-                      <span className="nb-avatar" aria-hidden="true">{initials(p.name)}</span>
-                      <div><strong>{p.name}</strong><span>{p.role}</span></div>
-                    </div>
-                  ))}
-                </div>
-              </article>
             </div>
+
+            <article className="nb-panel" data-reveal>
+              <div className="nb-panel-head">
+                <p className="nb-sp-kind">Panel · 10:30 AM · 30 mins</p>
+                <h3 className="nb-panel-title">When AI Can Do Almost Everything, What Makes You <em>Stand Out?</em></h3>
+              </div>
+              <ul className="nb-panelists">
+                {panelists.map((p) => (
+                  <li key={p.name}>
+                    <Portrait name={p.name} photo={p.photo} className="is-round" />
+                    <div>
+                      <p className="nb-sp-name">{p.name}</p>
+                      <p className="nb-sp-role">{p.role}</p>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </article>
           </div>
         </section>
 
@@ -436,15 +541,18 @@ export default function NairobiPage() {
                 <div key={c} className="nb-gallery-col">
                   {col.map((g) => (
                     <figure key={g.src} data-reveal style={{ '--d': `${c * 80}ms` }}>
-                      <img src={`/images/kigali-event/${g.src}`} alt={g.alt} width={g.w} height={g.h} loading="lazy" decoding="async" />
+                      <img src={g.src} alt={g.alt} width={g.w} height={g.h} loading="lazy" decoding="async" />
                     </figure>
                   ))}
                 </div>
               ))}
             </div>
             <div className="nb-gallery-foot">
-              <p>Photos from AI GTM Africa Kigali by Emma.</p>
+              <button type="button" className="nb-btn nb-btn-dark" onClick={() => setGalleryOpen(true)}>
+                <Images size={18} aria-hidden="true" /> View full gallery · {fullGallery.length} photos
+              </button>
               <a href={KIGALI_RECAP_URL} target="_blank" rel="noopener noreferrer" className="nb-btn nb-btn-ghost">See the Kigali recap <ArrowUpRight size={18} aria-hidden="true" /></a>
+              <p>Photos by Emma.</p>
             </div>
           </div>
         </section>
@@ -505,7 +613,8 @@ export default function NairobiPage() {
         </div>
       </footer>
 
-      <RegisterDialog open={registerOpen} onClose={() => setRegisterOpen(false)} />
+      <RegisterDialog open={registerOpen} onClose={closeRegister} />
+      <FullGallery open={galleryOpen} onClose={closeGallery} />
     </div>
   );
 }
