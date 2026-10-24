@@ -666,10 +666,11 @@
   color: var(--nb-ink);
 }
 
-.nb-portrait img {
+.nb .nb-portrait img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: 50% 22%;
 }
 
 .nb-portrait > span {
@@ -1576,4 +1577,18 @@
   .nb-lightbox {
     padding: 56px 88px;
   }
+}
+
+/* Keep every speaker photo frame the same size, whatever the photo's own shape */
+.nb-sp-photo {
+  overflow: hidden;
+}
+
+.nb-sp-photo .nb-portrait {
+  position: absolute;
+  inset: 0;
+}
+
+.nb-sp-time {
+  z-index: 1;
 }

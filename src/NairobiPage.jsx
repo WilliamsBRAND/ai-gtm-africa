@@ -14,14 +14,14 @@ const FONTS_URL = 'https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400
 
 // Add a headshot path (for example '/images/speakers/esther-ndungu.jpg') to show a photo instead of initials
 const speakers = [
-  { n: '01', time: '9:30 AM', topic: 'Building Market-Relevant AI-Powered Products', name: 'Esther Ndungu', role: 'Microsoft', photo: null },
-  { n: '02', time: '10:00 AM', topic: 'Building Go-to-Market Strategies for African Markets with AI', name: 'Vikas Mehta', role: 'Founder and Regional CEO', photo: null },
-  { n: '03', time: '11:00 AM', topic: 'Beyond AI Adoption: Managing Risk, Trust, and Control in Africa’s Business Landscape', name: 'Dr Liz Ankrah', role: 'Microsoft Research', photo: null },
-  { n: '04', time: '11:30 AM', topic: 'Using AI to Win Customers and Grow Revenue', name: 'Håvar Bauck', role: 'Co-founder, HotelOnline', photo: null },
+  { n: '01', time: '9:30 AM', topic: 'Building Market-Relevant AI-Powered Products', name: 'Esther Ndungu', role: 'Microsoft', photo: '/images/speakers/esther-ndungu.jpg' },
+  { n: '02', time: '10:00 AM', topic: 'Building Go-to-Market Strategies for African Markets with AI', name: 'Vikas Mehta', role: 'Founder and Regional CEO', photo: '/images/speakers/vikas-mehta.jpg' },
+  { n: '03', time: '11:00 AM', topic: 'Beyond AI Adoption: Managing Risk, Trust, and Control in Africa’s Business Landscape', name: 'Dr Liz Ankrah', role: 'Microsoft Research', photo: '/images/speakers/liz-ankrah.jpg' },
+  { n: '04', time: '11:30 AM', topic: 'Using AI to Win Customers and Grow Revenue', name: 'Håvar Bauck', role: 'Co-founder, HotelOnline', photo: '/images/speakers/havar-bauck.jpg' },
 ];
 
 const panelists = [
-  { name: 'Jasmine Gathoga', role: 'Brand Strategist and Designer, That Canva Girl', photo: null },
+  { name: 'Jasmine Gathoga', role: 'Brand Strategist and Designer, That Canva Girl', photo: '/images/speakers/jasmine-gathoga.jpg' },
   { name: 'Peter Maina Njoroge', role: 'Product and Growth Strategist, WildMango', photo: null },
   { name: 'Tomide Williams', role: 'Founder, AI GTM Africa', photo: '/images/tomide-williams.jpg' },
 ];
@@ -55,7 +55,7 @@ const galleryColumns = [
     { src: `${EDITION}flag-group-wide.jpg`, w: 1024, h: 768, alt: 'The full group at the American Center Kigali, with the U.S. and Rwandan flags' },
     { src: `${EDITION}keynote-speaker.jpg`, w: 1050, h: 1400, alt: 'A keynote speaker addressing the room in Kigali' },
     { src: `${EDITION}check-in.jpg`, w: 1050, h: 1400, alt: 'Guests checking in at the American Center Kigali' },
-    { src: `${FULL}108.jpg`, w: 1024, h: 768, alt: 'A guest at the founder roundtable in Kigali' },
+    { src: `${EDITION}roundtable.jpg`, w: 1400, h: 1050, alt: 'Founders talking at the roundtable after the Kigali sessions' },
   ],
   [
     { src: `${EDITION}panel.jpg`, w: 1400, h: 1050, alt: 'Panellists at AI GTM Africa Kigali' },
@@ -67,7 +67,7 @@ const galleryColumns = [
   [
     { src: `${EDITION}room-wide.jpg`, w: 1050, h: 1400, alt: 'A full room for a keynote in Kigali' },
     { src: `${EDITION}keynote-stage.jpg`, w: 1050, h: 1400, alt: 'A speaker on stage in Kigali' },
-    { src: `${FULL}110.jpg`, w: 1024, h: 768, alt: 'Guests together at the founder roundtable in Kigali' },
+    { src: `${EDITION}panelist-question.jpg`, w: 1400, h: 1050, alt: 'A panellist answering a question in Kigali' },
     { src: `${EDITION}roundtable-guest.jpg`, w: 1400, h: 1050, alt: 'A guest at the founder roundtable in Kigali' },
   ],
 ];
@@ -579,8 +579,8 @@ export default function NairobiPage() {
                 </div>
               </div>
               <figure className="nb-venue-photo" data-reveal style={{ '--d': '100ms' }}>
-                <img src="/images/cities/nairobi.jpg" alt="The Nairobi skyline" loading="lazy" />
-                <span className="nb-photo-tag">Nairobi, Kenya</span>
+                <img src="/images/venue/ihub-jahazi.jpg" alt="iHub at the Jahazi Building on James Gichuru Road, Nairobi" loading="lazy" />
+                <span className="nb-photo-tag">iHub at Jahazi · Photo: Techweez</span>
               </figure>
             </div>
           </div>
