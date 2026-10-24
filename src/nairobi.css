@@ -1592,3 +1592,44 @@
 .nb-sp-time {
   z-index: 1;
 }
+
+/* Kigali recap page */
+@media (min-width: 1040px) {
+  .nb-speakers.kg-three {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.kg-three .nb-sp-photo {
+  aspect-ratio: 4 / 3.2;
+}
+
+.kg-team {
+  margin-top: 12px;
+  display: grid;
+  gap: 12px;
+}
+
+.kg-team li {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 18px;
+  border-radius: var(--nb-radius-sm);
+  background: #fff;
+  border: 1px solid var(--nb-line);
+}
+
+@media (min-width: 720px) {
+  .kg-team {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.kg-topic-text {
+  margin-top: 10px;
+  font-size: 15.5px !important;
+  font-weight: 400 !important;
+  line-height: 1.55 !important;
+  color: var(--nb-ink-soft);
+}

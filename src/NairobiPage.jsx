@@ -1,16 +1,13 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { ArrowLeft, ArrowRight, ArrowUpRight, Calendar, Clock, Images, MapPin, Menu, X } from 'lucide-react';
-import fullGallery from './kigaliGallery.json';
-import './nairobi.css';
+import { ArrowUpRight, Calendar, Clock, MapPin, X } from 'lucide-react';
+import {
+  Arrow, EDITION_IMG as EDITION, EditionFooter, EditionNav, FullGallery, KigaliGallery, MAIN_SITE, Portrait, WHATSAPP_NUMBER, useEditionPage, useOverlay,
+} from './edition/kit';
 
-// Absolute so links still reach the main site from nairobi.aigtm.africa
-const MAIN_SITE = 'https://www.aigtm.africa';
-const KIGALI_RECAP_URL = 'https://lnkd.in/p/dqSqn8hf';
 const VENUE_NAME = 'iHub (CcHub)';
 const VENUE_ADDRESS = 'Jahazi Building, 154 James Gichuru Road, Lavington, Nairobi';
 const MAPS_URL = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent('iHub Jahazi Building 154 James Gichuru Road Nairobi')}`;
-const WHATSAPP_URL = `https://wa.me/2349025631654?text=${encodeURIComponent("Hi Williams, I'd like to partner with you for AI GTM Africa Nairobi.")}`;
-const FONTS_URL = 'https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=Instrument+Serif:ital@1&family=JetBrains+Mono:wght@400;500&display=swap';
+const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent("Hi Williams, I'd like to partner with you for AI GTM Africa Nairobi.")}`;
 
 // Add a headshot path (for example '/images/speakers/esther-ndungu.jpg') to show a photo instead of initials
 const speakers = [
@@ -22,7 +19,7 @@ const speakers = [
 
 const panelists = [
   { name: 'Jasmine Gathoga', role: 'Brand Strategist and Designer, That Canva Girl', photo: '/images/speakers/jasmine-gathoga.jpg' },
-  { name: 'Peter Maina Njoroge', role: 'Product and Growth Strategist, WildMango', photo: null },
+  { name: 'Peter Maina Njoroge', role: 'Product and Growth Strategist, WildMango', photo: '/images/speakers/peter-maina-njoroge.jpg' },
   { name: 'Tomide Williams', role: 'Founder, AI GTM Africa', photo: '/images/tomide-williams.jpg' },
 ];
 
@@ -46,32 +43,6 @@ const reasons = [
   'New connections with founders and operators in Nairobi.',
 ];
 
-const EDITION = '/images/kigali-event/';
-const FULL = '/images/kigali-gallery/';
-
-// Three columns hand-balanced by photo shape so no column runs short
-const galleryColumns = [
-  [
-    { src: `${EDITION}flag-group-wide.jpg`, w: 1024, h: 768, alt: 'The full group at the American Center Kigali, with the U.S. and Rwandan flags' },
-    { src: `${EDITION}keynote-speaker.jpg`, w: 1050, h: 1400, alt: 'A keynote speaker addressing the room in Kigali' },
-    { src: `${EDITION}check-in.jpg`, w: 1050, h: 1400, alt: 'Guests checking in at the American Center Kigali' },
-    { src: `${EDITION}roundtable.jpg`, w: 1400, h: 1050, alt: 'Founders talking at the roundtable after the Kigali sessions' },
-  ],
-  [
-    { src: `${EDITION}panel.jpg`, w: 1400, h: 1050, alt: 'Panellists at AI GTM Africa Kigali' },
-    { src: `${EDITION}audience-flags.jpg`, w: 1050, h: 1400, alt: 'Guests listening during a session in Kigali' },
-    { src: `${EDITION}convener.jpg`, w: 1400, h: 1050, alt: 'Tomide Williams speaking at AI GTM Africa Kigali' },
-    { src: `${FULL}130.jpg`, w: 1024, h: 768, alt: 'Guests and speakers at the American Center Kigali' },
-    { src: `${EDITION}roundtable-table.jpg`, w: 1400, h: 1050, alt: 'Guests at the founder roundtable after the sessions' },
-  ],
-  [
-    { src: `${EDITION}room-wide.jpg`, w: 1050, h: 1400, alt: 'A full room for a keynote in Kigali' },
-    { src: `${EDITION}keynote-stage.jpg`, w: 1050, h: 1400, alt: 'A speaker on stage in Kigali' },
-    { src: `${EDITION}panelist-question.jpg`, w: 1400, h: 1050, alt: 'A panellist answering a question in Kigali' },
-    { src: `${EDITION}roundtable-guest.jpg`, w: 1400, h: 1050, alt: 'A guest at the founder roundtable in Kigali' },
-  ],
-];
-
 const marquee = [
   ['Esther Ndungu', 'Microsoft'],
   ['Vikas Mehta', 'Founder and Regional CEO'],
@@ -85,105 +56,7 @@ const WHAT_YOU_DO = ['Founder', 'Business Owner', 'Executive', 'Professional', '
 const BUSINESS_TYPES = ['Technology', 'Finance', 'Banking', 'Healthcare', 'Education', 'Agriculture', 'Energy', 'Professional Services', 'Consulting', 'Media & Entertainment', 'Retail & Consumer', 'Real Estate', 'Manufacturing', 'Logistics', 'Government & Public Sector', 'Nonprofit', 'Other'];
 const HEAR_OPTIONS = ['Tomide', 'Referral', 'Friend or Colleague', 'LinkedIn', 'WhatsApp', 'Event', 'Social Media', 'Other'];
 
-const initials = (name) => name.replace(/^Dr\s+/, '').split(/\s+/).slice(0, 2).map((p) => p[0]).join('');
 
-function Arrow() {
-  return <ArrowRight size={18} aria-hidden="true" />;
-}
-
-// Locks page scroll and closes on Escape while an overlay is open
-function useOverlay(open, onClose) {
-  useEffect(() => {
-    if (!open) return undefined;
-    const previous = document.body.style.overflow;
-    document.body.style.overflow = 'hidden';
-    const onKey = (e) => e.key === 'Escape' && onClose();
-    document.addEventListener('keydown', onKey);
-    return () => {
-      document.body.style.overflow = previous;
-      document.removeEventListener('keydown', onKey);
-    };
-  }, [open, onClose]);
-}
-
-function Portrait({ name, photo, className = '' }) {
-  return (
-    <span className={`nb-portrait ${className}`} aria-hidden="true">
-      {photo ? <img src={photo} alt="" loading="lazy" /> : <span>{initials(name)}</span>}
-    </span>
-  );
-}
-
-function FullGallery({ open, onClose }) {
-  const [active, setActive] = useState(null);
-  const closeRef = useRef(null);
-  const touchX = useRef(null);
-  const total = fullGallery.length;
-
-  const closeAll = useCallback(() => {
-    if (active !== null) setActive(null);
-    else onClose();
-  }, [active, onClose]);
-  useOverlay(open, closeAll);
-
-  useEffect(() => {
-    if (open) setTimeout(() => closeRef.current?.focus(), 50);
-    else setActive(null);
-  }, [open]);
-
-  useEffect(() => {
-    if (active === null) return undefined;
-    const onKey = (e) => {
-      if (e.key === 'ArrowRight') setActive((i) => (i + 1) % total);
-      if (e.key === 'ArrowLeft') setActive((i) => (i - 1 + total) % total);
-    };
-    document.addEventListener('keydown', onKey);
-    return () => document.removeEventListener('keydown', onKey);
-  }, [active, total]);
-
-  if (!open) return null;
-  const photo = active !== null ? fullGallery[active] : null;
-
-  return (
-    <div className="nb-viewer" role="dialog" aria-modal="true" aria-label={`AI GTM Africa Kigali gallery, ${total} photos`}>
-      <div className="nb-viewer-bar">
-        <p><strong>Kigali edition</strong> <span>{total} photos by Emma</span></p>
-        <button ref={closeRef} type="button" className="nb-icon-btn" onClick={onClose} aria-label="Close gallery">
-          <X size={20} aria-hidden="true" />
-        </button>
-      </div>
-      <div className="nb-viewer-grid">
-        {fullGallery.map((p, i) => (
-          <button key={p.n} type="button" className="nb-viewer-thumb" style={{ aspectRatio: `${p.w} / ${p.h}` }} onClick={() => setActive(i)} aria-label={`Open photo ${i + 1} of ${total}`}>
-            <img src={`${FULL}thumb/${p.n}.jpg`} alt="" loading="lazy" decoding="async" />
-          </button>
-        ))}
-      </div>
-
-      {photo ? (
-        <div
-          className="nb-lightbox"
-          role="dialog"
-          aria-label={`Photo ${active + 1} of ${total}`}
-          onClick={(e) => e.target === e.currentTarget && setActive(null)}
-          onTouchStart={(e) => { touchX.current = e.touches[0].clientX; }}
-          onTouchEnd={(e) => {
-            if (touchX.current === null) return;
-            const dx = e.changedTouches[0].clientX - touchX.current;
-            if (Math.abs(dx) > 50) setActive((i) => (dx < 0 ? (i + 1) % total : (i - 1 + total) % total));
-            touchX.current = null;
-          }}
-        >
-          <img key={photo.n} src={`${FULL}${photo.n}.jpg`} alt={`AI GTM Africa Kigali, photo ${active + 1} of ${total}`} width={photo.w} height={photo.h} />
-          <button type="button" className="nb-icon-btn nb-lb-close" onClick={() => setActive(null)} aria-label="Back to all photos"><X size={20} aria-hidden="true" /></button>
-          <button type="button" className="nb-icon-btn nb-lb-prev" onClick={() => setActive((i) => (i - 1 + total) % total)} aria-label="Previous photo"><ArrowLeft size={20} aria-hidden="true" /></button>
-          <button type="button" className="nb-icon-btn nb-lb-next" onClick={() => setActive((i) => (i + 1) % total)} aria-label="Next photo"><ArrowRight size={20} aria-hidden="true" /></button>
-          <p className="nb-lb-count">{active + 1} / {total}</p>
-        </div>
-      ) : null}
-    </div>
-  );
-}
 
 function RegisterDialog({ open, onClose }) {
   const [form, setForm] = useState({ name: '', email: '', phone: '', role: '', industry: '', heard: '', sponsor: '' });
@@ -303,34 +176,9 @@ function RegisterDialog({ open, onClose }) {
 export default function NairobiPage() {
   const [registerOpen, setRegisterOpen] = useState(false);
   const [galleryOpen, setGalleryOpen] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
+  const scrolled = useEditionPage();
 
-  useEffect(() => {
-    if (!document.querySelector(`link[href="${FONTS_URL}"]`)) {
-      const link = document.createElement('link');
-      link.rel = 'stylesheet';
-      link.href = FONTS_URL;
-      document.head.appendChild(link);
-    }
-    const onScroll = () => setScrolled(window.scrollY > 12);
-    onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    const io = new IntersectionObserver(
-      (entries) => entries.forEach((e) => e.isIntersecting && (e.target.classList.add('is-in'), io.unobserve(e.target))),
-      { threshold: 0.12, rootMargin: '0px 0px -40px 0px' },
-    );
-    document.querySelectorAll('.nb [data-reveal]').forEach((el) => io.observe(el));
-    return () => {
-      window.removeEventListener('scroll', onScroll);
-      io.disconnect();
-    };
-  }, []);
-
-  const openRegister = () => {
-    setMenuOpen(false);
-    setRegisterOpen(true);
-  };
+  const openRegister = () => setRegisterOpen(true);
   const closeRegister = useCallback(() => setRegisterOpen(false), []);
   const closeGallery = useCallback(() => setGalleryOpen(false), []);
 
@@ -343,28 +191,7 @@ export default function NairobiPage() {
 
   return (
     <div className="nb">
-      <header className={`nb-nav${scrolled ? ' is-scrolled' : ''}`}>
-        <div className="nb-nav-bar">
-          <a href={MAIN_SITE} className="nb-logo" aria-label="AI GTM Africa home">
-            AI GTM Africa <span className="nb-logo-chip">NAIROBI</span>
-          </a>
-          <nav className="nb-nav-links" aria-label="Page sections">
-            {navLinks.map(([href, label]) => <a key={href} href={href}>{label}</a>)}
-          </nav>
-          <div className="nb-nav-actions">
-            <button type="button" className="nb-btn nb-btn-primary" onClick={openRegister}>Register</button>
-            <button type="button" className="nb-menu-btn" aria-expanded={menuOpen} aria-controls="nb-sheet" aria-label={menuOpen ? 'Close menu' : 'Open menu'} onClick={() => setMenuOpen((v) => !v)}>
-              {menuOpen ? <X size={20} aria-hidden="true" /> : <Menu size={20} aria-hidden="true" />}
-            </button>
-          </div>
-        </div>
-        {menuOpen ? (
-          <nav id="nb-sheet" className="nb-sheet" aria-label="Page sections">
-            {navLinks.map(([href, label]) => <a key={href} href={href} onClick={() => setMenuOpen(false)}>{label}</a>)}
-            <a href={MAIN_SITE} onClick={() => setMenuOpen(false)}>All cities</a>
-          </nav>
-        ) : null}
-      </header>
+      <EditionNav city="Nairobi" links={navLinks} scrolled={scrolled} action={<button type="button" className="nb-btn nb-btn-primary" onClick={openRegister}>Register</button>} />
 
       <main>
         <section className="nb-hero">
@@ -536,24 +363,7 @@ export default function NairobiPage() {
               </div>
               <p className="nb-lead" data-reveal>Our first edition brought founders and operators together at the American Center at the U.S. Embassy in Kigali. Nairobi is next.</p>
             </div>
-            <div className="nb-gallery">
-              {galleryColumns.map((col, c) => (
-                <div key={c} className="nb-gallery-col">
-                  {col.map((g) => (
-                    <figure key={g.src} data-reveal style={{ '--d': `${c * 80}ms` }}>
-                      <img src={g.src} alt={g.alt} width={g.w} height={g.h} loading="lazy" decoding="async" />
-                    </figure>
-                  ))}
-                </div>
-              ))}
-            </div>
-            <div className="nb-gallery-foot">
-              <button type="button" className="nb-btn nb-btn-dark" onClick={() => setGalleryOpen(true)}>
-                <Images size={18} aria-hidden="true" /> View full gallery · {fullGallery.length} photos
-              </button>
-              <a href={KIGALI_RECAP_URL} target="_blank" rel="noopener noreferrer" className="nb-btn nb-btn-ghost">See the Kigali recap <ArrowUpRight size={18} aria-hidden="true" /></a>
-              <p>Photos by Emma.</p>
-            </div>
+            <KigaliGallery onOpenFull={() => setGalleryOpen(true)} />
           </div>
         </section>
 
@@ -601,17 +411,7 @@ export default function NairobiPage() {
         </section>
       </main>
 
-      <footer className="nb-footer">
-        <div className="nb-wrap nb-footer-inner">
-          <p>© 2026 AI GTM Africa · Nairobi edition</p>
-          <nav className="nb-footer-links" aria-label="AI GTM Africa">
-            <a href={MAIN_SITE}>All cities</a>
-            <a href={`${MAIN_SITE}/kigali`}>Kigali edition</a>
-            <a href={`${MAIN_SITE}/tomide-williams`}>About Tomide</a>
-            <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">Partner with us</a>
-          </nav>
-        </div>
-      </footer>
+      <EditionFooter city="Nairobi" links={[[MAIN_SITE, 'All cities'], [`${MAIN_SITE}/kigali`, 'Kigali edition'], [`${MAIN_SITE}/tomide-williams`, 'About Tomide'], [WHATSAPP_URL, 'Partner with us', true]]} />
 
       <RegisterDialog open={registerOpen} onClose={closeRegister} />
       <FullGallery open={galleryOpen} onClose={closeGallery} />
