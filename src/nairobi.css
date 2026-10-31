@@ -413,6 +413,27 @@
   line-height: 1.35;
 }
 
+.nb-collaboration {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px 28px;
+  padding: 24px 0;
+  border-top: 1px solid var(--nb-line, #dededb);
+}
+.nb-collaboration p {
+  margin: 0;
+  color: var(--nb-muted, #666);
+  font-size: 13px;
+  font-weight: 500;
+}
+.nb-collaboration img {
+  display: block;
+  width: 184px;
+  max-width: 100%;
+  height: auto;
+}
+
 /* Hero photo row */
 .nb-hero-photos {
   margin-top: clamp(40px, 6vw, 72px);
@@ -656,6 +677,35 @@
   background: var(--nb-grey-2);
 }
 
+.nb-sp-pending {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 28px;
+  background: #121713;
+  color: #fff;
+  text-align: center;
+}
+
+.nb-sp-pending span {
+  color: #42ea95;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.nb-sp-pending strong {
+  max-width: 12ch;
+  font-size: clamp(20px, 2vw, 30px);
+  font-weight: 600;
+  line-height: 1.15;
+}
+
 .nb-portrait {
   display: grid;
   place-items: center;
@@ -671,6 +721,27 @@
   height: 100%;
   object-fit: cover;
   object-position: 50% 22%;
+}
+
+.nb .nb-portrait.is-muthoni-headshot img {
+  transform: scale(2.2);
+  transform-origin: 50% 30%;
+}
+
+.nb .nb-portrait.is-raphail-headshot img {
+  object-position: 50% 50%;
+  transform: scale(2.2);
+  transform-origin: 53% 64%;
+}
+
+.nb .nb-portrait.is-peter-headshot img {
+  object-position: 52% 40%;
+}
+
+.nb .nb-portrait.is-simba-headshot img {
+  object-position: 50% 0%;
+  transform: scale(1.55);
+  transform-origin: 50% 0%;
 }
 
 .nb-portrait > span {
@@ -1139,8 +1210,19 @@
 
 .nb-footer-links {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: 6px 20px;
+}
+
+.nb-footer-links a { white-space: nowrap; }
+
+@media (max-width: 600px) {
+  .nb-footer-links {
+    width: 100%;
+    justify-content: space-between;
+    gap: 8px;
+    font-size: clamp(11px, 3.2vw, 13px);
+  }
 }
 
 .nb-footer-links a:hover {
@@ -1385,21 +1467,11 @@
   object-fit: initial;
 }
 
-/* Gallery: three hand-balanced columns on desktop, two flowing columns on phones */
+/* Flat figures flow through all columns, without display:contents fragmentation. */
 @media (min-width: 900px) {
   .nb .nb-gallery {
-    columns: auto;
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 12px;
-    align-items: start;
-  }
-  .nb-gallery-col {
-    display: grid;
-    gap: 12px;
-  }
-  .nb .nb-gallery figure {
-    margin-bottom: 0;
+    columns: 3;
+    display: block;
   }
 }
 
@@ -1632,4 +1704,78 @@
   font-weight: 400 !important;
   line-height: 1.55 !important;
   color: var(--nb-ink-soft);
+}
+
+/* Edition speaker carousels: full cards, same portrait frame and visual language. */
+.nb-carousel { margin-top: clamp(28px, 4vw, 48px); min-width: 0; }
+.nb-carousel-controls { display: flex; align-items: center; justify-content: flex-end; gap: 10px; margin-bottom: 16px; }
+.nb-carousel-count { margin-right: auto; font: 12px var(--nb-mono); color: var(--nb-muted); }
+.nb-carousel-arrow { display: grid; place-items: center; flex: 0 0 44px; width: 44px; height: 44px; border: 1px solid var(--nb-line); border-radius: 50%; background: var(--nb-dark); color: white; cursor: pointer; }
+.nb-carousel-arrow:hover { background: #333; }
+.nb-carousel-pause { min-height: 44px; padding: 0 10px; border: 0; background: transparent; color: var(--nb-muted); font: inherit; font-size: 13px; cursor: pointer; }
+.nb .nb-carousel-track { position: relative; margin: 0; padding: 0 0 8px; display: grid; grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 100%; gap: 16px; overflow-x: auto; overscroll-behavior-x: contain; scroll-padding: 0; scroll-snap-type: x mandatory; }
+.nb-carousel-track .nb-sp { min-width: 0; scroll-snap-stop: always; }
+.nb-carousel-track .nb-sp-photo { aspect-ratio: 4 / 4.2; flex-shrink: 0; }
+.nb-carousel-track .nb-sp-photo .nb-portrait { width: 100%; height: 100%; }
+.nb-carousel-track .nb-sp-time { top: auto; bottom: 14px; }
+@media (min-width: 640px) { .nb .nb-carousel-track { grid-auto-columns: calc((100% - 16px) / 2); } }
+@media (min-width: 1040px) { .nb .nb-carousel-track { grid-auto-columns: calc((100% - 32px) / 3); } }
+.nb .nb-gallery figure { display: inline-block; vertical-align: top; width: 100%; break-inside: avoid; }
+.nb .nb-gallery img { display: block; width: 100%; height: auto; }
+.nb-paired-actions { display: flex; flex-wrap: nowrap; gap: 8px; align-items: stretch; width: 100%; }
+.nb-paired-actions .nb-btn { min-width: 0; white-space: nowrap; padding-inline: clamp(8px, 1.5vw, 18px); gap: 6px; font-size: clamp(11px, 2.8vw, 15px); }
+.nb-paired-actions .nb-btn:first-child { flex: 1 1 auto; background: white; }
+.nb-paired-actions .nb-btn:last-child { flex: 0 0 auto; }
+.nb-paired-actions svg { width: 14px; height: 14px; flex-shrink: 0; }
+.nb-venue-actions.nb-paired-actions { margin-top: auto; }
+@media (max-width: 375px) {
+  .nb-nav-bar { gap: 6px; padding: 6px 8px; }
+  .nb-logo { gap: 5px; font-size: 13px; }
+  .nb-logo-chip { font-size: 9px; padding: 4px 6px; }
+  .nb-nav .nb-btn { padding-inline: 10px; font-size: 12px; }
+  .nb-nav-actions { gap: 4px; }
+  .nb-venue-card { padding: 20px 16px; }
+  .nb-paired-actions { gap: 6px; }
+  .nb-paired-actions .nb-btn { padding-inline: 8px; font-size: 11px; }
+}
+
+/* Every edition CTA pair has two equal cells on every screen, including iOS. */
+.nb .nb-hero-ctas,
+.nb .nb-final-ctas,
+.nb .nb-gallery-foot,
+.nb .nb-paired-actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: stretch;
+  gap: 10px;
+  width: 100%;
+  min-width: 0;
+}
+.nb .nb-hero-ctas .nb-btn,
+.nb .nb-final-ctas .nb-btn,
+.nb .nb-gallery-foot .nb-btn,
+.nb .nb-paired-actions .nb-btn {
+  width: 100%;
+  min-width: 0;
+  height: 56px;
+  min-height: 56px;
+  padding: 8px 12px;
+  white-space: normal;
+  text-align: center;
+  line-height: 1.2;
+  gap: 6px;
+}
+.nb .nb-hero-ctas svg,
+.nb .nb-final-ctas svg,
+.nb .nb-gallery-foot svg,
+.nb .nb-paired-actions svg { flex-shrink: 0; width: 16px; height: 16px; }
+@media (max-width: 480px) {
+  .nb .nb-hero-ctas .nb-btn,
+  .nb .nb-final-ctas .nb-btn,
+  .nb .nb-gallery-foot .nb-btn,
+  .nb .nb-paired-actions .nb-btn { font-size: 12px; padding-inline: 8px; }
+  .nb .nb-hero-ctas,
+  .nb .nb-final-ctas,
+  .nb .nb-gallery-foot,
+  .nb .nb-paired-actions { gap: 8px; }
 }

@@ -5,6 +5,8 @@ import './styles.css';
 import TomidePage from './TomidePage';
 import KigaliPage from './KigaliPage';
 import NairobiPage from './NairobiPage';
+import VolunteerPage from './VolunteerPage';
+import { NAIROBI_WHATSAPP_GROUP_URL } from './registration';
 
 const focusAreas = [
   {title:'AI',image:'/images/hero-conference.png',position:'center 44%',points:['Find the AI use cases that create real business value.','Automate repetitive work and remove operational bottlenecks.','Use AI to improve research, analysis and decision-making.','Build useful AI workflows across the business.','Choose the right tools without chasing every new platform.','Move from experiments to practical adoption.']},
@@ -104,6 +106,7 @@ function ApplicationForm({form, onClose}){
       const result=await response.json().catch(()=>({}));
       if(!response.ok||!result.ok)throw new Error(result.error||'Registration could not be submitted.');
       setDone(true);
+      if (city.trim().toUpperCase() === 'NAIROBI') window.location.assign(NAIROBI_WHATSAPP_GROUP_URL);
     }catch(error){setErr(error.message||'Registration could not be submitted. Please try again.')}finally{setSubmitting(false)}
   };
   const field=(label,req,children)=><label className="form-field"><span className="form-label">{label}{req&&<em> *</em>}</span>{children}</label>;
@@ -119,7 +122,7 @@ function ApplicationForm({form, onClose}){
           <p className="form-done-text">Thank you for registering your interest in AI GTM Africa.</p>
           {cityDate&&<p className="form-done-date">{city} · {cityDate}</p>}
           {cityVenue&&<p className="form-done-note">Venue: {cityVenue}</p>}
-          <p className="form-done-note">Due to the fact that we are taking only 20 to 30 people per city, we will definitely reach out to you to let you know if you make the cut.</p>
+          <p className="form-done-note">Due to the fact that we are taking {city.toLowerCase() === "nairobi" ? "50 to 100 people in Nairobi" : "20 to 30 people per city"}, we will definitely reach out to you to let you know if you make the cut.</p>
           <p className="form-done-note">Your registration has been received and our team will review the details. <strong>If your registration is selected, we’ll contact you directly with your confirmation and the event details.</strong></p>
           <p className="form-done-note">We look forward to connecting with you.</p>
           <p className="form-signoff">AI GTM AFRICA</p>
@@ -275,7 +278,7 @@ function App(){
 
     <section id="event" className="event-intro dark section">
       <div className="event-heading reveal"><p className="kicker">EVENT FORMAT</p><h2>ONE DAY. A FOCUSED ROOM.</h2></div>
-      <div className="event-stats reveal" role="list"><AnimatedStat to={6} label="HOURS"/><AnimatedStat to={20} rangeEnd={30} label="PEOPLE"/><AnimatedStat to={5} label="CITIES"/></div>
+      <div className="event-stats reveal" role="list"><AnimatedStat to={6} label="HOURS"/><AnimatedStat to={50} rangeEnd={100} label="PEOPLE"/><AnimatedStat to={5} label="CITIES"/></div>
     </section>
 
     <section id="focus" className="focus section light">
@@ -317,6 +320,7 @@ function App(){
 
 const hostname = typeof window !== 'undefined' ? window.location.hostname.toLowerCase() : '';
 const pathname = typeof window !== 'undefined' ? window.location.pathname.replace(/\/$/, '') : '';
+const isVolunteerPage = hostname.startsWith('volunteer.') || pathname === '/volunteer';
 
 const isKigaliPage =
   hostname === 'kigali.aigtm.africa' ||
@@ -334,7 +338,9 @@ const isNairobiPage =
 
 const isTomidePage = !isKigaliPage && !isNairobiPage && pathname === '/tomide-williams';
 
-if (isKigaliPage) {
+if (isVolunteerPage) {
+  document.title = 'Volunteer | AI GTM Africa';
+} else if (isKigaliPage) {
   document.title = 'AI GTM Africa Kigali · 8 October 2026 | First edition recap';
 } else if (isNairobiPage) {
   document.title = 'AI GTM Africa Nairobi · 5 November 2026 | iHub (CcHub)';
@@ -345,5 +351,5 @@ if (isKigaliPage) {
 }
 
 createRoot(document.getElementById('root')).render(
-  isKigaliPage ? <KigaliPage /> : isNairobiPage ? <NairobiPage /> : isTomidePage ? <TomidePage /> : <App />
+  isVolunteerPage ? <VolunteerPage /> : isKigaliPage ? <KigaliPage /> : isNairobiPage ? <NairobiPage /> : isTomidePage ? <TomidePage /> : <App />
 );

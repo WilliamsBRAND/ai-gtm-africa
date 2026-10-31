@@ -101,6 +101,7 @@ function sendPendingRegistrationEmails() {
  * Builds the signature TW branded HTML email
  */
 function buildHtmlEmail(firstName, city, eventDate) {
+  var audienceSize = city.toLowerCase() === "nairobi" ? "50 to 100" : "20 to 30";
   return '<!DOCTYPE html>' +
   '<html>' +
   '<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"></head>' +
@@ -123,9 +124,9 @@ function buildHtmlEmail(firstName, city, eventDate) {
   '<tr><td style="padding: 16px 20px;">' +
   '<div style="font-family: monospace; font-size: 10px; color: #a0a0a0; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px;">YOUR SELECTED SESSION</div>' +
   '<div style="font-size: 16px; font-weight: 700; color: #ffffff;">' + city + ' &middot; ' + eventDate + '</div>' +
-  '<div style="font-size: 12px; color: rgba(255, 255, 255, 0.6); margin-top: 4px;">Small room of about 20 to 30 people</div>' +
+  '<div style="font-size: 12px; color: rgba(255, 255, 255, 0.6); margin-top: 4px;">A gathering of about ' + audienceSize + ' people</div>' +
   '</td></tr></table>' +
-  '<p style="font-size: 15px; line-height: 1.75; color: rgba(255, 255, 255, 0.88); margin: 0 0 20px;">The ' + city + ' session will be a small room of about <strong>20 to 30 people</strong>, which gives us enough space to actually talk, ask questions and work through real business problems together.</p>' +
+  '<p style="font-size: 15px; line-height: 1.75; color: rgba(255, 255, 255, 0.88); margin: 0 0 20px;">The ' + city + ' session will be a gathering of about <strong>' + audienceSize + ' people</strong>, which gives us enough space to actually talk, ask questions and work through real business problems together.</p>' +
   '<p style="font-size: 15px; line-height: 1.75; color: rgba(255, 255, 255, 0.88); margin: 0 0 20px;">We’ll spend the day looking at how AI can be applied across customer acquisition, marketing, sales and operations. We’ll break down practical GTM systems, look at what is actually working, and work through some of the growth challenges businesses in the room are dealing with.</p>' +
   '<p style="font-size: 15px; line-height: 1.75; color: rgba(255, 255, 255, 0.88); margin: 0 0 24px;">My goal is that you leave with a clearer idea of <strong>where AI can create leverage in your business, what you should prioritise, and what you can actually start implementing</strong>.</p>' +
   '<p style="font-size: 15px; line-height: 1.75; color: rgba(255, 255, 255, 0.88); margin: 0 0 24px;">We’ve received your registration for <strong>' + city + ' on ' + eventDate + '</strong>. We’ll send you another email soon with your confirmation and the rest of the details.</p>' +

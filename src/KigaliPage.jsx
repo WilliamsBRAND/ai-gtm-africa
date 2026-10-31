@@ -1,7 +1,7 @@
 ﻿import React, { useCallback, useState } from 'react';
 import { ArrowUpRight, Calendar, Images, MapPin, Utensils } from 'lucide-react';
 import {
-  Arrow, EDITION_IMG, EditionFooter, EditionNav, FullGallery, KIGALI_RECAP_URL, KigaliGallery, MAIN_SITE, Portrait, WHATSAPP_NUMBER, fullGallery, useEditionPage,
+  Arrow, EDITION_IMG, EditionFooter, EditionNav, FullGallery, KIGALI_RECAP_URL, KigaliGallery, MAIN_SITE, Portrait, SpeakerCarousel, WHATSAPP_NUMBER, fullGallery, useEditionPage,
 } from './edition/kit';
 
 // AI GTM Africa Kigali, 8 October 2026: the first edition, shown as a recap in the same design as the Nairobi page.
@@ -10,21 +10,20 @@ const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent
 
 // Add a headshot path to show a photo instead of initials
 const keynoteSpeakers = [
-  { name: 'Omolara Osiyemi', role: 'The Product Muse', photo: null },
-  { name: 'Anuoluwa Adepoju', role: 'Cloudboosta', photo: null },
-  { name: 'Ugwu Somto', role: 'DigitPay Finance', photo: null },
+  { name: 'Omolara Osiyemi', role: 'The Product Muse', photo: '/images/kigali-gallery/040.jpg' },
+  { name: 'Anuoluwa Adepoju', role: 'Cloudboosta', photo: '/images/kigali-gallery/116.jpg' },
+  { name: 'Ugwu Somto', role: 'DigitPay Finance', photo: '/images/kigali-gallery/074.jpg' },
 ];
 
 const panelists = [
-  { name: 'Mugisha Nehemie', role: 'Cyberstream', photo: null },
-  { name: 'Ntirushwa JeanMarc', role: 'CircuitNotion', photo: null },
-  { name: 'Hinda Ruton', role: 'Africa Quantitative Sciences', photo: null },
+  { name: 'Mugisha Nehemie', role: 'Cyberstream', photo: '/images/kigali-gallery/088.jpg' },
+  { name: 'Ntirushwa JeanMarc', role: 'CircuitNotion', photo: '/images/kigali-gallery/089.jpg' },
 ];
 
 const team = [
-  { name: 'Chibuzor Scholastica', role: 'Panel moderator' },
-  { name: 'Ishimwe Ben', role: 'Event moderator' },
-  { name: 'Tomide Williams', role: 'Founder, closing remarks', photo: '/images/tomide-williams.jpg' },
+  { name: 'Chibuzor Scholastica', role: 'Panel moderator', photo: '/images/kigali-gallery/084.jpg' },
+  { name: 'Ishimwe Ben', role: 'Event moderator', photo: '/images/kigali-gallery/030.jpg' },
+  { name: 'Tomide Williams', role: 'Founder, closing remarks', photo: '/images/kigali-gallery/094.jpg' },
 ];
 
 const keynoteTopics = [
@@ -36,7 +35,7 @@ const keynoteTopics = [
 const day = [
   { time: '9:00 AM', title: 'Welcome and opening', who: 'Ishimwe Ben, event moderator', kind: 'Opening' },
   { time: 'Morning', title: 'Three keynotes on AI, go-to-market and growth', who: 'Omolara Osiyemi, Anuoluwa Adepoju, Ugwu Somto', kind: 'Keynotes', key: true },
-  { time: 'Morning', title: 'How Founders Are Seeing and Leveraging AI in Their Businesses', who: 'Mugisha Nehemie, Ntirushwa JeanMarc, Hinda Ruton · moderated by Chibuzor Scholastica', kind: 'Founder panel', key: true },
+  { time: 'Morning', title: 'How Founders Are Using and Leveraging AI in Their Businesses', who: 'Mugisha Nehemie, Ntirushwa JeanMarc · moderated by Chibuzor Scholastica', kind: 'Founder panel', key: true },
   { time: 'Morning', title: 'Open questions, closing remarks and group photo', who: 'Tomide Williams', kind: 'Close' },
   { time: '1:00 PM', title: 'Lunch Conversation at Kozo Kigali', who: '1:00 PM to 4:00 PM', kind: 'Afternoon', key: true },
 ];
@@ -79,7 +78,7 @@ export default function KigaliPage() {
                 Our first edition. Founders and operators met at the U.S. Embassy Kigali for three keynotes and a founder panel on AI, go-to-market and growth, then carried the conversation into lunch at Kozo Kigali.
               </p>
               <div className="nb-hero-ctas" data-reveal style={{ '--d': '220ms' }}>
-                <button type="button" className="nb-btn nb-btn-dark" onClick={openGallery}><Images size={18} aria-hidden="true" /> See all {fullGallery.length} photos</button>
+                <button type="button" className="nb-btn nb-btn-dark" onClick={openGallery}><Images size={18} aria-hidden="true" /> See all photos</button>
                 <a href={NAIROBI_URL} className="nb-btn nb-btn-primary">Join us in Nairobi <Arrow /></a>
               </div>
             </div>
@@ -141,10 +140,10 @@ export default function KigaliPage() {
                 <p className="nb-eyebrow" data-reveal>Speakers</p>
                 <h2 id="kg-speakers-title" className="nb-h2" data-reveal>Who <em>took the stage.</em></h2>
               </div>
-              <p className="nb-lead" data-reveal>Three keynote speakers and three founders on the panel, with our moderators and team.</p>
+              <p className="nb-lead" data-reveal>Three keynote speakers and two founders on the panel, with our moderators and team.</p>
             </div>
 
-            <div className="nb-speakers kg-three" role="list" data-reveal>
+            <SpeakerCarousel label="Kigali keynote speakers">
               {keynoteSpeakers.map((s) => (
                 <article key={s.name} className="nb-sp" role="listitem">
                   <div className="nb-sp-photo">
@@ -159,12 +158,12 @@ export default function KigaliPage() {
                   </div>
                 </article>
               ))}
-            </div>
+            </SpeakerCarousel>
 
             <article className="nb-panel" data-reveal>
               <div className="nb-panel-head">
                 <p className="nb-sp-kind">Founder panel</p>
-                <h3 className="nb-panel-title">How Founders Are Seeing and Leveraging AI in <em>Their Businesses</em></h3>
+                <h3 className="nb-panel-title">How Founders Are Using and Leveraging AI in <em>Their Businesses</em></h3>
               </div>
               <ul className="nb-panelists">
                 {panelists.map((p) => (
@@ -199,7 +198,7 @@ export default function KigaliPage() {
               <p className="nb-eyebrow" data-reveal>Thursday 8 October 2026</p>
               <h2 id="kg-day-title" className="nb-h2" data-reveal>How the day <em>went.</em></h2>
               <p className="nb-lead" style={{ marginTop: 18 }} data-reveal>A closed morning session at the U.S. Embassy Kigali, then an afternoon lunch conversation at Kozo Kigali.</p>
-              <button type="button" className="nb-btn nb-btn-primary" onClick={openGallery} data-reveal><Images size={18} aria-hidden="true" /> See the photos</button>
+              <button type="button" className="nb-btn nb-btn-primary" onClick={openGallery} data-reveal><Images size={18} aria-hidden="true" /> See all photos</button>
             </div>
             <ol className="nb-timeline">
               {day.map((p) => (

@@ -1,5 +1,6 @@
 {
   "rewrites": [
+    { "source": "/volunteer", "destination": "/" },
     {
       "source": "/deck",
       "destination": "/pitch-deck.html"

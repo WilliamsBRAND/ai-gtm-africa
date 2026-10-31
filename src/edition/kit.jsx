@@ -62,11 +62,62 @@ export function useOverlay(open, onClose) {
   }, [open, onClose]);
 }
 
-export function Portrait({ name, photo, className = '' }) {
+export function Portrait({ name, photo, position, className = '' }) {
   return (
     <span className={`nb-portrait ${className}`} aria-hidden="true">
-      {photo ? <img src={photo} alt="" loading="lazy" /> : <span>{initials(name)}</span>}
+      {photo ? <img src={photo} alt="" loading="lazy" style={position ? { objectPosition: position } : undefined} /> : <span>{initials(name)}</span>}
     </span>
+  );
+}
+
+export function SpeakerCarousel({ children, label = 'Speakers' }) {
+  const track = useRef(null);
+  const touching = useRef(false);
+  const [paused, setPaused] = useState(false);
+  const [hovered, setHovered] = useState(false);
+  const [focused, setFocused] = useState(false);
+  const [active, setActive] = useState(0);
+  const [reducedMotion, setReducedMotion] = useState(false);
+  const count = React.Children.count(children);
+  useEffect(() => {
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const update = () => setReducedMotion(mq.matches);
+    update(); mq.addEventListener('change', update);
+    return () => mq.removeEventListener('change', update);
+  }, []);
+  const move = useCallback((direction) => {
+    const el = track.current;
+    if (!el) return;
+    const cards = [...el.children];
+    const current = cards.reduce((best, card, i) => Math.abs(card.offsetLeft - cards[0].offsetLeft - el.scrollLeft) < Math.abs(cards[best].offsetLeft - cards[0].offsetLeft - el.scrollLeft) ? i : best, 0);
+    const atEnd = el.scrollLeft >= el.scrollWidth - el.clientWidth - 3;
+    const next = direction > 0 ? (atEnd ? 0 : Math.min(current + 1, count - 1)) : (el.scrollLeft < 3 ? count - 1 : Math.max(0, current - 1));
+    el.scrollTo({ left: cards[next].offsetLeft - cards[0].offsetLeft, behavior: reducedMotion ? 'instant' : 'smooth' });
+  }, [count, reducedMotion]);
+  useEffect(() => {
+    if (paused || hovered || focused || reducedMotion) return undefined;
+    const timer = setInterval(() => {
+      if (!document.hidden && !touching.current && track.current?.getBoundingClientRect().bottom > 0 && track.current?.getBoundingClientRect().top < window.innerHeight) move(1);
+    }, 4500);
+    return () => clearInterval(timer);
+  }, [paused, hovered, focused, reducedMotion, move]);
+  return (
+    <div className="nb-carousel" role="region" aria-roledescription="carousel" aria-label={label}
+      onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)}
+      onFocusCapture={() => setFocused(true)} onBlurCapture={(e) => { if (!e.currentTarget.contains(e.relatedTarget)) setFocused(false); }}>
+      <div className="nb-carousel-controls">
+        <span className="nb-carousel-count">{String(active + 1).padStart(2, '0')} / {String(count).padStart(2, '0')}</span>
+        <button type="button" className="nb-carousel-pause" aria-label={`${paused ? 'Play' : 'Pause'} ${label.toLowerCase()} slideshow`} onClick={() => setPaused((v) => !v)}>{paused ? 'Play' : 'Pause'}</button>
+        <button type="button" className="nb-carousel-arrow" aria-label={`Previous ${label.toLowerCase()}`} onClick={() => move(-1)}><ArrowLeft size={21} aria-hidden="true" /></button>
+        <button type="button" className="nb-carousel-arrow" aria-label={`Next ${label.toLowerCase()}`} onClick={() => move(1)}><ArrowRight size={21} aria-hidden="true" /></button>
+      </div>
+      <div ref={track} className="nb-speakers nb-carousel-track" role="list" tabIndex={0}
+        onKeyDown={(e) => { if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') { e.preventDefault(); move(e.key === 'ArrowRight' ? 1 : -1); } }}
+        onTouchStart={() => { touching.current = true; }} onTouchEnd={() => { touching.current = false; }} onTouchCancel={() => { touching.current = false; }}
+        onScroll={() => { const el = track.current; const cards = [...el.children]; setActive(cards.reduce((best, card, i) => Math.abs(card.offsetLeft - cards[0].offsetLeft - el.scrollLeft) < Math.abs(cards[best].offsetLeft - cards[0].offsetLeft - el.scrollLeft) ? i : best, 0)); }}>
+        {children}
+      </div>
+    </div>
   );
 }
 
@@ -148,7 +199,7 @@ export function FullGallery({ open, onClose }) {
   return (
     <div className="nb-viewer" role="dialog" aria-modal="true" aria-label={`AI GTM Africa Kigali gallery, ${total} photos`}>
       <div className="nb-viewer-bar">
-        <p><strong>Kigali edition</strong> <span>{total} photos by Emma</span></p>
+        <p><strong>Kigali edition</strong> <span>{total} photos</span></p>
         <button ref={closeRef} type="button" className="nb-icon-btn" onClick={onClose} aria-label="Close gallery">
           <X size={20} aria-hidden="true" />
         </button>
@@ -213,22 +264,17 @@ export function KigaliGallery({ onOpenFull }) {
   return (
     <>
       <div className="nb-gallery">
-        {kigaliGalleryColumns.map((col, c) => (
-          <div key={c} className="nb-gallery-col">
-            {col.map((g) => (
-              <figure key={g.src} data-reveal style={{ '--d': `${c * 80}ms` }}>
+        {kigaliGalleryColumns.flat().map((g) => (
+              <figure key={g.src}>
                 <img src={g.src} alt={g.alt} width={g.w} height={g.h} loading="lazy" decoding="async" />
               </figure>
-            ))}
-          </div>
         ))}
       </div>
       <div className="nb-gallery-foot">
         <button type="button" className="nb-btn nb-btn-dark" onClick={onOpenFull}>
-          View full gallery · {fullGallery.length} photos
+          See all photos
         </button>
         <a href={KIGALI_RECAP_URL} target="_blank" rel="noopener noreferrer" className="nb-btn nb-btn-ghost">See the Kigali recap <ArrowRight size={18} aria-hidden="true" /></a>
-        <p>Photos by Emma.</p>
       </div>
     </>
   );

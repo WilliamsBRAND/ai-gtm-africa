@@ -1,5 +1,6 @@
 const fs = require('node:fs');
 const path = require('node:path');
+const { encodeSubject } = require('../lib/mail-headers.cjs');
 
 const SPREADSHEET_ID = '1Ydfb1xoTXM45MDNA3OQf5PGgS8kTjnZF7JnNC3HLT_0';
 const SHEET_RANGE = 'Responses!A:J';
@@ -91,6 +92,7 @@ async function getAccessTokenFromOidc(oidcToken) {
 }
 
 function buildEmailHtml(firstName, city, eventDate, venue) {
+  const audienceSize = city.toLowerCase() === "nairobi" ? "50 to 100" : "20 to 30";
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -137,12 +139,12 @@ function buildEmailHtml(firstName, city, eventDate, venue) {
                     <div style="font-family: 'Courier New', monospace; font-size: 10px; color: #a0a0a0; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px;">YOUR SELECTED SESSION</div>
                     <div style="font-size: 16px; font-weight: 700; color: #ffffff;">${city} &middot; ${eventDate}</div>
                     ${venue ? `<div style="font-size: 13px; color: rgba(255, 255, 255, 0.85); margin-top: 6px;">${venue}</div>` : ''}
-                    <div style="font-size: 12px; color: rgba(255, 255, 255, 0.6); margin-top: 4px;">Small room of about 20 to 30 people</div>
+                    <div style="font-size: 12px; color: rgba(255, 255, 255, 0.6); margin-top: 4px;">A gathering of about ${audienceSize} people</div>
                   </td>
                 </tr>
               </table>
               <p style="font-size: 15px; line-height: 1.75; color: rgba(255, 255, 255, 0.88); margin: 0 0 20px;">
-                The ${city} session will be a small room of about <strong>20 to 30 people</strong>, which gives us enough space to actually talk, ask questions and work through real business problems together.
+                The ${city} session will be a gathering of about <strong>${audienceSize} people</strong>, which gives us enough space to actually talk, ask questions and work through real business problems together.
               </p>
               <p style="font-size: 15px; line-height: 1.75; color: rgba(255, 255, 255, 0.88); margin: 0 0 20px;">
                 We’ll spend the day looking at how AI can be applied across customer acquisition, marketing, sales and operations. We’ll break down practical GTM systems, look at what is actually working, and work through some of the growth challenges businesses in the room are dealing with.
@@ -294,7 +296,7 @@ async function sendAdminAlertEmail(accessToken, data) {
   const rfc = [
     'From: "AI GTM Africa Team Alert" <sodunketomide@gmail.com>',
     `To: ${TEAM_ALERT_RECIPIENTS.join(', ')}`,
-    `Subject: ${subject}`,
+    `Subject: ${encodeSubject(subject)}`,
     'MIME-Version: 1.0',
     'Content-Type: text/html; charset=utf-8',
     'Content-Transfer-Encoding: 8bit',
@@ -334,7 +336,7 @@ async function sendConfirmationEmail(accessToken, toEmail, fullName, city) {
   const rfc = [
     'From: "Tomide Williams | AI GTM Africa" <sodunketomide@gmail.com>',
     `To: ${toEmail}`,
-    `Subject: ${subject}`,
+    `Subject: ${encodeSubject(subject)}`,
     'MIME-Version: 1.0',
     'Content-Type: text/html; charset=utf-8',
     'Content-Transfer-Encoding: 8bit',
