@@ -20,8 +20,8 @@ const speakers = [
 
 const panelists = [
   { name: 'Jasmine Gathoga', role: 'Brand Strategist and Designer, That Canva Girl', photo: '/images/speakers/jasmine-gathoga.jpg' },
-  { name: 'Peter Maina Njoroge', role: 'Product and Growth Strategist, WildMango', photo: '/images/speakers/peter-maina-njoroge.jpeg', portraitClass: 'is-peter-headshot' },
-  { name: 'Michael Simba', role: 'Founding Growth & GTM Marketing Lead, Helicode', photo: '/images/speakers/michael-simba.webp', portraitClass: 'is-simba-headshot' },
+  { name: 'Peter Maina Njoroge', role: 'Product and Growth Strategist, WildMango', photo: '/images/speakers/peter-maina-njoroge.webp', portraitClass: 'is-suit-headshot' },
+  { name: 'Michael Simba', role: 'Founding Growth & GTM Marketing Lead, Helicode', photo: '/images/speakers/michael-simba.jpeg', portraitClass: 'is-beanie-headshot' },
 ];
 
 const programme = [

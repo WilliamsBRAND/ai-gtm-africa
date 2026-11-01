@@ -148,3 +148,6 @@ Replace optional Experience or portfolio with required “Why join us?”: ask w
 
 ### Panelist update — 31 October 2026
 User replaced Peter Maina Njoroge's portrait with the supplied smiling-beanie photo (`public/images/speakers/peter-maina-njoroge.jpeg`, CSS `is-peter-headshot`) and added Michael Simba, Founding Growth & GTM Marketing Lead, Helicode, as a third panelist (`public/images/speakers/michael-simba.webp`, CSS `is-simba-headshot`). He has an individual Panelist · 25 mins card after Peter, appears in the 10:50 AM programme entry and in the marquee. Panel time and moderator unchanged. Deployed to production with `vercel deploy --prod`; live image URLs and bundle verified.
+
+### Panelist photo correction — 1 November 2026
+The two supplied photos were attached to the wrong names. Corrected: Peter Maina Njoroge now uses the navy-suit portrait (`public/images/speakers/peter-maina-njoroge.webp`, CSS `is-suit-headshot`) and Michael Simba (Founding Growth & GTM Marketing Lead, Helicode) uses the smiling beanie portrait (`public/images/speakers/michael-simba.jpeg`, CSS `is-beanie-headshot`). Names, roles, programme and marquee unchanged. When the user attaches two photos, confirm which name goes with which before assigning them.
