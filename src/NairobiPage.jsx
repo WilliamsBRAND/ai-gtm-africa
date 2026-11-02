@@ -12,10 +12,10 @@ const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent
 
 // Add a headshot path (for example '/images/speakers/esther-ndungu.jpg') to show a photo instead of initials
 const speakers = [
-  { n: '01', time: '9:30 AM', topic: 'Building Market-Relevant AI-Powered Products', name: 'Esther Ndungu', role: 'Microsoft', photo: '/images/speakers/esther-ndungu.jpg' },
+  { n: '01', time: '9:30 AM', topic: 'Building Market-Relevant AI-Powered Products', name: 'Esther Ndungu', role: 'Product Manager, Microsoft', photo: '/images/speakers/esther-ndungu.jpg' },
   { n: '02', time: '10:00 AM', topic: 'Using AI to Win Customers and Grow Revenue', name: 'Håvar Bauck', role: 'Co-founder, HotelOnline', photo: '/images/speakers/havar-bauck.jpg' },
-  { n: '03', time: '11:15 AM', topic: 'Managing Risk, Trust, and Control in Africa’s Business Landscape', name: 'Dr Liz Ankrah', role: 'Microsoft Research', photo: '/images/speakers/liz-ankrah.jpg' },
-  { n: '04', time: '11:45 AM', topic: 'Becoming a Business Leader the Market Can’t Ignore in the Age of AI', name: 'Ms. Muthoni Njoroge', role: '5X Award-winning Personal Branding & LinkedIn Expert for Leaders.', photo: '/images/speakers/muthoni-njoroge.jpeg', portraitClass: 'is-muthoni-headshot' },
+  { n: '03', time: '11:20 AM', topic: 'Managing Risk, Trust, and Control in Africa’s Business Landscape', name: 'Dr Liz Ankrah', role: 'Research Scientist, Microsoft Research', photo: '/images/speakers/liz-ankrah.jpg' },
+  { n: '04', time: '11:50 AM', topic: 'Becoming a Business Leader the Market Can’t Ignore in the Age of AI', name: 'Ms. Muthoni Njoroge', role: '5X Award-winning Personal Branding & LinkedIn Expert for Leaders.', photo: '/images/speakers/muthoni-njoroge.jpeg', portraitClass: 'is-muthoni-headshot' },
 ];
 
 const panelists = [
@@ -28,14 +28,14 @@ const programme = [
   { time: '8:00 AM', title: 'Arrival and check-in', kind: 'Doors open' },
   { time: '8:30 AM', title: 'Red carpet', kind: 'Red carpet' },
   { time: '9:00 AM', title: 'Event kickoff and welcome address', who: 'Tomide Williams', kind: 'Welcome' },
-  { time: '9:30 AM', title: 'Building Market-Relevant AI-Powered Products', who: 'Esther Ndungu, Microsoft', kind: 'Keynote · 30 mins', key: true },
+  { time: '9:30 AM', title: 'Building Market-Relevant AI-Powered Products', who: 'Esther Ndungu, Product Manager, Microsoft', kind: 'Keynote · 30 mins', key: true },
   { time: '10:00 AM', title: 'Using AI to Win Customers and Grow Revenue', who: 'Håvar Bauck, HotelOnline', kind: 'Keynote · 30 mins', key: true },
   { time: '10:30 AM', title: 'Building Go-to-Market Strategies for African Markets with AI', who: 'Tomide Williams', kind: 'Fireside chat · 20 mins', key: true },
-  { time: '10:50 AM', title: 'When AI Can Do Almost Everything, What Makes You Stand Out?', who: 'Jasmine Gathoga, Peter Maina Njoroge, Michael Simba · Moderator: Raphail John, Co-founder, Investspring', kind: 'Panel · 25 mins', key: true },
-  { time: '11:15 AM', title: 'Managing Risk, Trust, and Control in Africa’s Business Landscape', who: 'Dr Liz Ankrah, Microsoft Research', kind: 'Keynote · 30 mins', key: true },
-  { time: '11:45 AM', title: 'Becoming a Business Leader the Market Can’t Ignore in the Age of AI', who: 'Ms. Muthoni Njoroge', kind: 'Keynote · 30 mins', key: true },
-  { time: '12:15 PM', title: 'Vote of thanks', who: 'Tomide Williams', kind: 'Closing remarks · 5 mins' },
-  { time: '12:20 PM', title: 'Group photos and networking', kind: 'Networking' },
+  { time: '10:50 AM', title: 'When AI Can Do Almost Everything, What Makes You Stand Out?', who: 'Jasmine Gathoga, Peter Maina Njoroge, Michael Simba · Moderator: Raphail John, Co-founder, Investspring', kind: 'Panel · 30 mins', key: true },
+  { time: '11:20 AM', title: 'Managing Risk, Trust, and Control in Africa’s Business Landscape', who: 'Dr Liz Ankrah, Research Scientist, Microsoft Research', kind: 'Keynote · 30 mins', key: true },
+  { time: '11:50 AM', title: 'Becoming a Business Leader the Market Can’t Ignore in the Age of AI', who: 'Ms. Muthoni Njoroge', kind: 'Keynote · 30 mins', key: true },
+  { time: '12:20 PM', title: 'Vote of thanks', who: 'Tomide Williams', kind: 'Closing remarks · 5 mins' },
+  { time: '12:25 PM', title: 'Group photos and networking', kind: 'Networking' },
 ];
 
 const reasons = [
@@ -135,7 +135,7 @@ function RegisterDialog({ open, onClose }) {
         ) : (
           <>
             <h2 id="nb-register-title">Register for Nairobi</h2>
-            <p className="nb-modal-sub">8:00 AM to 12:00 PM at {VENUE_NAME}, Lavington.</p>
+            <p className="nb-modal-sub">8:00 AM to 12:25 PM at {VENUE_NAME}, Lavington.</p>
             <form className="nb-form" onSubmit={submit} noValidate>
               {field('Full name', <input ref={firstRef} type="text" value={form.name} onChange={set('name')} autoComplete="name" required />)}
               {field('Email', <input type="email" value={form.email} onChange={set('email')} autoComplete="email" inputMode="email" required />)}
@@ -207,7 +207,7 @@ export default function NairobiPage() {
             <div className="nb-hero-top">
               <p className="nb-eyebrow" data-reveal>AI GTM Africa · Nairobi edition</p>
               <h1 className="nb-h1" data-reveal style={{ '--d': '80ms' }}>
-                Build, sell and grow <em>with AI.</em>
+                Build, grow &amp; scale <em>with AI.</em>
               </h1>
             </div>
             <div className="nb-hero-bottom">
@@ -227,7 +227,7 @@ export default function NairobiPage() {
               </div>
               <div className="nb-fact">
                 <span className="nb-fact-icon"><Clock size={20} aria-hidden="true" /></span>
-                <div><dt>Time</dt><dd>8:00 AM to 12:00 PM (EAT)</dd></div>
+                <div><dt>Time</dt><dd>8:00 AM to 12:25 PM (EAT)</dd></div>
               </div>
               <div className="nb-fact">
                 <span className="nb-fact-icon"><MapPin size={20} aria-hidden="true" /></span>
@@ -270,9 +270,9 @@ export default function NairobiPage() {
             <h2 id="nb-format" className="nb-h2" data-reveal>Short talks. <em>Real questions.</em></h2>
             <div className="nb-bento">
               <div className="nb-stat is-dark" data-reveal><span className="nb-stat-num">4</span><span className="nb-stat-label">Keynotes of 30 minutes each, including Q&amp;A</span></div>
-              <div className="nb-stat" data-reveal style={{ '--d': '80ms' }}><span className="nb-stat-num">2</span><span className="nb-stat-label">A 25-minute panel and a separate 20-minute fireside chat</span></div>
+              <div className="nb-stat" data-reveal style={{ '--d': '80ms' }}><span className="nb-stat-num">2</span><span className="nb-stat-label">A 30-minute panel and a separate 20-minute fireside chat</span></div>
               <div className="nb-stat is-accent" data-reveal style={{ '--d': '160ms' }}><span className="nb-stat-num">50–100</span><span className="nb-stat-label">Founders, operators and technology professionals</span></div>
-              <div className="nb-stat" data-reveal style={{ '--d': '240ms' }}><span className="nb-stat-num">4h</span><span className="nb-stat-label">One focused morning, 8:00 AM to 12:00 PM</span></div>
+              <div className="nb-stat" data-reveal style={{ '--d': '240ms' }}><span className="nb-stat-num">4h</span><span className="nb-stat-label">One focused morning, 8:00 AM to 12:25 PM</span></div>
             </div>
           </div>
         </section>
@@ -299,7 +299,7 @@ export default function NairobiPage() {
                     ) : <Portrait name={s.name} photo={s.photo} position={s.position} className={s.portraitClass} />}
                   </div>
                   <div className="nb-sp-body">
-                    <p className="nb-sp-kind">{s.kind === 'Fireside chat' ? 'Fireside chat · 20 mins' : s.kind ? `${s.kind} · 25 mins` : `Keynote ${s.n} · 30 mins`}</p>
+                    <p className="nb-sp-kind">{s.kind === 'Fireside chat' ? 'Fireside chat · 20 mins' : s.kind ? `${s.kind} · 30 mins` : `Keynote ${s.n} · 30 mins`}</p>
                     <h3 className="nb-sp-topic">{s.topic}</h3>
                     <div className="nb-sp-who">
                       <p className="nb-sp-name">{s.confirmed === false ? 'Yet to be confirmed' : s.name}</p>
@@ -379,7 +379,7 @@ export default function NairobiPage() {
                 </div>
                 <dl className="nb-venue-list">
                   <div><dt>Date</dt><dd>Thursday, 5 November 2026</dd></div>
-                  <div><dt>Time</dt><dd>8:00 AM to 12:00 PM (EAT)</dd></div>
+                  <div><dt>Time</dt><dd>8:00 AM to 12:25 PM (EAT)</dd></div>
                   <div><dt>Arrive</dt><dd>Check-in from 8:00 AM. Red carpet at 8:30 AM. Event kickoff at 9:00 AM.</dd></div>
                   <div><dt>Seats</dt><dd>50–100 guests. Registration required.</dd></div>
                 </dl>
