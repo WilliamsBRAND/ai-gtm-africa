@@ -6,7 +6,6 @@ import TomidePage from './TomidePage';
 import KigaliPage from './KigaliPage';
 import NairobiPage from './NairobiPage';
 import VolunteerPage from './VolunteerPage';
-import { NAIROBI_WHATSAPP_GROUP_URL } from './registration';
 
 const focusAreas = [
   {title:'AI',image:'/images/hero-conference.png',position:'center 44%',points:['Find the AI use cases that create real business value.','Automate repetitive work and remove operational bottlenecks.','Use AI to improve research, analysis and decision-making.','Build useful AI workflows across the business.','Choose the right tools without chasing every new platform.','Move from experiments to practical adoption.']},
@@ -77,7 +76,7 @@ function ApplicationForm({form, onClose}){
   const [name,setName]=useState(''); const [email,setEmail]=useState(''); const [phone,setPhone]=useState('');
   const [role,setRole]=useState(''); const [btype,setBtype]=useState('');
   const [city,setCity]=useState(''); const [sponsor,setSponsor]=useState(''); const [heard,setHeard]=useState('');
-  const [done,setDone]=useState(false); const [err,setErr]=useState(''); const [submitting,setSubmitting]=useState(false);
+  const [done,setDone]=useState(false); const [waitlisted,setWaitlisted]=useState(false); const [err,setErr]=useState(''); const [submitting,setSubmitting]=useState(false);
   const firstRef=useRef(null);
   const onCloseRef=useRef(onClose); onCloseRef.current=onClose;
   const preset=form!=null&&form.city!=null?form.city:null;
@@ -90,7 +89,7 @@ function ApplicationForm({form, onClose}){
     if(form==null)return;
     const prev=document.body.style.overflow;document.body.style.overflow='hidden';
     setName('');setEmail('');setPhone('');setRole('');setBtype('');setSponsor('');setHeard('');
-    setCity(preset==null?'':presetName);setDone(false);setErr('');setSubmitting(false);
+    setCity(preset==null?'':presetName);setDone(false);setWaitlisted(false);setErr('');setSubmitting(false);
     const t=setTimeout(()=>firstRef.current?.focus(),60);
     const onKey=ev=>{if(ev.key==='Escape')onCloseRef.current()};
     document.addEventListener('keydown',onKey);
@@ -105,8 +104,8 @@ function ApplicationForm({form, onClose}){
       const response=await fetch('/api/register',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name,email,phone,city,role,industry:btype,heard,sponsor})});
       const result=await response.json().catch(()=>({}));
       if(!response.ok||!result.ok)throw new Error(result.error||'Registration could not be submitted.');
+      setWaitlisted(Boolean(result.waitlisted));
       setDone(true);
-      if (city.trim().toUpperCase() === 'NAIROBI') window.location.assign(NAIROBI_WHATSAPP_GROUP_URL);
     }catch(error){setErr(error.message||'Registration could not be submitted. Please try again.')}finally{setSubmitting(false)}
   };
   const field=(label,req,children)=><label className="form-field"><span className="form-label">{label}{req&&<em> *</em>}</span>{children}</label>;
@@ -122,8 +121,12 @@ function ApplicationForm({form, onClose}){
           <p className="form-done-text">Thank you for registering your interest in AI GTM Africa.</p>
           {cityDate&&<p className="form-done-date">{city} · {cityDate}</p>}
           {cityVenue&&<p className="form-done-note">Venue: {cityVenue}</p>}
+          {waitlisted ? (
+            <p className="form-done-note"><strong>We’ve exceeded our capacity for {city.charAt(0) + city.slice(1).toLowerCase()}, but your details are saved. We’ll let you know by email if a space opens up.</strong></p>
+          ) : (<>
           <p className="form-done-note">Due to the fact that we are taking {city.toLowerCase() === "nairobi" ? "50 to 100 people in Nairobi" : "20 to 30 people per city"}, we will definitely reach out to you to let you know if you make the cut.</p>
           <p className="form-done-note">Your registration has been received and our team will review the details. <strong>If your registration is selected, we’ll contact you directly with your confirmation and the event details.</strong></p>
+          </>)}
           <p className="form-done-note">We look forward to connecting with you.</p>
           <p className="form-signoff">AI GTM AFRICA</p>
           <button type="button" className="cta form-back" onClick={onClose}>Back to Website <span aria-hidden="true" className="cta-arrow"/></button>

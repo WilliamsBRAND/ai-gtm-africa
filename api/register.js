@@ -25,6 +25,9 @@ const CITY_VENUES = {
   'NAIROBI': NAIROBI_VENUE,
 };
 
+// Cities over capacity: save to the sheet as Waitlist, no attendee email yet.
+const WAITLIST_CITIES = new Set(['NAIROBI']);
+
 function getGwsCredentials() {
   if (!process.env.GOOGLE_WORKSPACE_CLI_CREDENTIALS_JSON) {
     return null;
@@ -379,6 +382,7 @@ module.exports = async function handler(req, res) {
       return res.status(400).json({ ok: false, error: 'Please complete all required fields.' });
     }
 
+    const waitlisted = WAITLIST_CITIES.has(String(data.city).trim().toUpperCase());
     const gwsCredentials = getGwsCredentials();
     let sheetAccessToken = null;
     let gmailAccessToken = null;
@@ -425,7 +429,7 @@ module.exports = async function handler(req, res) {
             String(data.industry).trim(),
             String(data.heard).trim(),
             String(data.sponsor).trim(),
-            'New',
+            waitlisted ? 'Waitlist' : 'New',
           ]],
         }),
       },
@@ -438,11 +442,13 @@ module.exports = async function handler(req, res) {
 
     // 2. Send Automated Confirmation Email to Attendee
     if (gmailAccessToken) {
-      try {
-        await sendConfirmationEmail(gmailAccessToken, String(data.email).trim(), String(data.name).trim(), String(data.city).trim());
-        console.log(`Automated confirmation email successfully sent to ${data.email}`);
-      } catch (emailErr) {
-        console.error('Automated confirmation email failed:', emailErr.message);
+      if (!waitlisted) {
+        try {
+          await sendConfirmationEmail(gmailAccessToken, String(data.email).trim(), String(data.name).trim(), String(data.city).trim());
+          console.log(`Automated confirmation email successfully sent to ${data.email}`);
+        } catch (emailErr) {
+          console.error('Automated confirmation email failed:', emailErr.message);
+        }
       }
 
       // 3. Send Automated Instant Team Alert Email to Precious & Tomide
@@ -456,7 +462,7 @@ module.exports = async function handler(req, res) {
       console.warn('Gmail access token was unavailable; email confirmation skipped.');
     }
 
-    return res.status(200).json({ ok: true });
+    return res.status(200).json({ ok: true, waitlisted });
   } catch (error) {
     console.error('Registration error:', error);
     return res.status(500).json({ ok: false, error: 'Registration could not be submitted. Please try again.' });

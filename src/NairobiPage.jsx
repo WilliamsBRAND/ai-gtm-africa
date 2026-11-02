@@ -1,6 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { ArrowUpRight, Calendar, Clock, MapPin, X } from 'lucide-react';
-import { NAIROBI_WHATSAPP_GROUP_URL } from './registration';
 import {
   Arrow, EDITION_IMG as EDITION, EditionFooter, EditionNav, FullGallery, KigaliGallery, MAIN_SITE, Portrait, SpeakerCarousel, WHATSAPP_NUMBER, useEditionPage, useOverlay,
 } from './edition/kit';
@@ -104,7 +103,6 @@ function RegisterDialog({ open, onClose }) {
       const result = await res.json().catch(() => ({}));
       if (!res.ok || !result.ok) throw new Error(result.error || 'We could not send your registration.');
       setState('done');
-      window.location.assign(NAIROBI_WHATSAPP_GROUP_URL);
     } catch (err) {
       setState('idle');
       setError(err.message || 'We could not send your registration. Please try again.');
@@ -127,10 +125,10 @@ function RegisterDialog({ open, onClose }) {
         <p className="nb-eyebrow">Thursday 5 November 2026</p>
         {state === 'done' ? (
           <>
-            <h2 id="nb-register-title">You’re registered.</h2>
+            <h2 id="nb-register-title">You’re on the waitlist.</h2>
             <div className="nb-done">
               <p>Thanks for registering for AI GTM Africa Nairobi at {VENUE_NAME}.</p>
-              <p>We’ll email you to confirm your place.</p>
+              <p>We’ve exceeded our capacity, but your details are saved. We’ll let you know by email if a space opens up.</p>
               <button type="button" className="nb-btn nb-btn-dark" onClick={onClose}>Back to the page</button>
             </div>
           </>
