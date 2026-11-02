@@ -27,7 +27,8 @@ const panelists = [
 const programme = [
   { time: '8:00 AM', title: 'Arrival and check-in', kind: 'Doors open' },
   { time: '8:30 AM', title: 'Red carpet', kind: 'Red carpet' },
-  { time: '9:00 AM', title: 'Event kickoff and welcome address', who: 'Tomide Williams', kind: 'Welcome' },
+  { time: '9:00 AM', title: 'Event kickoff', who: 'Tomide Williams', kind: 'Kickoff' },
+  { time: '9:10 AM', title: 'The Future of Africa’s Startup Ecosystem in an AI-Driven World', who: 'Alan Mwangi, Country Director, iHUB Kenya (CcHUB)', kind: 'Welcome address' },
   { time: '9:30 AM', title: 'Building Market-Relevant AI-Powered Products', who: 'Esther Ndungu, Product Manager, Microsoft', kind: 'Keynote · 30 mins', key: true },
   { time: '10:00 AM', title: 'Using AI to Win Customers and Grow Revenue', who: 'Håvar Bauck, HotelOnline', kind: 'Keynote · 30 mins', key: true },
   { time: '10:30 AM', title: 'Building Go-to-Market Strategies for African Markets with AI', who: 'Tomide Williams', kind: 'Fireside chat · 20 mins', key: true },

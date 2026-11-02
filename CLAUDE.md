@@ -154,3 +154,6 @@ The two supplied photos were attached to the wrong names. Corrected: Peter Maina
 
 ### Programme corrections — 2 November 2026
 Theme is “Build, Grow & Scale with AI” (hero reads “Build, grow &amp; scale with AI.”); never “Build, sell and grow”. Esther Ndungu: Product Manager, Microsoft. Dr Liz Ankrah: Research Scientist, Microsoft Research. Panel is 30 minutes (programme, moderator and panelist cards, format stat). Times before the panel unchanged; panel stays 10:50. Revised: 11:20 Dr Liz; 11:50 Ms. Muthoni; 12:20 vote of thanks (5m); 12:25 group photos and networking. Event time shown as 8:00 AM to 12:25 PM (EAT) in hero, modal, format stat and venue. This supersedes the 25-minute panel and 11:15/11:45/12:15/12:20 times above. Marquee keeps org-only labels.
+
+### Welcome address — 2 November 2026
+Tomide no longer gives the welcome address. Programme: 9:00 AM Event kickoff (Tomide Williams); 9:10 AM Welcome address “The Future of Africa’s Startup Ecosystem in an AI-Driven World” by Alan Mwangi, Country Director, iHUB Kenya (CcHUB). All other times unchanged. Alan has no speaker card or marquee entry unless the user asks.
