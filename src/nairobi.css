@@ -734,6 +734,10 @@
   transform-origin: 53% 64%;
 }
 
+.nb .nb-portrait.is-alan-headshot img {
+  object-position: 42% 20%;
+}
+
 .nb .nb-portrait.is-beanie-headshot img {
   object-position: 52% 40%;
 }

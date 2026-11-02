@@ -28,7 +28,7 @@ const programme = [
   { time: '8:00 AM', title: 'Arrival and check-in', kind: 'Doors open' },
   { time: '8:30 AM', title: 'Red carpet', kind: 'Red carpet' },
   { time: '9:00 AM', title: 'Event kickoff', who: 'Tomide Williams', kind: 'Kickoff' },
-  { time: '9:10 AM', title: 'The Future of Africa’s Startup Ecosystem in an AI-Driven World', who: 'Alan Mwangi, Country Director, iHUB Kenya (CcHUB)', kind: 'Welcome address' },
+  { time: '9:10 AM', title: 'The Future of Africa’s Startup Ecosystem in an AI-Driven World', who: 'Alan Mwangi, Country Manager, iHub (CcHub) Kenya', kind: 'Welcome address · 20 mins' },
   { time: '9:30 AM', title: 'Building Market-Relevant AI-Powered Products', who: 'Esther Ndungu, Product Manager, Microsoft', kind: 'Keynote · 30 mins', key: true },
   { time: '10:00 AM', title: 'Using AI to Win Customers and Grow Revenue', who: 'Håvar Bauck, HotelOnline', kind: 'Keynote · 30 mins', key: true },
   { time: '10:30 AM', title: 'Building Go-to-Market Strategies for African Markets with AI', who: 'Tomide Williams', kind: 'Fireside chat · 20 mins', key: true },
@@ -49,6 +49,7 @@ const reasons = [
 ];
 
 const marquee = [
+  ['Alan Mwangi', 'iHub (CcHub) Kenya'],
   ['Esther Ndungu', 'Microsoft'],
   ['Håvar Bauck', 'HotelOnline'],
   ['Tomide Williams', 'Founder, AI GTM Africa'],
@@ -289,7 +290,7 @@ export default function NairobiPage() {
 
             {/* Revealed as one row: on phones the later cards sit off-screen to the side and would never trigger */}
             <SpeakerCarousel label="Speakers and panelists">
-              {[...speakers.slice(0, 2), { name: 'Tomide Williams', role: 'Founder, AI GTM Africa', photo: '/images/speakers/tomide-williams.jpg', kind: 'Fireside chat', topic: 'Building Go-to-Market Strategies for African Markets with AI' }, ...speakers.slice(2), { name: 'Raphail John', role: 'Co-founder, Investspring', photo: '/images/speakers/raphail-john.jpg', portraitClass: 'is-raphail-headshot', kind: 'Panel moderator', topic: 'When AI Can Do Almost Everything, What Makes You Stand Out?' }, ...panelists.map(p => ({ ...p, kind: 'Panelist', topic: 'When AI Can Do Almost Everything, What Makes You Stand Out?' }))].map((s) => (
+              {[{ name: 'Alan Mwangi', role: 'Country Manager, iHub (CcHub) Kenya', photo: '/images/speakers/alan-mwangi.jpg', portraitClass: 'is-alan-headshot', kind: 'Welcome address', topic: 'The Future of Africa’s Startup Ecosystem in an AI-Driven World' }, ...speakers.slice(0, 2),{ name: 'Tomide Williams', role: 'Founder, AI GTM Africa', photo: '/images/speakers/tomide-williams.jpg', kind: 'Fireside chat', topic: 'Building Go-to-Market Strategies for African Markets with AI' }, ...speakers.slice(2), { name: 'Raphail John', role: 'Co-founder, Investspring', photo: '/images/speakers/raphail-john.jpg', portraitClass: 'is-raphail-headshot', kind: 'Panel moderator', topic: 'When AI Can Do Almost Everything, What Makes You Stand Out?' }, ...panelists.map(p => ({ ...p, kind: 'Panelist', topic: 'When AI Can Do Almost Everything, What Makes You Stand Out?' }))].map((s) => (
                 <article key={s.name} className="nb-sp" role="listitem">
                   <div className="nb-sp-photo">
                     {s.confirmed === false ? (
@@ -300,7 +301,7 @@ export default function NairobiPage() {
                     ) : <Portrait name={s.name} photo={s.photo} position={s.position} className={s.portraitClass} />}
                   </div>
                   <div className="nb-sp-body">
-                    <p className="nb-sp-kind">{s.kind === 'Fireside chat' ? 'Fireside chat · 20 mins' : s.kind ? `${s.kind} · 30 mins` : `Keynote ${s.n} · 30 mins`}</p>
+                    <p className="nb-sp-kind">{s.kind === 'Fireside chat' || s.kind === 'Welcome address' ? `${s.kind} · 20 mins` : s.kind ? `${s.kind} · 30 mins` : `Keynote ${s.n} · 30 mins`}</p>
                     <h3 className="nb-sp-topic">{s.topic}</h3>
                     <div className="nb-sp-who">
                       <p className="nb-sp-name">{s.confirmed === false ? 'Yet to be confirmed' : s.name}</p>
